@@ -2,6 +2,10 @@
 *.iml
 *.ipr
 *.iws
+.classpath
+.project
+
+README.txt
 CREDITS-fml*
 forge-*-changelog.txt
 gradlew*
@@ -9,12 +13,15 @@ LICENSE-fml*
 MinecraftForge-Credits.txt
 MinecraftForge-License.txt
 build/
+.settings/
 .gradle/
 eclipse/
 gradle/
 libs/
+bin/
 <<<<<<< HEAD
 out/
 =======
 out/
 >>>>>>> 23853e2979d696b27de6f9bf3b9a3a9635120b1a
+/bin/
