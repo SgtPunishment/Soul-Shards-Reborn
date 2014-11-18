@@ -7,10 +7,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
 public class ShardPickup {
-	@SubscribeEvent
-	public void pickupShard(PlayerEvent.ItemPickupEvent e) {
-		if (e.pickedUp.getEntityItem().getItem().equals(new ItemStack(ObjHandler.SOUL_CAGE, 0))) {
-			e.player.addStat(SSRAchievement.achievementCage, 1);
-		}
-	}
+//	@SubscribeEvent
+//	public void pickupShard(PlayerEvent.ItemPickupEvent e) {
+//		if (e.pickedUp.getEntityItem().getItem().equals(new ItemStack(ObjHandler.SOUL_CAGE, 0))) {
+//			e.player.addStat(SSRAchievement.achievementCage, 1);
+//		}
+//	}
 }

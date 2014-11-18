@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
 import net.minecraftforge.common.AchievementPage;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -13,6 +14,7 @@ import moze_intel.ssr.commands.KillCMD;
 import moze_intel.ssr.events.CreateShardEvent;
 import moze_intel.ssr.events.PlayerKillEntityEvent;
 import moze_intel.ssr.events.SSRAchievement;
+import moze_intel.ssr.events.SSRFMLCommonHandler;
 import moze_intel.ssr.events.ShardPickup;
 import moze_intel.ssr.gameObjs.ObjHandler;
 import moze_intel.ssr.utils.EntityMapper;
@@ -37,15 +39,9 @@ public class SSRCore {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
 		ObjHandler.registerObjs();
-		// SSRAchievement.Get();
-
-		achievementCage = new Achievement("achievement.createCage",
-				"createCage", -2, 0, ObjHandler.SOUL_CAGE, AchievementList.buildWorkBench)
-				.initIndependentStat().registerStat();
-
-		AchievementPage.registerAchievementPage(new AchievementPage(
-				"Soul Shards: Reborn", new Achievement[] { achievementCage }));
+		SSRAchievement.Get();
 		
+		FMLCommonHandler.instance().bus().register(new SSRFMLCommonHandler());
 		MinecraftForge.EVENT_BUS.register(new ShardPickup());
 		MinecraftForge.EVENT_BUS.register(new PlayerKillEntityEvent());
 		MinecraftForge.EVENT_BUS.register(new CreateShardEvent());
