@@ -11,6 +11,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -82,7 +83,7 @@ public class Register {
     public static Block BlockObsidianGlass = new BlockGlassObsidian();
     
     // Set up Biomes
-    public static BiomeGenBase biomePetrifiedForest = new BiomeGenPetForest(137).setBiomeName("Petrified Forest");
+    public static BiomeGenBase biomePetrifiedForest = new BiomeGenPetForest(137).setBiomeName("Petrified Forest").setTemperatureRainfall(0.95F, 0.9F).setColor(000000);
     
 	public static void registerObjs() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(SSTheOldWays.modInstance, new GuiHandler());
@@ -219,9 +220,11 @@ public class Register {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	private static void registerBiomes() {
 		BiomeDictionary.registerBiomeType(biomePetrifiedForest, Type.FOREST);
 		BiomeManager.addSpawnBiome(biomePetrifiedForest);
+		BiomeManager.desertBiomes.add(new BiomeEntry(biomePetrifiedForest, 10));
 	}
 
 }
