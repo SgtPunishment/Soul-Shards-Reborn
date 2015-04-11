@@ -7,6 +7,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -39,6 +43,7 @@ import com.whammich.sstow.item.blocks.ItemBlockPlankPetrified;
 import com.whammich.sstow.item.blocks.ItemBlockXenolith;
 import com.whammich.sstow.tileentity.TileEntityCage;
 import com.whammich.sstow.tileentity.TileEntityForge;
+import com.whammich.sstow.world.generation.biome.BiomeGenPetForest;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -76,6 +81,9 @@ public class Register {
     public static Block BlockPetrifiedPlanks = new BlockPlankPetrified();
     public static Block BlockObsidianGlass = new BlockGlassObsidian();
     
+    // Set up Biomes
+    public static BiomeGenBase biomePetrifiedForest = new BiomeGenPetForest(137).setBiomeName("Petrified Forest");
+    
 	public static void registerObjs() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(SSTheOldWays.modInstance, new GuiHandler());
 
@@ -84,7 +92,7 @@ public class Register {
 		registerOreDictEntries();
 		registerTileEntities();
 		registerRecipes();
-
+		registerBiomes();
 	}
 
 	private static void registerItems() {
@@ -211,4 +219,9 @@ public class Register {
 		}
 	}
 	
+	private static void registerBiomes() {
+		BiomeDictionary.registerBiomeType(biomePetrifiedForest, Type.FOREST);
+		BiomeManager.addSpawnBiome(biomePetrifiedForest);
+	}
+
 }
