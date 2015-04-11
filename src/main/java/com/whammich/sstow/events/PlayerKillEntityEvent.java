@@ -47,7 +47,7 @@ public class PlayerKillEntityEvent {
 		}
 		
 		if (entName == null || entName.isEmpty()) {
-			ModLogger.logFatal("Player killed entity with no unlocalized name: " + dead);
+			ModLogger.logFatal(Utils.localizeFormatted("chat.sstow.debug.nounlocname", "" + dead));
 			return;
 		}
 
@@ -66,6 +66,7 @@ public class PlayerKillEntityEvent {
 			if (!Utils.isShardBound(shard)) {
 				Utils.setShardBoundEnt(shard, entName);
 				Utils.writeEntityHeldItem(shard, dead);
+				Utils.setShardBoundPlayer(shard, player);
 			}
 			Utils.writeEntityArmor(shard, dead);
 

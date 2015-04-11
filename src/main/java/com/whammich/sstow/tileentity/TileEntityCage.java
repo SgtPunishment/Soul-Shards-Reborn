@@ -42,11 +42,11 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 	private static final int[] slot = new int[] { 0, 1, 2, 3, 4, 5 };
 
 	private String entName;
+	private String owner;
 	private boolean redstoneActive;
 	private boolean initChecks;
 	private boolean active;
 
-	String Owner;
 
 	public TileEntityCage() {
 		counter = 0;
@@ -56,9 +56,6 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 		active = false;
 	}
 
-	public void addOwner(String playerName) {
-		Owner = playerName;
-	}
 
 	//@SuppressWarnings("rawtypes")
 	@Override
@@ -109,7 +106,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 
 		if (counter >= TierHandler.getCooldown(tier - 1) * 20 - 1) {
 			if (Config.ENABLE_DEBUG) {
-				ModLogger.logInfo("Successfully spawned: " + entName);
+				ModLogger.logInfo(Utils.localizeFormatted("chat.sstow.debug.successspawn", "" + entName));
 			}
 
 			EntityLiving[] toSpawn = new EntityLiving[TierHandler
@@ -218,7 +215,14 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 	}
 
 	private boolean isPlayerClose(int x, int y, int z) {
-		return worldObj.getClosestPlayer(x, y, z, 16.0D) != null;
+		EntityPlayer entityPlayer = worldObj.getClosestPlayer(x, y, z, 16.0D);
+		if ((Config.PERSONALSHARD && entityPlayer != null 
+				&& entityPlayer.getDisplayName().equals(owner))
+				|| (!Config.PERSONALSHARD && entityPlayer != null)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private boolean canSpawnInWorld(EntityLiving ent) {
@@ -317,6 +321,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 		if (inventory != null) {
 			tier = Utils.getShardTier(inventory);
 			entName = Utils.getShardBoundEnt(inventory);
+			owner = Utils.getShardBoundPlayer(inventory);
 		}
 		active = nbt.getBoolean("active");
 	}
@@ -360,6 +365,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 				this.zCoord, 1, 2);
 		this.tier = Utils.getShardTier(this.inventory);
 		this.entName = Utils.getShardBoundEnt(this.inventory);
+		this.owner = Utils.getShardBoundPlayer(inventory);
 	}
 
 	@Override

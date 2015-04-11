@@ -2,6 +2,9 @@ package com.whammich.sstow.block;
 
 import java.util.List;
 
+import com.whammich.sstow.utils.Reference;
+import com.whammich.sstow.utils.Register;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,36 +12,27 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
-import com.whammich.sstow.utils.Reference;
-import com.whammich.sstow.utils.Register;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockPlankPetrified extends Block {
+public class BlockMaterials extends Block {
+
 	@SideOnly(Side.CLIENT)
 	protected IIcon[] blockIcon;
-
-	public BlockPlankPetrified() {
-		super(Material.rock);
-		setCreativeTab(Register.CREATIVE_TAB);
-		setLightOpacity(255);
-		useNeighborBrightness = true;
-		blockHardness = 3.0F;
-		blockResistance = 3.0F;
-		setBlockName("sstow.petrified.plank");
+	
+	public BlockMaterials() {
+		super(Material.iron);
+		this.setBlockName("sstow.block.material");
+		this.setCreativeTab(Register.CREATIVE_TAB);
+		this.blockHardness = 3.0F;
+		this.blockResistance = 3.0F;
 	}
 
 	public static final String[] names = new String[] { 
-		"oak",    // 0 
-		"spruce", // 1 
-		"birch",  // 2
-		"jungle", // 3
-		"acacia", // 4
-		"big_oak" // 5
+		"soulium",		// 0 
+		"ender",		// 1 
 	};
-
+	
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@SideOnly(Side.CLIENT)
@@ -54,7 +48,7 @@ public class BlockPlankPetrified extends Block {
 		this.blockIcon = new IIcon[names.length];
 
 		for (int i = 0; i < this.blockIcon.length; ++i) {
-			this.blockIcon[i] = iconRegister.registerIcon(Reference.MOD_ID + ":petrified_planks/petrified_planks_" + names[i]);
+			this.blockIcon[i] = iconRegister.registerIcon(Reference.MOD_ID + ":" + names[i]);
 		}
 	}
 

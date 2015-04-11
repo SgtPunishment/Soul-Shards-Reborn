@@ -1,11 +1,8 @@
 package com.whammich.sstow.block;
 
-import java.util.Random;
-
-import net.minecraft.block.BlockBreakable;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
 import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
@@ -13,50 +10,39 @@ import com.whammich.sstow.utils.Register;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockGlassObsidian extends BlockBreakable {
+public class BlockGlassObsidian extends Block {
 
-	private static String field_149995_b;
-	private static boolean field_149996_a;
+	public BlockGlassObsidian() {
+		super(Material.rock);
+        setBlockName("sstow.block.obsidian.glass");
+        setBlockTextureName(Reference.MOD_ID + ":glassObsidian");
+        setCreativeTab(Register.CREATIVE_TAB);
+        setLightOpacity(255);
+        setHardness(50.0F);
+        setResistance(2000.0F);
 
-	public BlockGlassObsidian(Material material, boolean bool) {
-		super(field_149995_b, Material.rock, field_149996_a);
-		setCreativeTab(Register.CREATIVE_TAB);
-		setLightOpacity(255);
-		useNeighborBrightness = true;
-		setHardness(50.0F);
-		setResistance(2000.0F);
-		setBlockName("sstow.block.obsidian.glass");
-	}
+        useNeighborBrightness = true;
+    }
 
-	@Override
-	public int quantityDropped(Random p_149745_1_) {
-		return 0;
-	}
+    @SideOnly(Side.CLIENT)
+    public int getRenderBlockPass() {
+        return 1;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass() {
-		return 1;
-	}
+    public boolean isOpaqueCube() {
+        return false;
+    }
 
-	@Override
-	public boolean renderAsNormalBlock() {
-		return false;
-	}
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
 
-	@Override
-	protected boolean canSilkHarvest() {
-		return true;
-	}
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta) {
-		return blockIcon;
-	}
+    @Override
+    public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side) {
+        Block sideBlock = blockAccess.getBlock(x, y, z);
+        if (sideBlock == this)
+            return false;
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		this.blockIcon = iconRegister.registerIcon(Reference.MOD_ID + ":glassObsidian");
-	}
+        return super.shouldSideBeRendered(blockAccess, x, y, z, side);
+    }
 }

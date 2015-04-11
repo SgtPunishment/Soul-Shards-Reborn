@@ -16,6 +16,7 @@ public final class Config {
 	public static int ENCHANT_ID;
 	public static int ENCHANT_WEIGHT;
 	public static int ENCHANT_KILL_BONUS;
+	
 	// general Section
 	public static int SPAWNER_ABSORB_BONUS;
 	public static int MAX_NUM_ENTITIES;
@@ -24,8 +25,10 @@ public final class Config {
 	public static boolean ENABLE_FLOOD_PREVENTION;
 	public static boolean ENABLE_DEBUG;
 	public static boolean RITUAL;
+	public static boolean PERSONALSHARD;
+	
 	// recipes Section
-	public static int COOK_TIME;
+	//public static int COOK_TIME;
 	public static int SHARDS;
 	public static int NUGGETS;
 	public static int INGOTS;
@@ -89,7 +92,7 @@ public final class Config {
 	@SubscribeEvent
 	public void onConfigChanged(OnConfigChangedEvent event) {
 		if (event.modID.equals(Reference.MOD_ID)) {
-			ModLogger.logInfo("Updating config...");
+			ModLogger.logInfo(Utils.localize("chat.sstow.util.configupdate"));
 			syncConfig();
 		}
 	}
@@ -111,9 +114,10 @@ public final class Config {
 			ENABLE_FLOOD_PREVENTION = config.getBoolean("Flood Prevention", "general", true, "Soul cages will stop when too many entities have been spawned");
 			ENABLE_DEBUG = config.getBoolean("Enable Debug", "general", false, "This will enable debug mode, where the console will inform you when a mob is spawned");
 			RITUAL = config.getBoolean("Enable Ritual", "general", false, "RESTART REQUIRED: This will revert the shard creation to the structure method");
-			
+			PERSONALSHARD = config.getBoolean("Personal shards", "general", false, "The soulcage will only function if the original shard creator is nearby, not just anyone.");
+
 			// recipes Section
-			COOK_TIME = config.getInt("Cooking Time", "recipes", 12800, 0, 999999, "Time (In Ticks) it takes to create Soulium and Soul Shards");
+			// COOK_TIME = config.getInt("Cooking Time", "recipes", 12800, 0, 999999, "Time (In Ticks) it takes to create Soulium and Soul Shards");
 			SHARDS = config.getInt("Shard Amount", "recipes", 3, 1, 8, "RESTART REQUIRED: How many Soul Shards do you want to get by smelting 1 diamond");
 			NUGGETS = config.getInt("Nugget Amount", "recipes", 8, 1, 9, "RESTART REQUIRED: How many Soulium Nuggets do you want to get by smelting 1 iron ingot");
 			INGOTS = config.getInt("Ingot Amount", "recipes", 7, 1, 9, "RESTART REQUIRED: How many Soulium Ingots do you want to get by smelting 1 iron block");
@@ -133,9 +137,9 @@ public final class Config {
 
 			TierHandler.setTierReqKills(minKills);
 
-			ModLogger.logInfo("Loaded configuration file!");
+			ModLogger.logInfo(Utils.localize("chat.sstow.util.configload"));
 		} catch (Exception e) {
-			ModLogger.logFatal("Failed to load configuration file!");
+			ModLogger.logFatal(Utils.localize("chat.sstow.util.configloadfail"));
 			e.printStackTrace();
 		} finally {
 			if (config.hasChanged()) {
