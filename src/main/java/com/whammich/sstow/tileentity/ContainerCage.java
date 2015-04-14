@@ -4,17 +4,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotFurnace;
 
 public class ContainerCage extends Container {
 	private TileEntityCage tileCage;
 
 	public ContainerCage(InventoryPlayer player, TileEntityCage TileEntityCage) {
 		this.tileCage = TileEntityCage;
-		this.addSlotToContainer(new Slot(TileEntityCage, 0, 56, 17));
-		this.addSlotToContainer(new Slot(TileEntityCage, 1, 56, 53));
-		this.addSlotToContainer(new SlotFurnace(player.player, TileEntityCage, 2, 116, 17));
-		this.addSlotToContainer(new SlotFurnace(player.player, TileEntityCage, 3, 116, 53));
+		this.addSlotToContainer(new Slot(TileEntityCage, 0, 17, 17));
+		this.addSlotToContainer(new Slot(TileEntityCage, 1, 98, 17));
+		this.addSlotToContainer(new Slot(TileEntityCage, 2, 116, 17));
+		this.addSlotToContainer(new Slot(TileEntityCage, 3, 134, 17));
+		this.addSlotToContainer(new Slot(TileEntityCage, 4, 152, 17));
 
 		int i;
 		for (i = 0; i < 3; ++i) {

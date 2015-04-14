@@ -47,6 +47,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 	private boolean initChecks;
 	private boolean active;
 
+	private String cageName;
 
 	public TileEntityCage() {
 		counter = 0;
@@ -56,6 +57,9 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 		active = false;
 	}
 
+	public void cageName(String string) {
+		this.cageName = string;
+	}
 
 	//@SuppressWarnings("rawtypes")
 	@Override
@@ -323,6 +327,9 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 			entName = Utils.getShardBoundEnt(inventory);
 			owner = Utils.getShardBoundPlayer(inventory);
 		}
+		if (nbt.hasKey("CustomName", 8)) {
+			this.cageName = nbt.getString("CustomName");
+		}
 		active = nbt.getBoolean("active");
 	}
 
@@ -332,6 +339,9 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 			NBTTagCompound tag = new NBTTagCompound();
 			inventory.writeToNBT(tag);
 			nbt.setTag("Shard", tag);
+		}
+		if (this.hasCustomInventoryName()) {
+			nbt.setString("CustomName", this.cageName);
 		}
 		nbt.setBoolean("active", active);
 	}
@@ -360,12 +370,14 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 
 	public void setInventorySlotContents(int slot, ItemStack stack) {
 		this.inventory = stack;
-
-		this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord,
-				this.zCoord, 1, 2);
-		this.tier = Utils.getShardTier(this.inventory);
-		this.entName = Utils.getShardBoundEnt(this.inventory);
-		this.owner = Utils.getShardBoundPlayer(inventory);
+		if(this.inventory == null) {
+			return;
+		} else {
+			this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 1, 2);
+			this.tier = Utils.getShardTier(this.inventory);
+			this.entName = Utils.getShardBoundEnt(this.inventory);
+			this.owner = Utils.getShardBoundPlayer(inventory);
+		}
 	}
 
 	@Override
@@ -375,12 +387,13 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 
 	@Override
 	public String getInventoryName() {
-		return null;
+		return this.hasCustomInventoryName() ? this.cageName
+				: "container.soulcage";
 	}
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		return false;
+		return this.cageName != null && this.cageName.length() > 0;
 	}
 
 	@Override
@@ -414,8 +427,12 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return stack != null && stack.getItem() == Register.ItemShardSoul
-				&& Utils.isShardBound(stack) && Utils.getShardTier(stack) > 0;
+		return 
+				 stack != null
+				  && stack.getItem() == Register.ItemShardSoul 
+				  && Utils.isShardBound(stack) 
+				  && Utils.getShardTier(stack) > 0; 
+				 
 	}
 
 	@Override

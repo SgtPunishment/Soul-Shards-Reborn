@@ -60,6 +60,7 @@ enchantment.soul_stealer=Soul Stealer
 
 # GUI
 container.soulforge=Soul Forge
+container.soulcage=Soul Cage
 itemGroup.sstow=Soul Shards The Old Ways
 
 # Soul Shard Details
