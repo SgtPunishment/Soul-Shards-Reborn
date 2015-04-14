@@ -54,6 +54,11 @@ public class ItemShardSoul extends Item {
 			stack.setTagCompound(new NBTTagCompound());
 		}
 
+		if(stack.stackTagCompound.getBoolean("Anviled")) {
+			EntityPlayer player = (EntityPlayer) entity;
+			player.inventory.decrStackSize(slot, 0);
+		}
+		
 		Utils.checkAndFixShard(stack);
 	}
 

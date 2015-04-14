@@ -142,8 +142,7 @@ public final class Utils {
 			return 0;
 		}
 
-		return (byte) MathHelper.clamp_int(
-				shard.stackTagCompound.getByte("Tier"), 0, 5);
+		return (byte) MathHelper.clamp_int(shard.stackTagCompound.getByte("Tier"), 0, 5);
 	}
 
 	public static void setShardTier(ItemStack shard, byte tier) {
@@ -151,8 +150,7 @@ public final class Utils {
 			shard.setTagCompound(new NBTTagCompound());
 		}
 
-		shard.stackTagCompound.setByte("Tier",
-				(byte) MathHelper.clamp_int(tier, 0, 5));
+		shard.stackTagCompound.setByte("Tier", (byte) MathHelper.clamp_int(tier, 0, 5));
 	}
 
 	/*

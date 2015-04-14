@@ -5,6 +5,7 @@ import java.io.File;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.whammich.sstow.commands.CommandSSTOW;
+import com.whammich.sstow.events.AnvilShardEvent;
 import com.whammich.sstow.events.CreateShardEvent;
 import com.whammich.sstow.events.PlayerKillEntityEvent;
 import com.whammich.sstow.utils.Config;
@@ -41,6 +42,7 @@ public class SSTheOldWays {
 	public void init(FMLInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new PlayerKillEntityEvent());
 		MinecraftForge.EVENT_BUS.register(new CreateShardEvent());
+		MinecraftForge.EVENT_BUS.register(new AnvilShardEvent());
 		FMLInterModComms.sendMessage("Waila", "register", Reference.Waila_callBack);
 	}
 

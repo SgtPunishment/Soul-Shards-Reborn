@@ -18,8 +18,7 @@ public class ContainerForge extends Container {
 	private int lastBurnTime;
 	private int lastItemBurnTime;
 
-	public ContainerForge(InventoryPlayer player,
-			TileEntityForge tileEntityFurnace) {
+	public ContainerForge(InventoryPlayer player, TileEntityForge tileEntityFurnace) {
 		this.tileFurnace = tileEntityFurnace;
 		this.addSlotToContainer(new Slot(tileEntityFurnace, 0, 56, 17));
 		this.addSlotToContainer(new Slot(tileEntityFurnace, 1, 56, 53));
