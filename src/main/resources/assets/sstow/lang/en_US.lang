@@ -110,3 +110,9 @@ chat.sstow.util.entitylistloadfail=Soul Shards had a problem loading Entity List
 chat.sstow.util.entitymapskip1=Already Mapped, skipping: %s
 chat.sstow.util.entitymapskip2=Boss Detected, skipping %s
 chat.sstow.util.entitymapdone=Finished Mapping, Entities Found: %s
+
+# Player Guide Book
+guide.SoulGuide.book.name=Soul Shards
+guide.SoulGuide.book.title=The Old Ways
+guide.SoulGuide.book.welcomMessage=Welcome to the player guide and lore
+guide.SoulGuide.book.crafting=Crafting!
