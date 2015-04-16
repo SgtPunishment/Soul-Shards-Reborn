@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.whammich.sstow.guide.pages.PageSoulForge;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -28,19 +30,23 @@ public class SoulGuide {
 
 	public static void registerguide() {
 		createBook();
-		soulGuide = new Book(categories, "guide.SoulGuide.book.title",
-				"guide.SoulGuide.book.welcomMessage",
-				"guide.SoulGuide.book.name", new Color(102, 0, 102));
+		soulGuide = new Book(categories, "guide.SoulGuide.book.title", "guide.SoulGuide.book.welcomMessage", "guide.SoulGuide.book.name", new Color(102, 0, 102));
 		GuideRegistry.registerBook(soulGuide);
-		GameRegistry.addRecipe(new ShapedOreRecipe(GuideRegistry
-				.getItemStackForBook(soulGuide), "C", "B", 'C',
-				"essenceCorrupted", 'B', Items.writable_book));
+		GameRegistry.addRecipe(new ShapedOreRecipe(GuideRegistry.getItemStackForBook(soulGuide), "C", "B", 'C', "essenceCorrupted", 'B', Items.writable_book));
 	}
 	
 	public static void createBook(){
 		List<EntryAbstract> entries = new ArrayList<EntryAbstract>();
 		ArrayList<IPage> testPage = new ArrayList<IPage>();
+        PageSoulForge pageSoulForge = new PageSoulForge(new ItemStack(Items.iron_ingot));
+        PageSoulForge pageSoulForge2 = new PageSoulForge(new ItemStack(Blocks.iron_block));
+        PageSoulForge pageSoulForge3 = new PageSoulForge(new ItemStack(Blocks.log, 1, 0));
+        PageSoulForge pageSoulForge4 = new PageSoulForge(new ItemStack(Blocks.log, 1, 1));
 		testPage.addAll(PageHelper.pagesForLongText(Utils.localize("Bleh?"))); //Second
+        testPage.add(pageSoulForge);
+        testPage.add(pageSoulForge2);
+        testPage.add(pageSoulForge3);
+        testPage.add(pageSoulForge4);
 		entries.add(new EntryUniText(testPage, Utils.localize("Blu?"))); //First
 		categories.add(new CategoryItemStack(entries, Utils.localize("guide.SoulGuide.book.crafting"), new ItemStack(Register.ItemPickaxeSoul)));
 	}
