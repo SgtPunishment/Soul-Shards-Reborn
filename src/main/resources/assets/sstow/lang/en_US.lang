@@ -112,8 +112,9 @@ chat.sstow.util.entitymapskip2=Boss Detected, skipping %s
 chat.sstow.util.entitymapdone=Finished Mapping, Entities Found: %s
 
 # Player Guide Book
-guide.SoulGuide.book.name=Soul Shards
-guide.SoulGuide.book.title=The Old Ways
-guide.SoulGuide.book.welcomMessage=Welcome to the player guide and lore
-guide.SoulGuide.book.crafting=Crafting!
+guide.SoulManual.book.name=Soul Shards
+guide.SoulManual.book.title=The Old Ways
+guide.SoulManual.book.welcomMessage=Welcome to the player guide and lore
+guide.SoulManual.book.crafting=Crafting Recipes
 guide.forge.smelting=Soul Forge
+guide.forge.opening=The following pages are the Soul Forge Recipes

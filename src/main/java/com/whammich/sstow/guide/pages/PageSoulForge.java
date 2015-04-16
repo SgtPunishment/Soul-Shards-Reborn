@@ -31,10 +31,10 @@ public class PageSoulForge extends PageBase {
     @SideOnly(Side.CLIENT)
     public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("sstow:textures/gui/recipe_elements.png"));
-        guiBase.drawTexturedModalRect(guiLeft + 42, guiTop + 53, 0, 65, 105, 65);
+        guiBase.drawTexturedModalRect(guiLeft + 30, guiTop + 60, 0, 58, 110, 52);
         guiBase.drawCenteredString(fontRenderer, StatCollector.translateToLocal("guide.forge.smelting"), guiLeft + guiBase.xSize / 2, guiTop + 12, 0);
 
-        int inputX = 40 + guiLeft + guiBase.xSize / 7;
+        int inputX = 37 + guiLeft + guiBase.xSize / 7;
         int inputY = 40 + guiTop + guiBase.ySize / 5;
 
         // Draw the input item
@@ -44,15 +44,15 @@ public class PageSoulForge extends PageBase {
         if(this.output == null)
             this.output = new ItemStack(Blocks.fire);
 
-        int outputX = 100 + guiLeft + guiBase.xSize / 7;
-        int outputY = 40 + guiTop + guiBase.xSize / 5;
+        int outputX = 93 + guiLeft + guiBase.xSize / 7;
+        int outputY = 26 + guiTop + guiBase.xSize / 5;
 
         // Draw the output item
         GuiHelper.drawItemStack(this.output, outputX, outputY);
 
         // Draw the output secondary if it isn't null
         if (secondary != null)
-            GuiHelper.drawItemStack(this.secondary, outputX, outputY + 20);
+            GuiHelper.drawItemStack(this.secondary, outputX, outputY + 28);
 
         // Rendering the tooltips down here so they don't cause ugly render issues with ItemStacks
 
