@@ -239,7 +239,7 @@ public class Register {
 	public static void registerFluids() {
 		souliumFluid = new Fluid("soulium");
 		FluidRegistry.registerFluid(souliumFluid);
-		souliumFluidBlock = new BlockFluidSoulium(souliumFluid, Material.lava);
+		souliumFluidBlock = new BlockFluidSoulium(souliumFluid);
 		GameRegistry.registerBlock(souliumFluidBlock, souliumFluidBlock.getUnlocalizedName());
 		souliumFluid.setUnlocalizedName(souliumFluidBlock.getUnlocalizedName());
 	}
