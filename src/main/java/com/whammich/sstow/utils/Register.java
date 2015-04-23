@@ -244,6 +244,7 @@ public class Register {
 		souliumFluid.setUnlocalizedName(souliumFluidBlock.getUnlocalizedName());
 		if (Loader.isModLoaded("TConstruct")) {
 			TCon.MeltSoulium();
+			TCon.CastSoulium();
 		}
 	}
 	
