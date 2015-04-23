@@ -30,6 +30,7 @@ import com.whammich.sstow.block.BlockPetrified2;
 import com.whammich.sstow.block.BlockPlankPetrified;
 import com.whammich.sstow.block.BlockXenoLight;
 import com.whammich.sstow.block.BlockXenolith;
+import com.whammich.sstow.compat.tcon.TCon;
 import com.whammich.sstow.enchantment.EnchantmentSoulStealer;
 import com.whammich.sstow.guihandler.GuiHandler;
 import com.whammich.sstow.item.ItemAxeSoul;
@@ -241,6 +242,9 @@ public class Register {
 		souliumFluidBlock = new BlockFluidSoulium(souliumFluid);
 		GameRegistry.registerBlock(souliumFluidBlock, souliumFluidBlock.getUnlocalizedName());
 		souliumFluid.setUnlocalizedName(souliumFluidBlock.getUnlocalizedName());
+		if (Loader.isModLoaded("TConstruct")) {
+			TCon.MeltSoulium();
+		}
 	}
 	
 }
