@@ -22,7 +22,7 @@ public class BlockFluidSoulium extends BlockFluidClassic {
     protected IIcon flowingIcon;
 	
 	public BlockFluidSoulium(Fluid fluid) {
-		super(fluid, Material.water);
+		super(fluid, Material.lava);
 		setCreativeTab(Register.CREATIVE_TAB);
 		setBlockName("sstow.fluidblock.soulium");
 		setTemperature(300);
