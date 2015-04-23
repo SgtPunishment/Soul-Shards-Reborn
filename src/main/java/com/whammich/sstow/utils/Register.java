@@ -13,6 +13,8 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -82,6 +84,9 @@ public class Register {
     public static Block BlockPetrifiedPlanks = new BlockPlankPetrified();
     public static Block BlockObsidianGlass = new BlockGlassObsidian();
     
+    // Set up the mod fluids
+    public static Fluid souliumFluid;
+    
     // Set up Biomes
     public static BiomeGenBase biomePetrifiedForest = new BiomeGenPetForest(137).setBiomeName("Petrified Forest").setTemperatureRainfall(0.95F, 0.9F).setColor(000000);
     
@@ -94,6 +99,7 @@ public class Register {
 		registerTileEntities();
 		registerRecipes();
 		registerBiomes();
+		registerFluids();
 	}
 
 	private static void registerItems() {
@@ -227,4 +233,9 @@ public class Register {
 		BiomeManager.desertBiomes.add(new BiomeEntry(biomePetrifiedForest, 10));
 	}
 
+	public static void registerFluids() {
+		souliumFluid = new Fluid("soulium");
+		FluidRegistry.registerFluid(souliumFluid);
+	}
+	
 }
