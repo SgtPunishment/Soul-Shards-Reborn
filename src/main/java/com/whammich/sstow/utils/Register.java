@@ -1,6 +1,7 @@
 package com.whammich.sstow.utils;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -21,6 +22,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import com.whammich.sstow.SSTheOldWays;
 import com.whammich.sstow.block.BlockCage;
+import com.whammich.sstow.block.BlockFluidSoulium;
 import com.whammich.sstow.block.BlockForge;
 import com.whammich.sstow.block.BlockGlassObsidian;
 import com.whammich.sstow.block.BlockMaterials;
@@ -86,6 +88,7 @@ public class Register {
     
     // Set up the mod fluids
     public static Fluid souliumFluid;
+    public static Block souliumFluidBlock;
     
     // Set up Biomes
     public static BiomeGenBase biomePetrifiedForest = new BiomeGenPetForest(137).setBiomeName("Petrified Forest").setTemperatureRainfall(0.95F, 0.9F).setColor(000000);
@@ -236,6 +239,9 @@ public class Register {
 	public static void registerFluids() {
 		souliumFluid = new Fluid("soulium");
 		FluidRegistry.registerFluid(souliumFluid);
+		souliumFluidBlock = new BlockFluidSoulium(souliumFluid, Material.lava);
+		GameRegistry.registerBlock(souliumFluidBlock, souliumFluidBlock.getUnlocalizedName());
+		souliumFluid.setUnlocalizedName(souliumFluidBlock.getUnlocalizedName());
 	}
 	
 }

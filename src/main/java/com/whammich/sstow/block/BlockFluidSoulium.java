@@ -17,22 +17,21 @@ public class BlockFluidSoulium extends BlockFluidClassic {
 		super(fluid, material);
 		// TODO Auto-generated constructor stub
 		setCreativeTab(Register.CREATIVE_TAB);
+		setBlockName("sstow.fluidblock.soulium");
 	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta)
-    {
-        return this.blockIcon;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int side, int meta) {
+		return blockIcon;
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister)
-    {
-        this.blockIcon = iconRegister.registerIcon(Reference.MOD_ID + ":liquid_soulium");
-        Register.souliumFluid.setFlowingIcon(blockIcon);
-        Register.souliumFluid.setStillIcon(blockIcon);
-    }
-	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister iconRegister) {
+		blockIcon = iconRegister.registerIcon(Reference.MOD_ID + ":liquid_soulium");
+		Register.souliumFluid.setFlowingIcon(blockIcon);
+		Register.souliumFluid.setStillIcon(blockIcon);
+	}
+
 }
