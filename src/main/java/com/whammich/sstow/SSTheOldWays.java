@@ -14,19 +14,15 @@ import com.whammich.sstow.utils.EntityMapper;
 import com.whammich.sstow.utils.Entitylist;
 import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
-import com.whammich.sstow.utils.Remap;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, guiFactory = Reference.GuiFactory_class)
 public class SSTheOldWays {
@@ -55,22 +51,6 @@ public class SSTheOldWays {
 		Entitylist.init(new File(Config.configDirectory + "/entitylist.cfg"));
 	}
 	
-	@EventHandler
-	public void onMissingMapping(FMLMissingMappingsEvent event){
-		for (MissingMapping m : event.get()){
-			for(int i = 0; i < Remap.oldItemNames.length; i++){
-				if (m.type == GameRegistry.Type.ITEM && m.name.contains(Remap.oldItemNames[i])) {
-					m.remap(Remap.newItemNames[i]);
-				}
-			}
-			for(int i = 0; i < Remap.oldBlockNames.length; i++){
-				if (m.type == GameRegistry.Type.ITEM && m.name.contains(Remap.oldBlockNames[i])) {
-					m.remap(Remap.newBlockNames[i]);
-				}
-			}
-		}
-	}
-
 	@EventHandler
 	public void serverStart(FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandSSTOW());

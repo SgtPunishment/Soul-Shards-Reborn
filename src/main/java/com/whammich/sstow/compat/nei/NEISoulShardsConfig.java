@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 
+import com.whammich.sstow.utils.Config;
 import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
 
@@ -23,6 +24,11 @@ public class NEISoulShardsConfig implements IConfigureNEI {
 	public void loadConfig() {
 		API.hideItem(new ItemStack(Register.BlockForgeActive));
 
+		if(!Config.NEWSTUFF) {
+			API.hideItem(new ItemStack(Register.ItemMaterials, 1, 5));
+			API.hideItem(new ItemStack(Register.BlockMaterials, 1, 1));
+		}
+		
 		ForgeRecipeHandler handler = new ForgeRecipeHandler();
 		API.registerRecipeHandler(handler);
 		API.registerUsageHandler(handler);

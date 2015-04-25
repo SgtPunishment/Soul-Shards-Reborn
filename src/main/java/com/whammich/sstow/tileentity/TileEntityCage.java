@@ -35,11 +35,12 @@ import com.whammich.sstow.utils.Entitylist;
 
 public class TileEntityCage extends TileEntity implements ISidedInventory {
 
-	private ItemStack inventory;
+	private ItemStack[] modules = new ItemStack[5];
+	
 	private int counter;
 	private int updateCounter;
 	private int tier;
-	private static final int[] slot = new int[] { 0, 1, 2, 3, 4, 5 };
+	private static final int[] slot = new int[] {0};
 
 	private String entName;
 	private String owner;
@@ -72,8 +73,8 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 			return;
 		}
 		
-		this.worldObj.func_147453_f(this.xCoord, this.yCoord, this.zCoord,
-				Register.BlockCage);
+		//this.worldObj.func_147453_f(this.xCoord, this.yCoord, this.zCoord, Register.BlockCage);
+		
 		if (!initChecks) {
 			checkRedstone();
 			initChecks = true;
@@ -116,7 +117,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 			EntityLiving[] toSpawn = new EntityLiving[TierHandler
 					.getNumSpawns(tier - 1)];
 
-			ItemStack heldItem = Utils.getEntityHeldItem(inventory);
+			ItemStack heldItem = Utils.getEntityHeldItem(modules[0]);
 			for (int i = 0; i < toSpawn.length; i++) {
 				toSpawn[i] = EntityMapper.getNewEntityInstance(this.worldObj,
 						entName);
@@ -132,42 +133,12 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 
 				for (int j = 1; j <= 4; j++) {
 					toSpawn[i].setCurrentItemOrArmor(j,
-							Utils.getEntityArmor(inventory, j));
+							Utils.getEntityArmor(modules[0], j));
 				}
 
 				toSpawn[i].getEntityData().setBoolean("SSTOW", true);
 				toSpawn[i].forceSpawn = true;
 				toSpawn[i].func_110163_bv();
-
-
-//				// if this fails, don't crash the game
-//				try {
-//					// get the main class (like EntityZombie)
-//					Class c = toSpawn[i].getClass();
-//					while (c.getSuperclass() != EntityLiving.class
-//							&& c.getSuperclass() != null) {
-//						c = c.getSuperclass();
-//					}
-//					// set c to the EntityLiving class
-//					c = c.getSuperclass();
-//					// get the private experienceValue field
-//					Field field;
-//					try {
-//						// obfuscated environment(normal game)
-//						field = c.getDeclaredField("field_70728_aV");
-//					} catch (Exception e) {
-//						// System.out.println("couldn't find field, are you in a development environment?");
-//						field = c.getDeclaredField("experienceValue");
-//					}
-//					field.setAccessible(true);
-//					field.setInt(toSpawn[i], 0);
-//				} catch (Exception e) {
-//					// testing output. Should not be necessary anymore
-//					// System.out.println("something went wrong");
-//					// System.out.println(e.getLocalizedMessage()+ " - "+
-//					// e.toString());
-//				}
-
 			}
 			spawnEntities(toSpawn);
 			counter = 0;
@@ -198,21 +169,22 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 			return false;
 		}
 
-		if ((TierHandler.getChecksRedstone(tier - 1))
-				&& (redstoneActive == Config.INVERT_REDSTONE)) {
+		if (((Config.MODULE_RED == false) && (TierHandler.getChecksRedstone(tier - 1))
+				&& (redstoneActive == Config.INVERT_REDSTONE)) || 
+				((Config.MODULE_RED == true) && (modules[1] != null) && (redstoneActive == Config.INVERT_REDSTONE))) {
 			return false;
 		}
 
-		if ((TierHandler.getChecksPlayer(tier - 1))
-				&& (!isPlayerClose(this.xCoord, this.yCoord, this.zCoord))) {
+		if (((Config.MODULE_PLAYER == false) && (TierHandler.getChecksPlayer(tier - 1))
+				&& (!isPlayerClose(this.xCoord, this.yCoord, this.zCoord))) || ((Config.MODULE_PLAYER == true) && (!isPlayerClose(this.xCoord, this.yCoord, this.zCoord)) && (modules[2] != null))) {
 			return false;
 		}
 
-		if ((TierHandler.getChecksLight(tier - 1)) && (!canSpawnInLight(ent))) {
+		if (((Config.MODULE_LIGHT == false) && (TierHandler.getChecksLight(tier - 1)) && (!canSpawnInLight(ent))) || ((Config.MODULE_LIGHT == true) && (!canSpawnInLight(ent)) && (modules[3] != null))) {
 			return false;
 		}
 
-		if ((TierHandler.getChecksWorld(tier - 1)) && (!canSpawnInWorld(ent))) {
+		if (((Config.MODULE_DIM == false) && (TierHandler.getChecksWorld(tier - 1)) && (!canSpawnInWorld(ent))) || ((Config.MODULE_DIM == true) && (!canSpawnInWorld(ent)) && (modules[4] != null))) {
 			return false;
 		}
 		return true;
@@ -220,9 +192,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 
 	private boolean isPlayerClose(int x, int y, int z) {
 		EntityPlayer entityPlayer = worldObj.getClosestPlayer(x, y, z, 16.0D);
-		if ((Config.PERSONALSHARD && entityPlayer != null 
-				&& entityPlayer.getDisplayName().equals(owner))
-				|| (!Config.PERSONALSHARD && entityPlayer != null)) {
+		if ((Config.PERSONALSHARD && entityPlayer != null  && entityPlayer.getDisplayName().equals(owner)) || (!Config.PERSONALSHARD && entityPlayer != null)) {
 			return true;
 		} else {
 			return false;
@@ -321,11 +291,11 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 
-		inventory = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Shard"));
-		if (inventory != null) {
-			tier = Utils.getShardTier(inventory);
-			entName = Utils.getShardBoundEnt(inventory);
-			owner = Utils.getShardBoundPlayer(inventory);
+		modules[0] = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Shard"));
+		if (modules[0] != null) {
+			tier = Utils.getShardTier(modules[0]);
+			entName = Utils.getShardBoundEnt(modules[0]);
+			owner = Utils.getShardBoundPlayer(modules[0]);
 		}
 		if (nbt.hasKey("CustomName", 8)) {
 			this.cageName = nbt.getString("CustomName");
@@ -335,9 +305,9 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		if (inventory != null) {
+		if (modules[0] != null) {
 			NBTTagCompound tag = new NBTTagCompound();
-			inventory.writeToNBT(tag);
+			modules[0].writeToNBT(tag);
 			nbt.setTag("Shard", tag);
 		}
 		if (this.hasCustomInventoryName()) {
@@ -351,38 +321,56 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 	}
 
 	public ItemStack getStackInSlot(int slot) {
-		return inventory;
+		return modules[slot];
 	}
 
-	public ItemStack decrStackSize(int slot, int qty) {
-		if (qty == 0) {
+	@Override
+	public ItemStack decrStackSize(int var1, int var2) {
+		if (this.modules[var1] != null) {
+			ItemStack itemstack;
+			if (this.modules[var1].stackSize <= var2) {
+				itemstack = this.modules[var1];
+				this.modules[var1] = null;
+				this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
+				this.tier = 0;
+				this.entName = null;
+				return itemstack;
+			} else {
+				itemstack = this.modules[var1].splitStack(var2);
+				if (this.modules[var1].stackSize == 0) {
+					this.modules[var1] = null;
+				}
+				this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
+				this.tier = 0;
+				this.entName = null;
+				return itemstack;
+			}
+		} else {
 			return null;
 		}
-		ItemStack stack = inventory.copy();
-		inventory = null;
-
-		this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
-		this.tier = 0;
-		this.entName = null;
-
-		return stack;
 	}
 
 	public void setInventorySlotContents(int slot, ItemStack stack) {
-		this.inventory = stack;
-		if(this.inventory == null) {
+		this.modules[slot] = stack;
+		if(this.modules[slot] == null) {
 			return;
 		} else {
 			this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 1, 2);
-			this.tier = Utils.getShardTier(this.inventory);
-			this.entName = Utils.getShardBoundEnt(this.inventory);
-			this.owner = Utils.getShardBoundPlayer(inventory);
+			this.tier = Utils.getShardTier(this.modules[0]);
+			this.entName = Utils.getShardBoundEnt(this.modules[0]);
+			this.owner = Utils.getShardBoundPlayer(modules[0]);
 		}
 	}
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) {
-		return null;
+		if (this.modules != null) {
+			ItemStack itemstack = this.modules[slot];
+			this.modules[slot] = null;
+			return itemstack;
+		} else {
+			return null;
+		}
 	}
 
 	@Override

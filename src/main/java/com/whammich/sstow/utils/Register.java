@@ -38,6 +38,7 @@ import com.whammich.sstow.item.ItemHoeSoul;
 import com.whammich.sstow.item.ItemMaterials;
 import com.whammich.sstow.item.ItemPickaxeSoul;
 import com.whammich.sstow.item.ItemShardSoul;
+import com.whammich.sstow.item.ItemSouliumBucket;
 import com.whammich.sstow.item.ItemSpadeSoul;
 import com.whammich.sstow.item.ItemSwordSoul;
 import com.whammich.sstow.item.blocks.ItemBlockForge;
@@ -73,6 +74,7 @@ public class Register {
 	public static Item ItemHoeSoul = new ItemHoeSoul(SOULIUM);
 	public static Item ItemSpadeSoul = new ItemSpadeSoul(SOULIUM);
 	
+	
 	// Set up the mod blocks
 	public static Block BlockCage = new BlockCage();
 	public static Block BlockForge = new BlockForge(false).setCreativeTab(CREATIVE_TAB);
@@ -87,15 +89,16 @@ public class Register {
     public static Block BlockObsidianGlass = new BlockGlassObsidian();
     
     // Set up the mod fluids
+    public static Item souliumBucket;
     public static Fluid souliumFluid;
     public static Block souliumFluidBlock;
+    
     
     // Set up Biomes
     public static BiomeGenBase biomePetrifiedForest = new BiomeGenPetForest(137).setBiomeName("Petrified Forest").setTemperatureRainfall(0.95F, 0.9F).setColor(000000);
     
 	public static void registerObjs() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(SSTheOldWays.modInstance, new GuiHandler());
-
 		registerItems();
 		registerBlocks();
 		registerOreDictEntries();
@@ -106,7 +109,6 @@ public class Register {
 	}
 
 	private static void registerItems() {
-
 		GameRegistry.registerItem(ItemMaterials, "ItemMaterialsSoul");
 		GameRegistry.registerItem(ItemSwordSoul, "ItemSwordSoul");
 		GameRegistry.registerItem(ItemPickaxeSoul, "ItemPickaxeSoul");
@@ -114,20 +116,22 @@ public class Register {
 		GameRegistry.registerItem(ItemHoeSoul, "ItemHoeSoul");
 		GameRegistry.registerItem(ItemSpadeSoul, "ItemSpadeSoul");
 		GameRegistry.registerItem(ItemShardSoul, "ItemShardSoul");
-		
 	}
 
 	private static void registerBlocks() {
 		GameRegistry.registerBlock(BlockForge, ItemBlockForge.class, "BlockForge");
 		GameRegistry.registerBlock(BlockForgeActive, BlockForgeActive.getUnlocalizedName());
 		GameRegistry.registerBlock(BlockMaterials, ItemBlockMaterials.class, "BlockMaterials");
-		GameRegistry.registerBlock(BlockXenoLight, "BlockXenoLight");
-		GameRegistry.registerBlock(BlockCage, "sstow_soul_cage");
-		GameRegistry.registerBlock(BlockObsidianGlass, "BlockObsidGlass");
-		GameRegistry.registerBlock(BlockXenolith, ItemBlockXenolith.class, "BlockXenolith");
-		GameRegistry.registerBlock(BlockPetrified, ItemBlockPetrified.class, "BlockPetrifiedLog");
-		GameRegistry.registerBlock(BlockPetrified2, ItemBlockPetrified2.class, "BlockPetrifiedLog2");
-		GameRegistry.registerBlock(BlockPetrifiedPlanks, ItemBlockPlankPetrified.class, "BlockPetrifiedPlanks");
+		GameRegistry.registerBlock(BlockCage, "BlockCage");
+		
+		if(Config.NEWSTUFF){
+			GameRegistry.registerBlock(BlockXenoLight, "BlockXenoLight");
+			GameRegistry.registerBlock(BlockObsidianGlass, "BlockObsidGlass");
+			GameRegistry.registerBlock(BlockXenolith, ItemBlockXenolith.class, "BlockXenolith");
+			GameRegistry.registerBlock(BlockPetrified, ItemBlockPetrified.class, "BlockPetrifiedLog");
+			GameRegistry.registerBlock(BlockPetrified2, ItemBlockPetrified2.class, "BlockPetrifiedLog2");
+			GameRegistry.registerBlock(BlockPetrifiedPlanks, ItemBlockPlankPetrified.class, "BlockPetrifiedPlanks");
+		}
 	}
 
 	private static void registerOreDictEntries() {
@@ -137,88 +141,93 @@ public class Register {
 		OreDictionary.registerOre("ingotSoulium", new ItemStack(ItemMaterials, 1, 2));
 		OreDictionary.registerOre("dustVile", new ItemStack(ItemMaterials, 1, 3));
 		OreDictionary.registerOre("essenceCorrupted", new ItemStack(ItemMaterials, 1, 4));
-		OreDictionary.registerOre("stickPetrified", new ItemStack(ItemMaterials, 1, 5));
-		OreDictionary.registerOre("stickWood", new ItemStack(ItemMaterials, 1, 5));
-		OreDictionary.registerOre("blockEnder", new ItemStack(BlockMaterials, 1, 1));
 		OreDictionary.registerOre("blockSoulium", new ItemStack(BlockMaterials, 1, 0));
 
-		// Petrified Logs OreDict
-		OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified, 1, 0));
-		OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified, 1, 1));
-		OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified, 1, 2));
-		OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified, 1, 3));
-		OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified2, 1, 0));
-		OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified2, 1, 1));
+		if(Config.NEWSTUFF){
+			OreDictionary.registerOre("stickPetrified", new ItemStack(ItemMaterials, 1, 5));
+			OreDictionary.registerOre("stickWood", new ItemStack(ItemMaterials, 1, 5));
+			OreDictionary.registerOre("blockEnder", new ItemStack(BlockMaterials, 1, 1));
 
-		OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified, 1, 0));
-		OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified, 1, 1));
-		OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified, 1, 2));
-		OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified, 1, 3));
-		OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified2, 1, 0));
-		OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified2, 1, 1));
+			// Petrified Logs OreDict
+			OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified, 1, 0));
+			OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified, 1, 1));
+			OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified, 1, 2));
+			OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified, 1, 3));
+			OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified2, 1, 0));
+			OreDictionary.registerOre("logStone", new ItemStack(BlockPetrified2, 1, 1));
 
-		// Petrified Planks OreDict
-		OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 0));
-		OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 1));
-		OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 2));
-		OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 3));
-		OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 4));
-		OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 5));
-		
-		OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 0));
-		OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 1));
-		OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 2));
-		OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 3));
-		OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 4));
-		OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 5));
+			OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified, 1, 0));
+			OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified, 1, 1));
+			OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified, 1, 2));
+			OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified, 1, 3));
+			OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified2, 1, 0));
+			OreDictionary.registerOre("logWood", new ItemStack(BlockPetrified2, 1, 1));
+
+			// Petrified Planks OreDict
+			OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 0));
+			OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 1));
+			OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 2));
+			OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 3));
+			OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 4));
+			OreDictionary.registerOre("plankStone", new ItemStack(BlockPetrifiedPlanks, 1, 5));
+
+			OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 0));
+			OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 1));
+			OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 2));
+			OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 3));
+			OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 4));
+			OreDictionary.registerOre("plankWood", new ItemStack(BlockPetrifiedPlanks, 1, 5));
+		}
 	}
 
 	private static void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileEntityForge.class, "sstow_soul_forge_tile");
-		GameRegistry.registerTileEntity(TileEntityCage.class, "sstow_soul_cage_tile");
+		GameRegistry.registerTileEntity(TileEntityForge.class, "TileEntityForge");
+		GameRegistry.registerTileEntity(TileEntityCage.class, "TileEntityCage");
 	}
 
 	private static void registerRecipes() {
 		
-		GameRegistry.addSmelting(new ItemStack(BlockXenolith, 1, 0), new ItemStack(BlockXenolith, 1, 1), 0.5F);
 		
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemMaterials, 9, 2), "blockSoulium"));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemMaterials, 9, 1), "ingotSoulium"));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemMaterials, 9, 0), "ingotIron"));
-		
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.ender_pearl, 9), new ItemStack(BlockMaterials, 1, 1)));
-		
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 0), new ItemStack(BlockPetrified, 1, 0)));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 1), new ItemStack(BlockPetrified, 1, 1)));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 2), new ItemStack(BlockPetrified, 1, 2)));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 3), new ItemStack(BlockPetrified, 1, 3)));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 4), new ItemStack(BlockPetrified2, 1, 0)));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 5), new ItemStack(BlockPetrified2, 1, 1)));
-
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockXenolith, 1, 4), "nuggetSoulium", new ItemStack(BlockXenolith, 1, 0)));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockXenolith, 1, 5), "dustRedstone", new ItemStack(BlockXenolith, 1, 0)));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockXenolith, 1, 6), "pearlEnder", new ItemStack(BlockXenolith, 1, 0)));
-
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 4), "XXX", "XSX", "XXX", 'X', new ItemStack(BlockXenolith, 1, 0), 'S', "ingotSoulium"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 5), "XXX", "XRX", "XXX", 'X', new ItemStack(BlockXenolith, 1, 0), 'R', "blockRedstone"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 6), "XXX", "XHX", "XXX", 'X', new ItemStack(BlockXenolith, 1, 0), 'H', "blockEnder"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 3), "XNX", "NXN", "XNX", 'X', new ItemStack(BlockXenolith, 1, 0), 'N', Blocks.nether_brick));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenoLight, 8), "XGX", "GXG", "XGX", 'X', new ItemStack(BlockXenolith, 1, 0), 'G', Blocks.glowstone));
-
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemMaterials, 4, 5),"P", "P", 'P', "plankStone"));
-		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockForge), "SSS", "SCS", "OOO", 'S', "cobblestone", 'C', "essenceCorrupted", 'O', Blocks.obsidian));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemMaterials, 1, 2), "AAA", "AAA", "AAA", 'A', "nuggetSoulium"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.iron_ingot), "AAA", "AAA", "AAA", 'A', "nuggetIron"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockMaterials, 1, 0), "AAA", "AAA", "AAA", 'A', "ingotSoulium"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockMaterials, 1, 1), "AAA", "AAA", "AAA", 'A', "pearlEnder"));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemSwordSoul), "A", "A", "B", 'A', "ingotSoulium", 'B', "stickPetrified"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemPickaxeSoul), "AAA", "CBC", "CBC", 'A', "ingotSoulium", 'B', "stickPetrified"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemAxeSoul), "AA", "AB", "CB", 'A', "ingotSoulium", 'B', "stickPetrified"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHoeSoul), "AA", "CB", "CB", 'A', "ingotSoulium", 'B', "stickPetrified"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemSpadeSoul), "A", "B", "B", 'A', "ingotSoulium", 'B', "stickPetrified"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockCage), "SIS", "IXI", "SIS", 'I', Blocks.iron_bars, 'S', "ingotSoulium"));
+
+		if(Config.NEWSTUFF){
+			GameRegistry.addSmelting(new ItemStack(BlockXenolith, 1, 0), new ItemStack(BlockXenolith, 1, 1), 0.5F);
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.ender_pearl, 9), new ItemStack(BlockMaterials, 1, 1)));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 0), new ItemStack(BlockPetrified, 1, 0)));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 1), new ItemStack(BlockPetrified, 1, 1)));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 2), new ItemStack(BlockPetrified, 1, 2)));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 3), new ItemStack(BlockPetrified, 1, 3)));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 4), new ItemStack(BlockPetrified2, 1, 0)));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockPetrifiedPlanks, 4, 5), new ItemStack(BlockPetrified2, 1, 1)));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockXenolith, 1, 4), "nuggetSoulium", new ItemStack(BlockXenolith, 1, 0)));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockXenolith, 1, 5), "dustRedstone", new ItemStack(BlockXenolith, 1, 0)));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockXenolith, 1, 6), "pearlEnder", new ItemStack(BlockXenolith, 1, 0)));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 4), "XXX", "XSX", "XXX", 'X', new ItemStack(BlockXenolith, 1, 0), 'S', "ingotSoulium"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 5), "XXX", "XRX", "XXX", 'X', new ItemStack(BlockXenolith, 1, 0), 'R', "blockRedstone"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 6), "XXX", "XHX", "XXX", 'X', new ItemStack(BlockXenolith, 1, 0), 'H', "blockEnder"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 3), "XNX", "NXN", "XNX", 'X', new ItemStack(BlockXenolith, 1, 0), 'N', Blocks.nether_brick));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenoLight, 8), "XGX", "GXG", "XGX", 'X', new ItemStack(BlockXenolith, 1, 0), 'G', Blocks.glowstone));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemMaterials, 4, 5),"P", "P", 'P', "plankStone"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockMaterials, 1, 1), "AAA", "AAA", "AAA", 'A', "pearlEnder"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemSwordSoul), "A", "A", "B", 'A', "ingotSoulium", 'B', "stickPetrified"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemPickaxeSoul), "AAA", "CBC", "CBC", 'A', "ingotSoulium", 'B', "stickPetrified"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemAxeSoul), "AA", "AB", "CB", 'A', "ingotSoulium", 'B', "stickPetrified"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHoeSoul), "AA", "CB", "CB", 'A', "ingotSoulium", 'B', "stickPetrified"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemSpadeSoul), "A", "B", "B", 'A', "ingotSoulium", 'B', "stickPetrified"));
+		} else {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemSwordSoul), "A", "A", "B", 'A', "ingotSoulium", 'B', "ingotIron"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemPickaxeSoul), "AAA", "CBC", "CBC", 'A', "ingotSoulium", 'B', "ingotIron"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemAxeSoul), "AA", "AB", "CB", 'A', "ingotSoulium", 'B', "ingotIron"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHoeSoul), "AA", "CB", "CB", 'A', "ingotSoulium", 'B', "ingotIron"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemSpadeSoul), "A", "B", "B", 'A', "ingotSoulium", 'B', "ingotIron"));
+		}
 		
 		if (Loader.isModLoaded("Natura")) {
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemMaterials, 2, 3), Blocks.soul_sand, "dustGlowstone"));
@@ -231,20 +240,27 @@ public class Register {
 	
 	@SuppressWarnings("deprecation")
 	private static void registerBiomes() {
-		BiomeDictionary.registerBiomeType(biomePetrifiedForest, Type.FOREST);
-		BiomeManager.addSpawnBiome(biomePetrifiedForest);
-		BiomeManager.desertBiomes.add(new BiomeEntry(biomePetrifiedForest, 10));
+		if(Config.NEWSTUFF){
+			BiomeDictionary.registerBiomeType(biomePetrifiedForest, Type.FOREST);
+			BiomeManager.addSpawnBiome(biomePetrifiedForest);
+			BiomeManager.desertBiomes.add(new BiomeEntry(biomePetrifiedForest, 10));
+		}
 	}
 
 	public static void registerFluids() {
-		souliumFluid = new Fluid("soulium");
-		FluidRegistry.registerFluid(souliumFluid);
-		souliumFluidBlock = new BlockFluidSoulium(souliumFluid);
-		GameRegistry.registerBlock(souliumFluidBlock, souliumFluidBlock.getUnlocalizedName());
-		souliumFluid.setUnlocalizedName(souliumFluidBlock.getUnlocalizedName());
 		if (Loader.isModLoaded("TConstruct")) {
-			TCon.MeltSoulium();
-			TCon.CastSoulium();
+			
+			souliumFluid = new Fluid("soulium");
+			FluidRegistry.registerFluid(souliumFluid);
+			souliumFluidBlock = new BlockFluidSoulium(souliumFluid);
+			GameRegistry.registerBlock(souliumFluidBlock, souliumFluidBlock.getUnlocalizedName());
+			souliumFluid.setUnlocalizedName(souliumFluidBlock.getUnlocalizedName());
+			
+	        souliumBucket = new ItemSouliumBucket(souliumFluidBlock);
+	        GameRegistry.registerItem(souliumBucket, souliumBucket.getUnlocalizedName());
+			
+			TCon.registerTCon();
+			
 		}
 	}
 	
