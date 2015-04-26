@@ -30,6 +30,7 @@ import com.whammich.sstow.block.BlockPetrified2;
 import com.whammich.sstow.block.BlockPlankPetrified;
 import com.whammich.sstow.block.BlockXenoLight;
 import com.whammich.sstow.block.BlockXenolith;
+import com.whammich.sstow.compat.baubles.BaublePhylactery;
 import com.whammich.sstow.compat.tcon.TCon;
 import com.whammich.sstow.enchantment.EnchantmentSoulStealer;
 import com.whammich.sstow.guihandler.GuiHandler;
@@ -74,6 +75,8 @@ public class Register {
 	public static Item ItemHoeSoul = new ItemHoeSoul(SOULIUM);
 	public static Item ItemSpadeSoul = new ItemSpadeSoul(SOULIUM);
 	
+	// Set up the Bauble
+	public static Item PhylacteryCrystal = new BaublePhylactery();
 	
 	// Set up the mod blocks
 	public static Block BlockCage = new BlockCage();
@@ -106,6 +109,7 @@ public class Register {
 		registerRecipes();
 		registerBiomes();
 		registerFluids();
+		registerBaubles();
 	}
 
 	private static void registerItems() {
@@ -261,6 +265,14 @@ public class Register {
 			
 			TCon.registerTCon();
 			
+		}
+	}
+	
+	public static void registerBaubles() {
+		if (Loader.isModLoaded("Baubles")){
+			if(Config.NEWSTUFF){
+				GameRegistry.registerItem(PhylacteryCrystal, PhylacteryCrystal.getUnlocalizedName());
+			}
 		}
 	}
 	

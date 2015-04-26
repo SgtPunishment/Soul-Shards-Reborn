@@ -126,3 +126,6 @@ sstow.waila.soulcage.tier=Tier:
 sstow.waila.soulcage.activated=Status: Activated
 sstow.waila.soulcage.deactivated=Status: Deactivated
 sstow.waila.soulcage.empty=Status: Empty
+
+# Baubles
+item.sstow.bauble.phylac.name=Phylactery Crystal

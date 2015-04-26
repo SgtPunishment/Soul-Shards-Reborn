@@ -7,6 +7,7 @@ import net.minecraftforge.common.MinecraftForge;
 import com.whammich.sstow.commands.CommandSSTOW;
 import com.whammich.sstow.events.AnvilShardEvent;
 import com.whammich.sstow.events.CreateShardEvent;
+import com.whammich.sstow.events.PlayerDeathEvent;
 import com.whammich.sstow.events.PlayerKillEntityEvent;
 import com.whammich.sstow.guide.SoulManual;
 import com.whammich.sstow.utils.Config;
@@ -15,6 +16,7 @@ import com.whammich.sstow.utils.Entitylist;
 import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -40,6 +42,9 @@ public class SSTheOldWays {
 		MinecraftForge.EVENT_BUS.register(new PlayerKillEntityEvent());
 		MinecraftForge.EVENT_BUS.register(new CreateShardEvent());
 		MinecraftForge.EVENT_BUS.register(new AnvilShardEvent());
+		if (Loader.isModLoaded("Baubles")){
+			MinecraftForge.EVENT_BUS.register(new PlayerDeathEvent());
+		}
 		FMLInterModComms.sendMessage("Waila", "register", Reference.Waila_callBack);
 	}
 

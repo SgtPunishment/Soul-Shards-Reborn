@@ -12,6 +12,18 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public final class Config {
 
+	// Phylactery Crystal Section
+	
+	public static int CrystalHeal;
+	
+	public static boolean CrystalRegenEnable;
+	public static int CrystalRegenTimer;
+	public static int CrystalRegenLevel;
+	
+	public static boolean CrystalResistEnable;
+	public static int CrystalResistTimer;
+	
+	
 	// Config Wall
 	public static boolean NEWSTUFF;
 	
@@ -20,7 +32,7 @@ public final class Config {
 	public static int ENCHANT_WEIGHT;
 	public static int ENCHANT_KILL_BONUS;
 	
-	// general Section
+	// General Section
 	public static int SPAWNER_ABSORB_BONUS;
 	public static int MAX_NUM_ENTITIES;
 	public static boolean ALLOW_SPAWNER_ABSORB;
@@ -36,7 +48,7 @@ public final class Config {
 	public static boolean MODULE_DIM;
 	public static boolean MODULE_PLAYER;
 	
-	// recipes Section
+	// Recipes Section
 	public static int COOKING_MOD;
 	public static int SHARDS;
 	public static int NUGGETS;
@@ -78,6 +90,8 @@ public final class Config {
 
 	public static final Section enchantment = new Section("enchantment", "enchantment");
 	public static final Section general = new Section("general", "general");
+	public static final Section cages = new Section("soul cages", "soul cages");
+	public static final Section phylactery = new Section("phylactery crystal","phylactery crystal");
 	public static final Section recipes = new Section("recipes", "recipes");
 	public static final Section tier1 = new Section("tier 1 settings", "tier 1 settings");
 	public static final Section tier2 = new Section("tier 2 settings", "tier 2 settings");
@@ -110,8 +124,18 @@ public final class Config {
 	public static void syncConfig() {
 		try {
 
-			// New Stuff
+			// Phylactery crystal
+			// Insta-Heal
+			CrystalHeal = config.getInt("Phylactery Healing", "phylactery crystal", 10, 1, 20, "How much should the phylactery crystal heal you?");
+			// Regen Effects
+			CrystalRegenEnable = config.getBoolean("Enable Phylactery Regen", "phylactery crystal", true, "Will the phylactery crystal regen you on death?");
+			CrystalRegenTimer = config.getInt("Phylactery Regen Timer", "phylactery crystal", 600, 1, 2400, "How long should the regen effect last?");
+			CrystalRegenLevel = config.getInt("Phylactery Regen Level", "phylactery crystal", 0, 0, 2, "What level should the regen effect be?");
+			// Resistence Effects
+			CrystalResistEnable = config.getBoolean("Enable Phylactery Resistence", "phylactery crystal", true, "Will the phylactery crystal briefly make you immortal?");
+			CrystalResistTimer = config.getInt("Phylactery Resistence Timer", "phylactery crystal", 100, 20, 400, "How long should the resistence effect last?");
 			
+			// New Stuff
 			NEWSTUFF = config.getBoolean("Enable New Stuff", "general", true, "Enables the new blocks, items and recipes");
 			
 			// Soul Stealer Section
@@ -119,23 +143,25 @@ public final class Config {
 			ENCHANT_WEIGHT = config.getInt("Weight", "enchantment", 8, 1, 10, "Soul-Stealer enchant probability");
 			ENCHANT_KILL_BONUS = config.getInt("Kill Bonus", "enchantment", 1, 1, 10, "Soul-Stealer kill bonus");
 			
-			// general Section
+			// Soul Cage Section
+			MAX_NUM_ENTITIES = config.getInt("Max Entities Spawned", "soul cages", 80, 1, 200, "Max number of Entities soul cages can spawn in an area");
+			INVERT_REDSTONE = config.getBoolean("Invert Redstone", "soul cages", false, "Active redstone stops a soul cage");
+			ENABLE_FLOOD_PREVENTION = config.getBoolean("Flood Prevention", "soul cages", true, "Soul cages will stop when too many entities have been spawned");
+			MODULE_RED = config.getBoolean("Enable Redstone Module", "soul cages", true, "wub wub");
+			MODULE_LIGHT = config.getBoolean("Enable Light Module", "soul cages", true, "wub wub");
+			MODULE_DIM = config.getBoolean("Enable Dimention Module", "soul cages", true, "wub wub");
+			MODULE_PLAYER = config.getBoolean("Enable Player Module","soul cages", false, "wub wub");
+
+			// General Section
 			SPAWNER_ABSORB_BONUS = config.getInt("Vanilla Spawner Bonus", "general", 64, 1, 400, "Amount of kills added to the shard when right-clicking a spawner");
 			BIND_ON_ABSORB = config.getBoolean("Bind Shard", "general", false, "Bind an unbound shard when right-clicking a mob spawner?");
-			MAX_NUM_ENTITIES = config.getInt("Max Entities Spawned", "general", 80, 1, 200, "Max number of Entities soul cages can spawn in an area");
 			ALLOW_SPAWNER_ABSORB = config.getBoolean("Vanilla Spawner Absorbing", "general", true, "Allow absorbing of vanilla spawners for a kill bonus");
-			INVERT_REDSTONE = config.getBoolean("Invert Redstone", "general", false, "Active redstone stops a soul cage");
-			ENABLE_FLOOD_PREVENTION = config.getBoolean("Flood Prevention", "general", true, "Soul cages will stop when too many entities have been spawned");
 			ENABLE_DEBUG = config.getBoolean("Enable Debug", "general", false, "This will enable debug mode, where the console will inform you when a mob is spawned");
 			RITUAL = config.getBoolean("Enable Ritual", "general", false, "RESTART REQUIRED: This will revert the shard creation to the structure method");
 			PERSONALSHARD = config.getBoolean("Personal shards", "general", false, "The soulcage will only function if the original shard creator is nearby, not just anyone.");
 
-			MODULE_RED = config.getBoolean("Enable Redstone Module", "general", true, "wub wub");
-			MODULE_LIGHT = config.getBoolean("Enable Light Module", "general", true, "wub wub");
-			MODULE_DIM = config.getBoolean("Enable Dimention Moduel", "general", true, "wub wub");
-			MODULE_PLAYER = config.getBoolean("Enable Player Module","general", false, "wub wub");
 			
-			// recipes Section
+			// Recipes Section
 			COOKING_MOD = config.getInt("Cooking Time Modifier", "recipes", 10, 0, 30, "Modify the speed of the soul forge, higher the number the faster it smelts");
 			SHARDS = config.getInt("Shard Amount", "recipes", 3, 1, 8, "RESTART REQUIRED: How many Soul Shards do you want to get by smelting 1 diamond");
 			NUGGETS = config.getInt("Nugget Amount", "recipes", 8, 1, 9, "RESTART REQUIRED: How many Soulium Nuggets do you want to get by smelting 1 iron ingot");
