@@ -2,10 +2,13 @@ package com.whammich.sstow.compat.tcon;
 
 import static net.minecraft.util.EnumChatFormatting.DARK_PURPLE;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import tconstruct.TConstruct;
@@ -24,12 +27,12 @@ import com.whammich.sstow.utils.Register;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TCon {
-    
-    // Set up the mod fluids
-    public static Item souliumBucket;
-    public static Fluid souliumFluid;
-    public static Block souliumFluidBlock;
-    
+
+	// Set up the mod fluids
+	public static Item souliumBucket;
+	public static Fluid souliumFluid;
+	public static Block souliumFluidBlock;
+
 	public static void registerTCon() {
 		Molten();
 		Melting();
@@ -46,7 +49,7 @@ public class TCon {
 		GameRegistry.registerBlock(souliumFluidBlock, souliumFluidBlock.getUnlocalizedName());
 		souliumFluid.setUnlocalizedName(souliumFluidBlock.getUnlocalizedName());
 		souliumBucket = new ItemSouliumBucket(souliumFluidBlock);
-        GameRegistry.registerItem(souliumBucket, souliumBucket.getUnlocalizedName());
+		GameRegistry.registerItem(souliumBucket, souliumBucket.getUnlocalizedName());
 	}
 	
 	public static void Tools() {
@@ -57,8 +60,8 @@ public class TCon {
 	public static void ToolParts() {
 		TConstructRegistry.addDefaultToolPartMaterial(19);
 		if(PHConstruct.craftMetalTools) {
-            TConstructRegistry.addDefaultShardMaterial(19);
-        }
+			TConstructRegistry.addDefaultShardMaterial(19);
+		}
 	}
 	
 	public static void Melting() {
@@ -92,6 +95,11 @@ public class TCon {
 		// Block
 		basinCasting.addCastingRecipe(new ItemStack(Register.BlockMaterials, 1, 0), new FluidStack(souliumFluid,
 				TConstruct.blockLiquidValue), 50);
+		
+		// Bucket
+		FluidContainerRegistry.registerFluidContainer(new FluidContainerData(new FluidStack(souliumFluid, 1000), 
+				new ItemStack(souliumBucket), new ItemStack(Items.bucket)));
+		
 		
 		// Tool Parts
 		// Rod
