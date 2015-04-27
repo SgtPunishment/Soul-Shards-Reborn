@@ -119,6 +119,7 @@ guide.forge.opening=The following pages are the Soul Forge Recipes
 tile.sstow.fluidblock.soulium.name=Molten Soulium
 fluid.tile.sstow.fluidblock.soulium=Molten Soulium
 material.soulium=Soulium
+modifier.tool.shard=Soul Stealer %s
 
 # WAILA Support
 sstow.waila.soulcage.mob=Entity: 
