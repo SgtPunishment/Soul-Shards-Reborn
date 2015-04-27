@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 
+import com.whammich.sstow.compat.tcon.TCon;
 import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
 
@@ -39,7 +40,7 @@ public class BlockFluidSoulium extends BlockFluidClassic {
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		stillIcon = iconRegister.registerIcon(Reference.MOD_ID + ":liquid_soulium");
 		flowingIcon = iconRegister.registerIcon(Reference.MOD_ID + ":liquid_soulium_flow");
-		Register.souliumFluid.setIcons(stillIcon, flowingIcon);
+		TCon.souliumFluid.setIcons(stillIcon, flowingIcon);
         this.blockIcon = stillIcon;
 	}
 

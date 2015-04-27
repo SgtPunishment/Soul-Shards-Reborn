@@ -13,15 +13,12 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import com.whammich.sstow.SSTheOldWays;
 import com.whammich.sstow.block.BlockCage;
-import com.whammich.sstow.block.BlockFluidSoulium;
 import com.whammich.sstow.block.BlockForge;
 import com.whammich.sstow.block.BlockGlassObsidian;
 import com.whammich.sstow.block.BlockMaterials;
@@ -30,7 +27,7 @@ import com.whammich.sstow.block.BlockPetrified2;
 import com.whammich.sstow.block.BlockPlankPetrified;
 import com.whammich.sstow.block.BlockXenoLight;
 import com.whammich.sstow.block.BlockXenolith;
-import com.whammich.sstow.compat.baubles.BaublePhylactery;
+import com.whammich.sstow.compat.baubles.Baubles;
 import com.whammich.sstow.compat.tcon.TCon;
 import com.whammich.sstow.enchantment.EnchantmentSoulStealer;
 import com.whammich.sstow.guihandler.GuiHandler;
@@ -39,7 +36,6 @@ import com.whammich.sstow.item.ItemHoeSoul;
 import com.whammich.sstow.item.ItemMaterials;
 import com.whammich.sstow.item.ItemPickaxeSoul;
 import com.whammich.sstow.item.ItemShardSoul;
-import com.whammich.sstow.item.ItemSouliumBucket;
 import com.whammich.sstow.item.ItemSpadeSoul;
 import com.whammich.sstow.item.ItemSwordSoul;
 import com.whammich.sstow.item.blocks.ItemBlockForge;
@@ -75,8 +71,7 @@ public class Register {
 	public static Item ItemHoeSoul = new ItemHoeSoul(SOULIUM);
 	public static Item ItemSpadeSoul = new ItemSpadeSoul(SOULIUM);
 	
-	// Set up the Bauble
-	public static Item PhylacteryCrystal = new BaublePhylactery();
+
 	
 	// Set up the mod blocks
 	public static Block BlockCage = new BlockCage();
@@ -90,11 +85,7 @@ public class Register {
     public static Block BlockPetrified2 = new BlockPetrified2();
     public static Block BlockPetrifiedPlanks = new BlockPlankPetrified();
     public static Block BlockObsidianGlass = new BlockGlassObsidian();
-    
-    // Set up the mod fluids
-    public static Item souliumBucket;
-    public static Fluid souliumFluid;
-    public static Block souliumFluidBlock;
+
     
     
     // Set up Biomes
@@ -253,26 +244,13 @@ public class Register {
 
 	public static void registerFluids() {
 		if (Loader.isModLoaded("TConstruct")) {
-			
-			souliumFluid = new Fluid("soulium");
-			FluidRegistry.registerFluid(souliumFluid);
-			souliumFluidBlock = new BlockFluidSoulium(souliumFluid);
-			GameRegistry.registerBlock(souliumFluidBlock, souliumFluidBlock.getUnlocalizedName());
-			souliumFluid.setUnlocalizedName(souliumFluidBlock.getUnlocalizedName());
-			
-	        souliumBucket = new ItemSouliumBucket(souliumFluidBlock);
-	        GameRegistry.registerItem(souliumBucket, souliumBucket.getUnlocalizedName());
-			
 			TCon.registerTCon();
-			
 		}
 	}
 	
 	public static void registerBaubles() {
 		if (Loader.isModLoaded("Baubles")){
-			if(Config.NEWSTUFF){
-				GameRegistry.registerItem(PhylacteryCrystal, PhylacteryCrystal.getUnlocalizedName());
-			}
+			Baubles.registerBaubles();
 		}
 	}
 	
