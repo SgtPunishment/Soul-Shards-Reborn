@@ -9,9 +9,11 @@ import baubles.api.IBauble;
 import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
 
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
+ 
+@Optional.Interface(iface = "baubles.api.IBauble", modid = "Baubles")
 public class BaublePhylactery extends Item implements IBauble {
 
 	public BaublePhylactery() {

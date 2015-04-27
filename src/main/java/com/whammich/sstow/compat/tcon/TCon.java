@@ -2,10 +2,12 @@ package com.whammich.sstow.compat.tcon;
 
 import static net.minecraft.util.EnumChatFormatting.DARK_PURPLE;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.LiquidCasting;
+import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.smeltery.TinkerSmeltery;
 import tconstruct.tools.TinkerTools;
@@ -20,6 +22,7 @@ public class TCon {
 		Casting();
 		Tools();
 		ToolParts();
+		Modifiers();
 	}
 	
 	public static void Tools() {
@@ -174,6 +177,9 @@ public class TCon {
 		
 	}
 
-
+	public static void Modifiers() {
+		ModifyBuilder.registerModifier(new ShardMod(new ItemStack[] { 
+				new ItemStack(Register.ItemShardSoul) }, 52, "Soul Stealer", "\u00A75", StatCollector.translateToLocal("modifier.tool.shard")));
+	}
 	
 }
