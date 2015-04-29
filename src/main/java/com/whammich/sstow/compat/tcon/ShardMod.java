@@ -1,15 +1,18 @@
 package com.whammich.sstow.compat.tcon;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.Map;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.StatCollector;
+import tconstruct.modifiers.tools.ModBoolean;
 
 import com.whammich.sstow.utils.Register;
 import com.whammich.sstow.utils.Utils;
-
-import net.minecraft.enchantment.*;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.*;
-import net.minecraft.util.StatCollector;
-import tconstruct.modifiers.tools.ModBoolean;
 
 public class ShardMod extends ModBoolean {
 	
