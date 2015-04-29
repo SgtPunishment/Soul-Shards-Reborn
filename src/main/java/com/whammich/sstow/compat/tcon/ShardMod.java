@@ -41,7 +41,8 @@ public class ShardMod extends ModBoolean {
         modifiers -= 1;
         tags.setInteger("Modifiers", modifiers);
 
-		addToolTip(tool, color + String.format(StatCollector.translateToLocal("modifier.tool.shard"), enchantlevels(Utils.getShardTier(input[0]))), color + key);
+		addToolTip(tool, color + String.format(StatCollector.translateToLocal("modifier.tool.shard"),
+				enchantlevels(Utils.getShardTier(input[0]))), color + key);
 	}
 
 	public static String enchantlevels(byte input) {
