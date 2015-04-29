@@ -13,6 +13,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
+import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.crafting.LiquidCasting;
 import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.crafting.Smeltery;
@@ -22,6 +23,7 @@ import tconstruct.util.config.PHConstruct;
 
 import com.whammich.sstow.block.BlockFluidSoulium;
 import com.whammich.sstow.item.ItemSouliumBucket;
+import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -211,7 +213,9 @@ public class TCon {
 
 	public static void Modifiers() {
 		ModifyBuilder.registerModifier(new ShardMod(new ItemStack[] { 
-				new ItemStack(Register.ItemShardSoul) }, 52, "Soul Stealer", "\u00A75", StatCollector.translateToLocal("modifier.tool.shard")));
+				new ItemStack(Register.ItemShardSoul) }, 52, "Soul Stealer", "\u00A75", 
+				StatCollector.translateToLocal("modifier.tool.shard")));
+		//TConstructClientRegistry.addEffectRenderMapping(19, Reference.MOD_ID, renderName, useDefaultFolder);
 	}
 	
 }
