@@ -47,7 +47,7 @@ dependencies {
     compile name: 'Baubles', version: "${baubles_version}", ext: 'jar'
 	compile "info.amerifrance.guideapi:Guide-API:${mc_version}-${guideapi_version}:deobf"
 	compile "mcp.mobius.waila:Waila:${waila_version}_${mc_version}:dev"
-	compile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:dev"
+	// compile "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:dev"
 	compile "codechicken:CodeChickenCore:${mc_version}-${ccc_version}:dev"
 	compile "codechicken:NotEnoughItems:${mc_version}-${nei_version}:dev"
 	compile "tconstruct:TConstruct:${mc_version}-${tcon_version}:deobf"

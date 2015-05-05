@@ -19,8 +19,7 @@ public class ContainerCage extends Container {
 		int i;
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
-				this.addSlotToContainer(new Slot(player, j + i * 9 + 9,
-						8 + j * 18, 84 + i * 18));
+				this.addSlotToContainer(new Slot(player, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
 

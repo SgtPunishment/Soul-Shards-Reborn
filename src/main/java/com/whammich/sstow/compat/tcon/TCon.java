@@ -13,7 +13,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
-import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.crafting.LiquidCasting;
 import tconstruct.library.crafting.ModifyBuilder;
 import tconstruct.library.crafting.Smeltery;
@@ -23,7 +22,6 @@ import tconstruct.util.config.PHConstruct;
 
 import com.whammich.sstow.block.BlockFluidSoulium;
 import com.whammich.sstow.item.ItemSouliumBucket;
-import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
 
 import cpw.mods.fml.common.registry.GameRegistry;
