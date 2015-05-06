@@ -10,18 +10,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemLootPage extends Item {
 
-	public String book;
-	public String category;
-	public String page;
-	public String key;
-
-	public ItemLootPage(String book, String category, String page, String key) {
-		this.book = book;
-		this.category = category;
-		this.page = page;
-		this.key = key;
-
-		setUnlocalizedName("guide." + book + ".book." + page + "." + key);
+	public ItemLootPage() {
+		setUnlocalizedName("guide.book.missing");
+		setMaxStackSize(1);
 	}
 
 	@SideOnly(Side.CLIENT)

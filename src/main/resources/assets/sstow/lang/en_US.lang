@@ -151,8 +151,7 @@ guide.drjournal.book.welcomMessage=Welcome Reader, to the strangest of my advent
 guide.drjournal.book.name=Dr. Richlands Journal
 guide.drjournal.book.notes=Notes
 guide.drjournal.book.note1=Note 1
-item.guide.drjournal.book.note2.02.name=Missing page 2
-item.guide.drjournal.book.note2.04.name=Missing page 4
+item.guide.book.missing.name=Missing page
 guide.drjournal.book.note1.page01=I am Dr. Richland, Plant Biologist for the area. I’m writing these reports to take note of events that have unfolded in the last few days. First, there have been rumours of a forest being strange, supernatural even. Legends from nearby villages told the story of a strange portal to another world hidden away. Simple fairy tales I’m sure, I’ll be meeting with some locals who contacted me asking for help understanding what has happened there. A 
 
 guide.drjournal.book.note1.page02=strange phenomena occurred it seems, the forest suddenly underwent mass petrification, such a mystery is worth my time indeed, if this turns out to be a ruse I’ll be sorely upset. Regardless, I’m packing my things and heading out on horseback, I shall continue with the next note when I’ve arrived.
