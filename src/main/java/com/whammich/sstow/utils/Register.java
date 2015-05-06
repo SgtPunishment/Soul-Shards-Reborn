@@ -33,6 +33,7 @@ import com.whammich.sstow.enchantment.EnchantmentSoulStealer;
 import com.whammich.sstow.guihandler.GuiHandler;
 import com.whammich.sstow.item.ItemAxeSoul;
 import com.whammich.sstow.item.ItemHoeSoul;
+import com.whammich.sstow.item.ItemLootPage;
 import com.whammich.sstow.item.ItemMaterials;
 import com.whammich.sstow.item.ItemPickaxeSoul;
 import com.whammich.sstow.item.ItemShardSoul;
@@ -71,8 +72,11 @@ public class Register {
 	public static Item ItemHoeSoul = new ItemHoeSoul(SOULIUM);
 	public static Item ItemSpadeSoul = new ItemSpadeSoul(SOULIUM);
 	
-
-	
+	// Loot Pages
+	// Book : Category : Page : Number
+	public static Item ItemLootPageN2P2 = new ItemLootPage("drjournal", "notes", "note2", "02");
+	public static Item ItemLootPageN2P4 = new ItemLootPage("drjournal", "notes", "note2", "04");
+		
 	// Set up the mod blocks
 	public static Block BlockCage = new BlockCage();
 	public static Block BlockForge = new BlockForge(false).setCreativeTab(CREATIVE_TAB);
@@ -111,6 +115,8 @@ public class Register {
 		GameRegistry.registerItem(ItemHoeSoul, "ItemHoeSoul");
 		GameRegistry.registerItem(ItemSpadeSoul, "ItemSpadeSoul");
 		GameRegistry.registerItem(ItemShardSoul, "ItemShardSoul");
+		GameRegistry.registerItem(ItemLootPageN2P2, "ItemLootPageN2P2");
+		GameRegistry.registerItem(ItemLootPageN2P4, "ItemLootPageN2P4");
 	}
 
 	private static void registerBlocks() {

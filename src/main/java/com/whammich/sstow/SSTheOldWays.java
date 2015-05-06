@@ -10,6 +10,7 @@ import com.whammich.sstow.events.CreateShardEvent;
 import com.whammich.sstow.events.PlayerDeathEvent;
 import com.whammich.sstow.events.PlayerDropEvent;
 import com.whammich.sstow.events.PlayerKillEntityEvent;
+import com.whammich.sstow.guide.DrJournal;
 import com.whammich.sstow.guide.SoulManual;
 import com.whammich.sstow.utils.Config;
 import com.whammich.sstow.utils.EntityMapper;
@@ -54,6 +55,7 @@ public class SSTheOldWays {
 	public void postInit(FMLPostInitializationEvent event) {
 		Register.registerObjs();
 		SoulManual.registerguide();
+		DrJournal.registerguide();
 		EntityMapper.init();
 		Entitylist.init(new File(Config.configDirectory + "/entitylist.cfg"));
 	}

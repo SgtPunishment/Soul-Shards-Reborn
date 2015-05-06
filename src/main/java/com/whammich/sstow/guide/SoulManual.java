@@ -25,14 +25,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SoulManual {
 
-	public static Book SoulManual;
+	public static Book soulmanual;
 	public static List<CategoryAbstract> categories = new ArrayList<CategoryAbstract>();
 
 	public static void registerguide() {
 		createBook();
-		SoulManual = new Book(categories, "guide.SoulManual.book.title", "guide.SoulManual.book.welcomMessage", "guide.SoulManual.book.name", new Color(102, 0, 102));
-		GuideRegistry.registerBook(SoulManual);
-		GameRegistry.addRecipe(new ShapedOreRecipe(GuideRegistry.getItemStackForBook(SoulManual), "C", "B", 'C', "essenceCorrupted", 'B', Items.writable_book));
+		soulmanual = new Book(categories, "guide.soulmanual.book.title", "guide.soulmanual.book.welcomMessage", "guide.soulmanual.book.name", new Color(102, 0, 102));
+		GuideRegistry.registerBook(soulmanual);
+		GameRegistry.addRecipe(new ShapedOreRecipe(GuideRegistry.getItemStackForBook(soulmanual), "C", "B", 'C', "essenceCorrupted", 'B', Items.writable_book));
 	}
 	
 	public static void createBook(){
@@ -64,6 +64,6 @@ public class SoulManual {
 		testPage.add(pageSoulForge11);
 		testPage.add(pageSoulForge12);
 		entries.add(new EntryUniText(testPage, Utils.localize("guide.forge.smelting"))); //First
-		categories.add(new CategoryItemStack(entries, Utils.localize("guide.SoulManual.book.crafting"), new ItemStack(Register.BlockForge, 1, 3)));
+		categories.add(new CategoryItemStack(entries, Utils.localize("guide.soulmanual.book.crafting"), new ItemStack(Register.BlockForge, 1, 3)));
 	}
 }
