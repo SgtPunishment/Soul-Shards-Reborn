@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
@@ -81,7 +82,6 @@ public class Register {
 	public static Block BlockForgeActive = new BlockForge(true).setBlockName("sstow.forge_block_active");
 	public static Block BlockMaterials = new BlockMaterials();
 	public static Block BlockXenoLight = new BlockXenoLight();
-	
 	public static Block BlockXenolith = new BlockXenolith();
 	public static Block BlockPetrified = new BlockPetrified();
     public static Block BlockPetrified2 = new BlockPetrified2();
@@ -91,7 +91,8 @@ public class Register {
     
     
     // Set up Biomes
-    public static BiomeGenBase biomePetrifiedForest = new BiomeGenPetForest(137).setBiomeName("Petrified Forest").setTemperatureRainfall(0.95F, 0.9F).setColor(000000);
+    public static BiomeGenBase biomePetrifiedForest = new BiomeGenPetForest(137)
+    	.setBiomeName("Petrified Forest").setTemperatureRainfall(0.95F, 0.9F).setColor(000000);
     
 	public static void registerObjs() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(SSTheOldWays.modInstance, new GuiHandler());
@@ -241,8 +242,16 @@ public class Register {
 		}
 	}
 	
+	public static ItemStack addNBTToLootPage(ItemStack stack) {
+		if(stack.stackTagCompound == null){
+			stack.setTagCompound(new NBTTagCompound());
+		}
+		stack.stackTagCompound.setString("key", "drjournal:notes:note2:2");
+		return stack;
+	}
+	
 	public static void registerLoot() {
-		ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ItemLootPage), 1, 3, 10));
+		ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(addNBTToLootPage(new ItemStack(ItemLootPage)), 1, 3, 10));
 		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ItemLootPage), 1, 3, 10));
 		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(ItemLootPage), 1, 3, 10));
 		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ItemLootPage), 1, 3, 10));

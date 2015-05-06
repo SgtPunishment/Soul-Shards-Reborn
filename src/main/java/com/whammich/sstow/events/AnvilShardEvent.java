@@ -13,10 +13,7 @@ public class AnvilShardEvent {
 	@SubscribeEvent
 	public void handleAnvilStuff(AnvilUpdateEvent event) {
 		
-		byte leftTier = event.left.stackTagCompound.getByte("Tier");
-		byte rightTier = event.right.stackTagCompound.getByte("Tier");
-		short killResult = (short) (event.left.stackTagCompound.getShort("KillCount")
-				+ event.right.stackTagCompound.getShort("KillCount"));
+
 		
 		// If the slots are empty, do nothing
 		if(event.left == null || event.right == null){
@@ -25,7 +22,10 @@ public class AnvilShardEvent {
 		
 		// If the left and right slots are soul shards proceed
 		if(event.left.getItem() instanceof ItemShardSoul && event.right.getItem() instanceof ItemShardSoul) {
-			
+			byte leftTier = event.left.stackTagCompound.getByte("Tier");
+			byte rightTier = event.right.stackTagCompound.getByte("Tier");
+			short killResult = (short) (event.left.stackTagCompound.getShort("KillCount")
+					+ event.right.stackTagCompound.getShort("KillCount"));
 			// Is the left input tier higher than the right tier?
 			if(leftTier >= rightTier || leftTier <= rightTier) {
 							

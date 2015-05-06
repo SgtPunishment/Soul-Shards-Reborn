@@ -36,8 +36,8 @@ public class DrJournal {
 		List<EntryAbstract> entries = new ArrayList<EntryAbstract>();
 		ArrayList<IPage> journalPages = new ArrayList<IPage>();
 		ArrayList<IPage> journalPages01 = new ArrayList<IPage>();
-		PageMissingText missingJournalN2P2 = new PageMissingText(Utils.localize("guide.drjournal.book.note2.page02"), "drjournal:notes:note2:02");
-		PageMissingText missingJournalN2P4 = new PageMissingText(Utils.localize("guide.drjournal.book.note2.page04"), "drjournal:notes:note2:04");
+		PageMissingText missingJournalN2P2 = new PageMissingText(Utils.localize("guide.drjournal.book.note2.page02"), "drjournal:notes:note2:2");
+		PageMissingText missingJournalN2P4 = new PageMissingText(Utils.localize("guide.drjournal.book.note2.page04"), "drjournal:notes:note2:4");
 		// Third
 		journalPages.addAll(PageHelper.pagesForLongText(Utils.localize("guide.drjournal.book.note1.page01")));
 		journalPages.addAll(PageHelper.pagesForLongText(Utils.localize("guide.drjournal.book.note1.page02")));

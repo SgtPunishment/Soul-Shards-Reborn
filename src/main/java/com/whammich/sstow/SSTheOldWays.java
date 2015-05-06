@@ -5,6 +5,7 @@ import java.io.File;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.whammich.sstow.commands.CommandSSTOW;
+import com.whammich.sstow.events.AnvilEvent;
 import com.whammich.sstow.events.AnvilShardEvent;
 import com.whammich.sstow.events.CreateShardEvent;
 import com.whammich.sstow.events.PlayerDeathEvent;
@@ -44,6 +45,7 @@ public class SSTheOldWays {
 		MinecraftForge.EVENT_BUS.register(new PlayerKillEntityEvent());
 		MinecraftForge.EVENT_BUS.register(new CreateShardEvent());
 		MinecraftForge.EVENT_BUS.register(new AnvilShardEvent());
+		MinecraftForge.EVENT_BUS.register(new AnvilEvent());
 		if (Loader.isModLoaded("Baubles")){
 			MinecraftForge.EVENT_BUS.register(new PlayerDeathEvent());
 			MinecraftForge.EVENT_BUS.register(new PlayerDropEvent());
