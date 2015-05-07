@@ -38,8 +38,8 @@ public class BlockFluidSoulium extends BlockFluidClassic {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
-		stillIcon = iconRegister.registerIcon(Reference.MOD_ID + ":liquid_soulium");
-		flowingIcon = iconRegister.registerIcon(Reference.MOD_ID + ":liquid_soulium_flow");
+		stillIcon = iconRegister.registerIcon(Reference.MOD_ID + ":liquidSoulium");
+		flowingIcon = iconRegister.registerIcon(Reference.MOD_ID + ":liquidSoulium_flow");
 		TCon.souliumFluid.setIcons(stillIcon, flowingIcon);
         this.blockIcon = stillIcon;
 	}

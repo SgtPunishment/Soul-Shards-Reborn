@@ -17,7 +17,7 @@ public class BaubleInventorySaver  extends Item implements IBauble {
 		this.maxStackSize = 1;
 		this.setCreativeTab(Register.CREATIVE_TAB);
 		this.setUnlocalizedName("sstow.bauble.invent");
-		this.setTextureName(Reference.MOD_ID + ":tier5");
+		this.setTextureName(Reference.MOD_ID + ":shardTier5");
 	}
 	
 	@Override

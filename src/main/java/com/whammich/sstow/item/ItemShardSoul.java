@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 
 import com.whammich.sstow.utils.Config;
 import com.whammich.sstow.utils.EntityMapper;
+import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
 import com.whammich.sstow.utils.TierHandler;
 import com.whammich.sstow.utils.Utils;
@@ -238,10 +239,10 @@ public class ItemShardSoul extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister register) {
-		unbound = register.registerIcon("sstow:unbound");
+		unbound = register.registerIcon(Reference.MOD_ID + ":shardUnbound");
 		icons = new IIcon[6];
 		for (int i = 0; i <= 5; i++) {
-			icons[i] = register.registerIcon("sstow:tier" + i);
+			icons[i] = register.registerIcon(Reference.MOD_ID + ":shardTier" + i);
 		}
 	}
 }

@@ -6,6 +6,7 @@ import com.whammich.sstow.SSTheOldWays;
 import com.whammich.sstow.tileentity.TileEntityCage;
 import com.whammich.sstow.utils.HolidayHelper;
 import com.whammich.sstow.utils.ModLogger;
+import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
 import com.whammich.sstow.utils.Utils;
 
@@ -195,13 +196,13 @@ public class BlockCage extends BlockContainer {
 		if (HolidayHelper.isChristmas()) {
 			icons = new IIcon[4];
 			for (int i = 0; i < 4; i++) {
-				icons[i] = iconRegister.registerIcon("sstow:cage_" + i
+				icons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":soulCage_" + i
 						+ "_xmas");
 			}
 		} else {
 			icons = new IIcon[5];
 			for (int i = 0; i < 5; i++) {
-				icons[i] = iconRegister.registerIcon("sstow:cage_" + i);
+				icons[i] = iconRegister.registerIcon(Reference.MOD_ID + ":soulCage_" + i);
 			}
 		}
 	}

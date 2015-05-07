@@ -44,11 +44,11 @@ public class ItemModules extends Item {
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
-        this.icon[0] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleredstone");
-        this.icon[1] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleplayer");
-        this.icon[2] = iconRegister.registerIcon(Reference.MOD_ID + ":modulelight");
-        this.icon[3] = iconRegister.registerIcon(Reference.MOD_ID + ":moduledimension");
-        this.icon[4] = iconRegister.registerIcon(Reference.MOD_ID + ":modulecontroller");
+        this.icon[0] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleRedstone");
+        this.icon[1] = iconRegister.registerIcon(Reference.MOD_ID + ":modulePlayer");
+        this.icon[2] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleLight");
+        this.icon[3] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleDimension");
+        this.icon[4] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleController");
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})

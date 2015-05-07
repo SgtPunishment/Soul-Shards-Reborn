@@ -11,7 +11,7 @@ public class ItemSouliumBucket extends ItemBucket {
         super(block);
         this.maxStackSize = 1;
         this.setContainerItem(Items.bucket);
-        this.setTextureName(Reference.MOD_ID + ":bucket_soulium");
+        this.setTextureName(Reference.MOD_ID + ":bucketSoulium");
         this.setCreativeTab(Register.CREATIVE_TAB);
         this.setUnlocalizedName("sstow.soultool.bucket.soulium");
     }

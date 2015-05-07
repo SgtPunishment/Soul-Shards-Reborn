@@ -253,7 +253,6 @@ public class Register {
 	}
 	
 	public static void registerLoot() {
-		ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(addNBTToLootPage(new ItemStack(ItemLootPage)), 1, 3, 10));
 		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(addNBTToLootPage(new ItemStack(ItemLootPage)), 1, 3, 10));
 		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(addNBTToLootPage(new ItemStack(ItemLootPage)), 1, 3, 10));
 		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(addNBTToLootPage(new ItemStack(ItemLootPage)), 1, 3, 10));

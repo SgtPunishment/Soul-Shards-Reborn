@@ -28,7 +28,7 @@ public class ItemSwordSoul extends ItemSword {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IIconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":swordsoul");
+		itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":swordSoul");
 
         for (int i = 0; i < browniePoints.length; i++) {
             icon[i] = iconRegister.registerIcon(Reference.MOD_ID + ":brownie/" + browniePoints[i].toLowerCase().replaceAll(" ", ""));
