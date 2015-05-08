@@ -87,7 +87,7 @@ public class BlockXenolith extends Block {
 			}
 		}
 
-		if (meta > 6) {
+		if (meta > 7) {
 			meta = 0;
 		}
 		return blockIcon[meta];

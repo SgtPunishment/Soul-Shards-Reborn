@@ -142,10 +142,10 @@ public final class Config {
 			maxEntities = config.getInt("Max Entities Spawned", "soul cages", 80, 1, 200, "Max number of Entities soul cages can spawn in an area");
 			invertRedstone = config.getBoolean("Invert Redstone", "soul cages", false, "Active redstone stops a soul cage");
 			floodPrevention = config.getBoolean("Flood Prevention", "soul cages", true, "Soul cages will stop when too many entities have been spawned");
-			redstoneModule = config.getBoolean("Enable Redstone Module", "soul cages", true, "wub wub");
-			lightModule = config.getBoolean("Enable Light Module", "soul cages", true, "wub wub");
-			dimensionModule = config.getBoolean("Enable Dimension Module", "soul cages", true, "wub wub");
-			playerModule = config.getBoolean("Enable Player Module","soul cages", false, "wub wub");
+			redstoneModule = config.getBoolean("Enable Redstone Module", "soul cages", true, "Enable the Redstone Module?");
+			lightModule = config.getBoolean("Enable Light Module", "soul cages", true, "Enable the Light Module?");
+			dimensionModule = config.getBoolean("Enable Dimension Module", "soul cages", true, "Enable the Dimension Module?");
+			playerModule = config.getBoolean("Enable Player Module","soul cages", false, "Enable the Player Module?");
 
 			// General Section
 			spawnerBonus = config.getInt("Vanilla Spawner Bonus", "general", 64, 1, 400, "Amount of kills added to the shard when right-clicking a spawner");

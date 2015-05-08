@@ -4,6 +4,12 @@ item.sstow.shard.unbound.name=Unbound Soul Shard
 item.sstow.shard.name=Soul Shard
 item.guide.book.missing.name=Torn Page
 
+# Modules
+item.sstow.modules.redstone.name=Mark of Redstone
+item.sstow.modules.detection.name=Mark of Presence
+item.sstow.modules.light.name=Mark of Illumine
+item.sstow.modules.dimension.name=Mark of Ender
+
 # Materials
 item.sstow.material.nugget.iron.name=Iron Nugget
 item.sstow.material.nugget.soulium.name=Soulium Nugget
@@ -27,7 +33,6 @@ tile.sstow.block.material.Ender.name=Block of Ender
 tile.sstow.block.cage.name=Soul Cage
 tile.sstow.block.obsidian.glass.name=Obsidian Glass
 
-tile.sstow.block.xenolith.Raw.name=Raw Xenolith
 tile.sstow.block.xenolith.Polished.name=Polished Xenolith
 tile.sstow.block.xenolith.Decorative.name=Decorative Xenolith
 tile.sstow.block.xenolith.Nether.name=Nether Xenolith

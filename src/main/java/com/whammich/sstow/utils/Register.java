@@ -38,6 +38,7 @@ import com.whammich.sstow.item.ItemAxeSoul;
 import com.whammich.sstow.item.ItemHoeSoul;
 import com.whammich.sstow.item.ItemLootPage;
 import com.whammich.sstow.item.ItemMaterials;
+import com.whammich.sstow.item.ItemModules;
 import com.whammich.sstow.item.ItemPickaxeSoul;
 import com.whammich.sstow.item.ItemShardSoul;
 import com.whammich.sstow.item.ItemSpadeSoul;
@@ -68,6 +69,7 @@ public class Register {
 
 	// Set up the mod items
 	public static Item ItemMaterials = new ItemMaterials();
+	public static Item ItemModules = new ItemModules();
 	public static Item ItemShardSoul = new ItemShardSoul();
 	public static Item ItemSwordSoul = new ItemSwordSoul(SOULIUM);
 	public static Item ItemPickaxeSoul = new ItemPickaxeSoul(SOULIUM);
@@ -109,6 +111,7 @@ public class Register {
 
 	private static void registerItems() {
 		GameRegistry.registerItem(ItemMaterials, "ItemMaterialsSoul");
+		GameRegistry.registerItem(ItemModules, "ItemModulesSoul");
 		GameRegistry.registerItem(ItemSwordSoul, "ItemSwordSoul");
 		GameRegistry.registerItem(ItemPickaxeSoul, "ItemPickaxeSoul");
 		GameRegistry.registerItem(ItemAxeSoul, "ItemAxeSoul");

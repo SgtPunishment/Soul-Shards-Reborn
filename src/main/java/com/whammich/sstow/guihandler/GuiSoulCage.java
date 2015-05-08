@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.whammich.sstow.tileentity.ContainerCage;
 import com.whammich.sstow.tileentity.TileEntityCage;
+import com.whammich.sstow.utils.Config;
 import com.whammich.sstow.utils.Reference;
 
 import cpw.mods.fml.relauncher.Side;
@@ -39,5 +40,27 @@ public class GuiSoulCage extends GuiContainer {
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		this.drawTexturedModalRect(k+35, l+16, 176, 0,
+				18, 18);
+//		if (!Config.Module_CONTROL){
+//			this.drawTexturedModalRect(k+152, l+17, 176, 18,
+//					16, 16);
+//		}
+		if (!Config.redstoneModule) {
+			this.drawTexturedModalRect(k+70, l+17, 176, 18,
+					16, 16);
+		}
+		if (!Config.lightModule) {
+			this.drawTexturedModalRect(k+88, l+17, 176, 18,
+					16, 16);
+		}
+		if (!Config.dimensionModule) {
+			this.drawTexturedModalRect(k+106, l+17, 176, 18,
+					16, 16);
+		}
+		if (Config.playerModule) {
+			this.drawTexturedModalRect(k+124, l+17, 176, 18,
+					16, 16);
+		}
 	}
 }

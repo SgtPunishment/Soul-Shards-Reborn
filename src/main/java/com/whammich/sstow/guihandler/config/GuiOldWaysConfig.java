@@ -1,4 +1,4 @@
-package com.whammich.sstow.guihandler;
+package com.whammich.sstow.guihandler.config;
 
 import java.util.ArrayList;
 import java.util.List;
