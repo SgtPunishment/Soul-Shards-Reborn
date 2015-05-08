@@ -4,12 +4,15 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
+import com.whammich.sstow.entity.EntityHarmlessLightningBolt;
 import com.whammich.sstow.utils.Config;
 import com.whammich.sstow.utils.Register;
+import com.whammich.sstow.utils.Utils;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -17,7 +20,7 @@ public class CreateShardEvent {
 
 	@SubscribeEvent
 	public void onRightClick(PlayerInteractEvent event) {
-		if (Config.RITUAL == true) {
+		if (Config.ritual == true) {
 
 			if (event.world.isRemote || event.action != PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
 				return;
@@ -40,10 +43,10 @@ public class CreateShardEvent {
 
 				ForgeDirection dir = ForgeDirection.getOrientation(event.face);
 
-//				event.entityPlayer.addChatComponentMessage(new ChatComponentText((char) 167 + "5" + (char) 167 + "o" + Utils.localize("chat.sstow.ritual.creep1")));
-//				event.entityPlayer.addChatComponentMessage(new ChatComponentText((char) 167 + "5" + (char) 167 + "o" + Utils.localize("chat.sstow.ritual.creep2")));
-//				event.world.playSoundEffect(event.x, event.y, event.z, "portal.trigger", 0.1F, 1.0F);
-//				event.world.addWeatherEffect(new EntityHarmlessLightningBolt(event.world, event.x, event.y, event.z));
+				event.entityPlayer.addChatComponentMessage(new ChatComponentText((char) 167 + "5" + (char) 167 + "o" + Utils.localize("chat.sstow.ritual.creep1")));
+				event.entityPlayer.addChatComponentMessage(new ChatComponentText((char) 167 + "5" + (char) 167 + "o" + Utils.localize("chat.sstow.ritual.creep2")));
+				event.world.playSoundEffect(event.x, event.y, event.z, "portal.trigger", 0.1F, 1.0F);
+				event.world.addWeatherEffect(new EntityHarmlessLightningBolt(event.world, event.x, event.y, event.z));
 				
 				event.world.spawnEntityInWorld(new EntityItem(event.world,
 						event.x + (dir.offsetX * 1.75D), event.y

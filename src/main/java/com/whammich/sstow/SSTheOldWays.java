@@ -16,6 +16,7 @@ import com.whammich.sstow.guide.SoulManual;
 import com.whammich.sstow.utils.Config;
 import com.whammich.sstow.utils.EntityMapper;
 import com.whammich.sstow.utils.Entitylist;
+import com.whammich.sstow.utils.ModLogger;
 import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
 
@@ -42,12 +43,18 @@ public class SSTheOldWays {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		ModLogger.logDebug("Registering PlayerKill Event");
 		MinecraftForge.EVENT_BUS.register(new PlayerKillEntityEvent());
+		ModLogger.logDebug("Registering CreateShard Event");
 		MinecraftForge.EVENT_BUS.register(new CreateShardEvent());
+		ModLogger.logDebug("Registering AnvilShard Event");
 		MinecraftForge.EVENT_BUS.register(new AnvilShardEvent());
+		ModLogger.logDebug("Registering AnvilLore Event");
 		MinecraftForge.EVENT_BUS.register(new AnvilEvent());
 		if (Loader.isModLoaded("Baubles")){
+			ModLogger.logDebug("Registering PlayerDeath Event");
 			MinecraftForge.EVENT_BUS.register(new PlayerDeathEvent());
+			ModLogger.logDebug("Registering PlayerDrop Event");
 			MinecraftForge.EVENT_BUS.register(new PlayerDropEvent());
 		}
 		FMLInterModComms.sendMessage("Waila", "register", Reference.Waila_callBack);
@@ -55,11 +62,16 @@ public class SSTheOldWays {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		ModLogger.logDebug("Registering Objects");
 		Register.registerObjs();
+		ModLogger.logDebug("Registering Manual");
 		SoulManual.registerguide();
+		ModLogger.logDebug("Registering Journal");
 		DrJournal.registerguide();
+		ModLogger.logDebug("Registering EntityMapper");
 		EntityMapper.init();
-		Entitylist.init(new File(Config.configDirectory + "/entitylist.cfg"));
+		ModLogger.logDebug("Reading/Writing Entity List");
+		Entitylist.init(new File(Config.configDirectory + "/Soul-Shards-TOW-Entitylist.cfg"));
 	}
 	
 	@EventHandler

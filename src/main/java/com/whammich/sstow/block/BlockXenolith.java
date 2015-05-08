@@ -43,6 +43,7 @@ public class BlockXenolith extends Block {
 		"Soulium",		// 4
 		"Redstone",		// 5
 		"Ender",		// 6
+		"Bricks"		// 7
 	};
 
 	@Override

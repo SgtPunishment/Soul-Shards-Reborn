@@ -41,17 +41,17 @@ public class PlayerDeathEvent {
 												new ResourceLocation(
 														"dig.glass"), 1.0F));
 					}
-					player.setHealth(Config.CrystalHeal);
-					if (Config.CrystalResistEnable) {
+					player.setHealth(Config.crystalHeal);
+					if (Config.crystalResistEnable) {
 						player.addPotionEffect(new PotionEffect(
 								Potion.resistance.id,
-								Config.CrystalResistTimer, 5));
+								Config.crystalResistTimer, 5));
 					}
-					if (Config.CrystalRegenEnable) {
+					if (Config.crystalRegenEnable) {
 						player.addPotionEffect(new PotionEffect(
 								Potion.regeneration.id,
-								Config.CrystalRegenTimer,
-								Config.CrystalRegenLevel));
+								Config.crystalRegenTimer,
+								Config.crystalRegenLevel));
 					}
 				}
 			}

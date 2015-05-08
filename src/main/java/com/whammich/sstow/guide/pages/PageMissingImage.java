@@ -1,13 +1,22 @@
 package com.whammich.sstow.guide.pages;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import amerifrance.guideapi.pages.PageUnlocImage;
+import amerifrance.guideapi.pages.PageImage;
 
-public class PageMissingImage extends PageUnlocImage {
+public class PageMissingImage extends PageImage {
 
-	public PageMissingImage(String unlocText, ResourceLocation image, boolean drawAtTop) {
-		super(unlocText, image, drawAtTop);
-		
+	public String unlockKey;
+
+	public PageMissingImage(ResourceLocation image, String key) {
+		super(image);
+		this.unlockKey = key;
+	}
+
+	@Override
+	public boolean canSee(EntityPlayer player, ItemStack bookStack) {
+		return bookStack.stackTagCompound.getBoolean(unlockKey);
 	}
 
 }

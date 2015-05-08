@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import amerifrance.guideapi.api.GuideRegistry;
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
@@ -16,7 +17,9 @@ import amerifrance.guideapi.api.util.PageHelper;
 import amerifrance.guideapi.categories.CategoryItemStack;
 import amerifrance.guideapi.entries.EntryUniText;
 
+import com.whammich.sstow.guide.pages.PageMissingImage;
 import com.whammich.sstow.guide.pages.PageMissingText;
+import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Utils;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -38,10 +41,11 @@ public class DrJournal {
 		ArrayList<IPage> journalPages01 = new ArrayList<IPage>();
 		PageMissingText missingJournalN2P2 = new PageMissingText(Utils.localize("guide.drjournal.book.note2.page02"), "drjournal:notes:note2:2");
 		PageMissingText missingJournalN2P4 = new PageMissingText(Utils.localize("guide.drjournal.book.note2.page04"), "drjournal:notes:note2:4");
+		PageMissingImage imagePage = new PageMissingImage(new ResourceLocation(Reference.MOD_ID + ":textures/pages/shard.png"), null);
 		// Third
 		journalPages.addAll(PageHelper.pagesForLongText(Utils.localize("guide.drjournal.book.note1.page01")));
 		journalPages.addAll(PageHelper.pagesForLongText(Utils.localize("guide.drjournal.book.note1.page02")));
-		
+		journalPages.add(imagePage);
 		journalPages01.addAll(PageHelper.pagesForLongText(Utils.localize("guide.drjournal.book.note2.page01")));
 		journalPages01.add(missingJournalN2P2);
 		journalPages01.addAll(PageHelper.pagesForLongText(Utils.localize("guide.drjournal.book.note2.page03")));

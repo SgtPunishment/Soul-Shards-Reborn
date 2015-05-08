@@ -1,6 +1,5 @@
 package com.whammich.sstow.tileentity;
 
-//import java.lang.reflect.Field;
 import java.util.List;
 
 import net.minecraft.entity.EntityLiving;
@@ -62,7 +61,6 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 		this.cageName = string;
 	}
 
-	//@SuppressWarnings("rawtypes")
 	@Override
 	public void updateEntity() {
 		if (worldObj.isRemote) {
@@ -72,8 +70,6 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 		if (Entitylist.bList.contains(entName)){
 			return;
 		}
-		
-		//this.worldObj.func_147453_f(this.xCoord, this.yCoord, this.zCoord, Register.BlockCage);
 		
 		if (!initChecks) {
 			checkRedstone();
@@ -110,9 +106,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 		}
 
 		if (counter >= TierHandler.getCooldown(tier - 1) * 20 - 1) {
-			if (Config.ENABLE_DEBUG) {
-				ModLogger.logInfo(Utils.localizeFormatted("chat.sstow.debug.successspawn", "" + entName));
-			}
+			ModLogger.logDebug(Utils.localizeFormatted("chat.sstow.debug.successspawn", "" + entName));
 
 			EntityLiving[] toSpawn = new EntityLiving[TierHandler
 					.getNumSpawns(tier - 1)];
@@ -165,26 +159,26 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 	}
 
 	private boolean canEntitySpawn(EntityLiving ent) {
-		if ((Config.ENABLE_FLOOD_PREVENTION) && (hasReachedSpawnLimit(ent))) {
+		if ((Config.floodPrevention) && (hasReachedSpawnLimit(ent))) {
 			return false;
 		}
 
-		if (((Config.MODULE_RED == false) && (TierHandler.getChecksRedstone(tier - 1))
-				&& (redstoneActive == Config.INVERT_REDSTONE)) || 
-				((Config.MODULE_RED == true) && (modules[1] != null) && (redstoneActive == Config.INVERT_REDSTONE))) {
+		if (((Config.redstoneModule == false) && (TierHandler.getChecksRedstone(tier - 1))
+				&& (redstoneActive == Config.invertRedstone)) || 
+				((Config.redstoneModule == true) && (modules[1] != null) && (redstoneActive == Config.invertRedstone))) {
 			return false;
 		}
 
-		if (((Config.MODULE_PLAYER == false) && (TierHandler.getChecksPlayer(tier - 1))
-				&& (!isPlayerClose(this.xCoord, this.yCoord, this.zCoord))) || ((Config.MODULE_PLAYER == true) && (!isPlayerClose(this.xCoord, this.yCoord, this.zCoord)) && (modules[2] != null))) {
+		if (((Config.playerModule == false) && (TierHandler.getChecksPlayer(tier - 1))
+				&& (!isPlayerClose(this.xCoord, this.yCoord, this.zCoord))) || ((Config.playerModule == true) && (!isPlayerClose(this.xCoord, this.yCoord, this.zCoord)) && (modules[2] != null))) {
 			return false;
 		}
 
-		if (((Config.MODULE_LIGHT == false) && (TierHandler.getChecksLight(tier - 1)) && (!canSpawnInLight(ent))) || ((Config.MODULE_LIGHT == true) && (!canSpawnInLight(ent)) && (modules[3] != null))) {
+		if (((Config.lightModule == false) && (TierHandler.getChecksLight(tier - 1)) && (!canSpawnInLight(ent))) || ((Config.lightModule == true) && (!canSpawnInLight(ent)) && (modules[3] != null))) {
 			return false;
 		}
 
-		if (((Config.MODULE_DIM == false) && (TierHandler.getChecksWorld(tier - 1)) && (!canSpawnInWorld(ent))) || ((Config.MODULE_DIM == true) && (!canSpawnInWorld(ent)) && (modules[4] != null))) {
+		if (((Config.dimensionModule == false) && (TierHandler.getChecksWorld(tier - 1)) && (!canSpawnInWorld(ent))) || ((Config.dimensionModule == true) && (!canSpawnInWorld(ent)) && (modules[4] != null))) {
 			return false;
 		}
 		return true;
@@ -192,7 +186,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 
 	private boolean isPlayerClose(int x, int y, int z) {
 		EntityPlayer entityPlayer = worldObj.getClosestPlayer(x, y, z, 16.0D);
-		if ((Config.PERSONALSHARD && entityPlayer != null  && entityPlayer.getDisplayName().equals(owner)) || (!Config.PERSONALSHARD && entityPlayer != null)) {
+		if ((Config.personalShard && entityPlayer != null  && entityPlayer.getDisplayName().equals(owner)) || (!Config.personalShard && entityPlayer != null)) {
 			return true;
 		} else {
 			return false;
@@ -255,7 +249,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 				mobCount++;
 			}
 		}
-		return mobCount >= Config.MAX_NUM_ENTITIES;
+		return mobCount >= Config.maxEntities;
 	}
 
 	private void spawnEntities(EntityLiving[] ents) {

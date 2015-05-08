@@ -61,7 +61,7 @@ public class Register {
 	public static ToolMaterial SOULIUM = EnumHelper.addToolMaterial("SOULIUM", 3, 3122, 12.0F, 6F, 30);
 
 	// Setting up the enchantment details from the config
-	public static Enchantment SOUL_STEALER = new EnchantmentSoulStealer(Config.ENCHANT_ID, Config.ENCHANT_WEIGHT);
+	public static Enchantment SOUL_STEALER = new EnchantmentSoulStealer(Config.enchantID, Config.enchantWeight);
 
 	// Set the creative tab
 	public static SoulShardTab CREATIVE_TAB = new SoulShardTab();

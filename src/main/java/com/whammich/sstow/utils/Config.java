@@ -12,55 +12,53 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public final class Config {
 
+	// Experience Points
+	public static float fakePlayerXP;
+	public static float playerXP;
+	
 	// Phylactery Crystal Section
+	public static int crystalHeal;
+	public static boolean crystalRegenEnable;
+	public static int crystalRegenTimer;
+	public static int crystalRegenLevel;
+	public static boolean crystalResistEnable;
+	public static int crystalResistTimer;
 	
-	public static int CrystalHeal;
-	
-	public static boolean CrystalRegenEnable;
-	public static int CrystalRegenTimer;
-	public static int CrystalRegenLevel;
-	
-	public static boolean CrystalResistEnable;
-	public static int CrystalResistTimer;
-	
-	
-	// Config Wall
-	public static boolean NEWSTUFF;
 	
 	// Enchant Section
-	public static int ENCHANT_ID;
-	public static int ENCHANT_WEIGHT;
-	public static int ENCHANT_KILL_BONUS;
+	public static int enchantID;
+	public static int enchantWeight;
+	public static int enchantBonus;
 	
 	// General Section
-	public static int SPAWNER_ABSORB_BONUS;
-	public static int MAX_NUM_ENTITIES;
-	public static boolean ALLOW_SPAWNER_ABSORB;
-	public static boolean BIND_ON_ABSORB;
-	public static boolean INVERT_REDSTONE;
-	public static boolean ENABLE_FLOOD_PREVENTION;
-	public static boolean ENABLE_DEBUG;
-	public static boolean RITUAL;
-	public static boolean PERSONALSHARD;
+	public static int spawnerBonus;
+	public static int maxEntities;
+	public static boolean allowAbsorb;
+	public static boolean bindingAbsorb;
+	public static boolean invertRedstone;
+	public static boolean floodPrevention;
+	public static boolean debug;
+	public static boolean ritual;
+	public static boolean personalShard;
 	
-	public static boolean MODULE_RED;
-	public static boolean MODULE_LIGHT;
-	public static boolean MODULE_DIM;
-	public static boolean MODULE_PLAYER;
+	public static boolean redstoneModule;
+	public static boolean lightModule;
+	public static boolean dimensionModule;
+	public static boolean playerModule;
 	
 	// Recipes Section
-	public static int COOKING_MOD;
-	public static int SHARDS;
-	public static int NUGGETS;
-	public static int INGOTS;
+	public static int cookingModifier;
+	public static int shardsReturn;
+	public static int nuggetsReturn;
+	public static int ingotsReturn;
 
-	public static final short[] DEFAULT_MIN_KILLS = { 64, 128, 256, 512, 1024 };
-	private static final byte[] DEFAULT_NUM_SPAWNS = { 2, 4, 4, 4, 6 };
-	private static final byte[] DEFAULT_SPAWN_DELAY = { 20, 10, 5, 5, 2 };
-	private static final boolean[] DEFAULT_NEEDS_PLAYER = { true, true, false, false, false };
-	private static final boolean[] DEFAULT_CHECKS_LIGHT = { true, true, true, true, false };
-	private static final boolean[] DEFAULT_CHECKS_WORLD = { true, true, true, false, false };
-	private static final boolean[] DEFAULT_CHECKS_REDSTONE = { false, false, false, false, true };
+	public static final short[] defaultMinKills = { 64, 128, 256, 512, 1024 };
+	private static final byte[] defaultSpawns = { 2, 4, 4, 4, 6 };
+	private static final byte[] defaultDelay = { 20, 10, 5, 5, 2 };
+	private static final boolean[] defaultPlayer = { true, true, false, false, false };
+	private static final boolean[] defaultLight = { true, true, true, true, false };
+	private static final boolean[] defaultWorld = { true, true, true, false, false };
+	private static final boolean[] defaultRedstone = { false, false, false, false, true };
 
 	public static Configuration config;
 
@@ -103,11 +101,11 @@ public final class Config {
 
 	public static void load(FMLPreInitializationEvent event) {
 		FMLCommonHandler.instance().bus().register(new Config());
-		configDirectory = new File(event.getModConfigurationDirectory() + "/sstow/");
+		configDirectory = new File(event.getModConfigurationDirectory() + "/Whammich/");
 		if (!configDirectory.exists()) {
 			configDirectory.mkdir();
 		}
-		File configFile = new File(configDirectory, "config.cfg");
+		File configFile = new File(configDirectory, "Soul-Shards-TOW.cfg");
 		config = new Configuration(configFile);
 		syncConfig();
 	}
@@ -126,58 +124,55 @@ public final class Config {
 
 			// Phylactery crystal
 			// Insta-Heal
-			CrystalHeal = config.getInt("Phylactery Healing", "phylactery crystal", 10, 1, 20, "How much should the phylactery crystal heal you?");
+			crystalHeal = config.getInt("Phylactery Healing", "phylactery crystal", 10, 1, 20, "How much should the phylactery crystal heal you?");
 			// Regen Effects
-			CrystalRegenEnable = config.getBoolean("Enable Phylactery Regen", "phylactery crystal", true, "Will the phylactery crystal regen you on death?");
-			CrystalRegenTimer = config.getInt("Phylactery Regen Timer", "phylactery crystal", 600, 1, 2400, "How long should the regen effect last?");
-			CrystalRegenLevel = config.getInt("Phylactery Regen Level", "phylactery crystal", 0, 0, 2, "What level should the regen effect be?");
+			crystalRegenEnable = config.getBoolean("Enable Phylactery Regen", "phylactery crystal", true, "Will the phylactery crystal regen you on death?");
+			crystalRegenTimer = config.getInt("Phylactery Regen Timer", "phylactery crystal", 600, 1, 2400, "How long should the regen effect last?");
+			crystalRegenLevel = config.getInt("Phylactery Regen Level", "phylactery crystal", 0, 0, 2, "What level should the regen effect be?");
 			// Resistence Effects
-			CrystalResistEnable = config.getBoolean("Enable Phylactery Resistence", "phylactery crystal", true, "Will the phylactery crystal briefly make you immortal?");
-			CrystalResistTimer = config.getInt("Phylactery Resistence Timer", "phylactery crystal", 100, 20, 400, "How long should the resistence effect last?");
-			
-			// New Stuff
-			NEWSTUFF = config.getBoolean("Enable New Stuff", "general", true, "Enables the new blocks, items and recipes");
+			crystalResistEnable = config.getBoolean("Enable Phylactery Resistence", "phylactery crystal", true, "Will the phylactery crystal briefly make you immortal?");
+			crystalResistTimer = config.getInt("Phylactery Resistence Timer", "phylactery crystal", 100, 20, 400, "How long should the resistence effect last?");
 			
 			// Soul Stealer Section
-			ENCHANT_ID = config.getInt("ID", "enchantment", 52, 1, 128, "Soul-Stealer enchant id");
-			ENCHANT_WEIGHT = config.getInt("Weight", "enchantment", 8, 1, 10, "Soul-Stealer enchant probability");
-			ENCHANT_KILL_BONUS = config.getInt("Kill Bonus", "enchantment", 1, 1, 10, "Soul-Stealer kill bonus");
+			enchantID = config.getInt("ID", "enchantment", 52, 1, 128, "Soul-Stealer enchant id");
+			enchantWeight = config.getInt("Weight", "enchantment", 8, 1, 10, "Soul-Stealer enchant probability");
+			enchantBonus = config.getInt("Kill Bonus", "enchantment", 1, 1, 10, "Soul-Stealer kill bonus");
 			
 			// Soul Cage Section
-			MAX_NUM_ENTITIES = config.getInt("Max Entities Spawned", "soul cages", 80, 1, 200, "Max number of Entities soul cages can spawn in an area");
-			INVERT_REDSTONE = config.getBoolean("Invert Redstone", "soul cages", false, "Active redstone stops a soul cage");
-			ENABLE_FLOOD_PREVENTION = config.getBoolean("Flood Prevention", "soul cages", true, "Soul cages will stop when too many entities have been spawned");
-			MODULE_RED = config.getBoolean("Enable Redstone Module", "soul cages", true, "wub wub");
-			MODULE_LIGHT = config.getBoolean("Enable Light Module", "soul cages", true, "wub wub");
-			MODULE_DIM = config.getBoolean("Enable Dimention Module", "soul cages", true, "wub wub");
-			MODULE_PLAYER = config.getBoolean("Enable Player Module","soul cages", false, "wub wub");
+			maxEntities = config.getInt("Max Entities Spawned", "soul cages", 80, 1, 200, "Max number of Entities soul cages can spawn in an area");
+			invertRedstone = config.getBoolean("Invert Redstone", "soul cages", false, "Active redstone stops a soul cage");
+			floodPrevention = config.getBoolean("Flood Prevention", "soul cages", true, "Soul cages will stop when too many entities have been spawned");
+			redstoneModule = config.getBoolean("Enable Redstone Module", "soul cages", true, "wub wub");
+			lightModule = config.getBoolean("Enable Light Module", "soul cages", true, "wub wub");
+			dimensionModule = config.getBoolean("Enable Dimension Module", "soul cages", true, "wub wub");
+			playerModule = config.getBoolean("Enable Player Module","soul cages", false, "wub wub");
 
 			// General Section
-			SPAWNER_ABSORB_BONUS = config.getInt("Vanilla Spawner Bonus", "general", 64, 1, 400, "Amount of kills added to the shard when right-clicking a spawner");
-			BIND_ON_ABSORB = config.getBoolean("Bind Shard", "general", false, "Bind an unbound shard when right-clicking a mob spawner?");
-			ALLOW_SPAWNER_ABSORB = config.getBoolean("Vanilla Spawner Absorbing", "general", true, "Allow absorbing of vanilla spawners for a kill bonus");
-			ENABLE_DEBUG = config.getBoolean("Enable Debug", "general", false, "This will enable debug mode, where the console will inform you when a mob is spawned");
-			RITUAL = config.getBoolean("Enable Ritual", "general", false, "RESTART REQUIRED: This will revert the shard creation to the structure method");
-			PERSONALSHARD = config.getBoolean("Personal shards", "general", false, "The soulcage will only function if the original shard creator is nearby, not just anyone.");
+			spawnerBonus = config.getInt("Vanilla Spawner Bonus", "general", 64, 1, 400, "Amount of kills added to the shard when right-clicking a spawner");
+			bindingAbsorb = config.getBoolean("Bind Shard", "general", false, "Bind an unbound shard when right-clicking a mob spawner?");
+			allowAbsorb = config.getBoolean("Vanilla Spawner Absorbing", "general", true, "Allow absorbing of vanilla spawners for a kill bonus");
+			debug = config.getBoolean("Enable Debug", "general", false, "This will enable debug mode, where the console will inform you when a mob is spawned");
+			ritual = config.getBoolean("Enable Ritual", "general", false, "RESTART REQUIRED: This will revert the shard creation to the structure method");
+			personalShard = config.getBoolean("Personal shards", "general", false, "The soulcage will only function if the original shard creator is nearby, not just anyone.");
 
 			
 			// Recipes Section
-			COOKING_MOD = config.getInt("Cooking Time Modifier", "recipes", 10, 0, 30, "Modify the speed of the soul forge, higher the number the faster it smelts");
-			SHARDS = config.getInt("Shard Amount", "recipes", 3, 1, 8, "RESTART REQUIRED: How many Soul Shards do you want to get by smelting 1 diamond");
-			NUGGETS = config.getInt("Nugget Amount", "recipes", 8, 1, 9, "RESTART REQUIRED: How many Soulium Nuggets do you want to get by smelting 1 iron ingot");
-			INGOTS = config.getInt("Ingot Amount", "recipes", 7, 1, 9, "RESTART REQUIRED: How many Soulium Ingots do you want to get by smelting 1 iron block");
+			cookingModifier = config.getInt("Cooking Time Modifier", "recipes", 10, 0, 30, "Modify the speed of the soul forge, higher the number the faster it smelts");
+			shardsReturn = config.getInt("Shard Amount", "recipes", 3, 1, 8, "RESTART REQUIRED: How many Soul Shards do you want to get by smelting 1 diamond");
+			nuggetsReturn = config.getInt("Nugget Amount", "recipes", 8, 1, 9, "RESTART REQUIRED: How many Soulium Nuggets do you want to get by smelting 1 iron ingot");
+			ingotsReturn = config.getInt("Ingot Amount", "recipes", 7, 1, 9, "RESTART REQUIRED: How many Soulium Ingots do you want to get by smelting 1 iron block");
 
 			short[] minKills = new short[5];
 
 			for (int i = 0; i < 5; i++) {
-				minKills[i] = (short) config.getInt("Min kills", "tier " + (i + 1) + " settings", DEFAULT_MIN_KILLS[i], 1, 2048, "Minimum kills for the tier");
+				minKills[i] = (short) config.getInt("Min kills", "tier " + (i + 1) + " settings", defaultMinKills[i], 1, 2048, "Minimum kills for the tier");
 
-				TierHandler.setNumSpawns(i, (byte) config.getInt("Num Spawns", "tier " + (i + 1) + " settings", DEFAULT_NUM_SPAWNS[i], 1, 10, "Number of spawns per operation"));
-				TierHandler.setSpawnDelay(i, (byte) config.getInt("Cooldown", "tier " + (i + 1) + " settings", DEFAULT_SPAWN_DELAY[i], 1, 60, "Cooldown time for soul cages (in seconds)"));
-				TierHandler.setPlayerChecks(i, config.getBoolean("Check Player", "tier " + (i + 1) + " settings", DEFAULT_NEEDS_PLAYER[i], "Needs a player nearby to spawn entities"));
-				TierHandler.setLightChecks(i, config.getBoolean("Check Light", "tier " + (i + 1) + " settings", DEFAULT_CHECKS_LIGHT[i], "Needs appropriate light to spawn entities"));
-				TierHandler.setWorldChecks(i, config.getBoolean("Checks World", "tier " + (i + 1) + " settings", DEFAULT_CHECKS_WORLD[i], "Needs appropriate world to spawn entities"));
-				TierHandler.setRedstoneChecks(i, config.getBoolean("Redstone control", "tier " + (i + 1) + " settings", DEFAULT_CHECKS_REDSTONE[i], "Reacts to a redstone signal"));
+				TierHandler.setNumSpawns(i, (byte) config.getInt("Num Spawns", "tier " + (i + 1) + " settings", defaultSpawns[i], 1, 10, "Number of spawns per operation"));
+				TierHandler.setSpawnDelay(i, (byte) config.getInt("Cooldown", "tier " + (i + 1) + " settings", defaultDelay[i], 1, 60, "Cooldown time for soul cages (in seconds)"));
+				TierHandler.setPlayerChecks(i, config.getBoolean("Check Player", "tier " + (i + 1) + " settings", defaultPlayer[i], "Needs a player nearby to spawn entities"));
+				TierHandler.setLightChecks(i, config.getBoolean("Check Light", "tier " + (i + 1) + " settings", defaultLight[i], "Needs appropriate light to spawn entities"));
+				TierHandler.setWorldChecks(i, config.getBoolean("Checks World", "tier " + (i + 1) + " settings", defaultWorld[i], "Needs appropriate world to spawn entities"));
+				TierHandler.setRedstoneChecks(i, config.getBoolean("Redstone control", "tier " + (i + 1) + " settings", defaultRedstone[i], "Reacts to a redstone signal"));
 			}
 
 			TierHandler.setTierReqKills(minKills);

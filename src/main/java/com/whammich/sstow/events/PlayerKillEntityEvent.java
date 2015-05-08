@@ -1,5 +1,7 @@
 package com.whammich.sstow.events;
 
+import java.lang.reflect.Field;
+
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
@@ -11,8 +13,8 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import com.whammich.sstow.utils.Config;
-import com.whammich.sstow.utils.Entitylist;
 import com.whammich.sstow.utils.EntityMapper;
+import com.whammich.sstow.utils.Entitylist;
 import com.whammich.sstow.utils.ModLogger;
 import com.whammich.sstow.utils.Register;
 import com.whammich.sstow.utils.Utils;
@@ -20,29 +22,70 @@ import com.whammich.sstow.utils.Utils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class PlayerKillEntityEvent {
+	@SuppressWarnings("rawtypes")
 	@SubscribeEvent
 	public void onEntityKill(LivingDeathEvent event) {
+		
 		World world = event.entity.worldObj;
-		
-		if (event.source.getEntity() instanceof FakePlayer)
-			return;
-		
 		
 		if (world.isRemote || !(event.entity instanceof EntityLiving) || !(event.source.getEntity() instanceof EntityPlayer)) {
 			return;
 		}
-
+		
 		EntityLiving dead = (EntityLiving) event.entity;
+		EntityPlayer player = (EntityPlayer) event.source.getEntity();
+		String entName = EntityList.getEntityString(dead);
+		
+		if (dead.getEntityData() != null && dead.getEntityData().hasKey("SSTOW")) {
+			if(player instanceof FakePlayer){
+			try {
+				Class entityLivingClass = EntityLiving.class;
+				Field xpValue;
+				
+				try {
+					xpValue = entityLivingClass.getDeclaredField("field_70728_aV");
+					
+				} catch (Exception e) {
+					xpValue = entityLivingClass.getDeclaredField("experienceValue");
+					
+				}
 
-		if (dead.getEntityData().getBoolean("SSTOW")) {
+				xpValue.setAccessible(true);
+				xpValue.setInt(dead,(int)(xpValue.getInt(dead)* Config.fakePlayerXP));
+				ModLogger.logDebug("FakePlayer XP Drop Value: " + Config.fakePlayerXP);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				Class entityLivingClass = EntityLiving.class;
+				Field xpValue;
+				
+				try {
+					xpValue = entityLivingClass.getDeclaredField("field_70728_aV");
+					
+				} catch (Exception e) {
+					xpValue = entityLivingClass.getDeclaredField("experienceValue");
+					
+				}
+
+				xpValue.setAccessible(true);
+				xpValue.setInt(dead,(int)(xpValue.getInt(dead)* Config.playerXP));
+				ModLogger.logDebug("Player XP Drop Value: " + Config.playerXP);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 			return;
 		}
 
-		EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
-		String entName = EntityList.getEntityString(dead);
-		
-		if (Entitylist.bList.contains(entName)){
+
+
+
+		if (Entitylist.bList.contains(entName)) {
 			return;
 		}
 		
@@ -72,7 +115,7 @@ public class PlayerKillEntityEvent {
 
 			int soulStealer = EnchantmentHelper.getEnchantmentLevel(
 					Register.SOUL_STEALER.effectId, player.getHeldItem());
-			soulStealer *= Config.ENCHANT_KILL_BONUS;
+			soulStealer *= Config.enchantBonus;
 
 			Utils.increaseShardKillCount(shard, (short) (1 + soulStealer));
 //			Utils.checkForAchievements(player, shard);

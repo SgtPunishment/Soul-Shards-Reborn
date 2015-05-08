@@ -63,7 +63,7 @@ public final class Utils {
 
 				int soulStealer = EnchantmentHelper.getEnchantmentLevel(
 						Register.SOUL_STEALER.effectId, player.getHeldItem());
-				soulStealer *= Config.ENCHANT_KILL_BONUS;
+				soulStealer *= Config.enchantBonus;
 				Utils.increaseShardKillCount(newShard,
 						(short) (1 + soulStealer));
 				// Utils.checkForAchievements(player, newShard);
