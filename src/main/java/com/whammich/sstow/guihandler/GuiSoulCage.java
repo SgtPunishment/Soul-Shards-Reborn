@@ -43,8 +43,8 @@ public class GuiSoulCage extends GuiContainer {
 		this.drawTexturedModalRect(k+35, l+16, 176, 0,
 				18, 18);
 //		if (!Config.Module_CONTROL){
-//			this.drawTexturedModalRect(k+152, l+17, 176, 18,
-//					16, 16);
+			this.drawTexturedModalRect(k+152, l+17, 176, 18,
+					16, 16);
 //		}
 		if (!Config.redstoneModule) {
 			this.drawTexturedModalRect(k+70, l+17, 176, 18,

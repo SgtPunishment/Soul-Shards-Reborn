@@ -4,6 +4,8 @@ import com.whammich.sstow.guihandler.slots.SlotLocked;
 import com.whammich.sstow.guihandler.slots.SlotModule;
 import com.whammich.sstow.guihandler.slots.SlotShard;
 import com.whammich.sstow.utils.Config;
+import com.whammich.sstow.utils.Register;
+import com.whammich.sstow.utils.Utils;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -32,7 +34,7 @@ public class ContainerCage extends Container {
 		if (Config.playerModule) {
 		this.addSlotToContainer(new SlotLocked(TileEntityCage, 5, 124, 17));}
 //		if (Config.Module_CONTROL){
-		this.addSlotToContainer(new SlotLocked(TileEntityCage, 6, 152, 17));//
+//		this.addSlotToContainer(new SlotLocked(TileEntityCage, 6, 152, 17));}
 		int i;
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
@@ -61,14 +63,21 @@ public class ContainerCage extends Container {
 			stack = stack1.copy();
 
 			if (slots < INV_START) {
-				if (!this.mergeItemStack(stack1, INV_START, HOTBAR_END + 1,
+				if (!this.mergeItemStack(stack1, 10, 10 + 1,
 						true)) {
 					return null;
 				}
 				slot.onSlotChange(stack1, stack);
 			} else {
 				if (slots >= INV_START) {
-					if (!this.mergeItemStack(stack1, 0, INV_START, false)) {
+					if ((stack.getItem() == Register.ItemShardSoul
+							&& stack.getItem() == Register.ItemShardSoul
+							&& Utils.isShardBound(stack) && Utils.getShardTier(stack) > 0
+							&& !this.mergeItemStack(stack1, 0, 0, false))|| 
+							(stack.getItem() == Register.ItemModules
+							&& !this.mergeItemStack(stack1, 1, 1, false)))
+							{
+						
 						return null;
 					}
 				} else if (slots >= HOTBAR_START && slots < HOTBAR_END + 1) {
@@ -93,15 +102,5 @@ public class ContainerCage extends Container {
 		}
 
 		return stack;
-	}
-
-	@Override
-	public ItemStack slotClick(int slot, int button, int flag,
-			EntityPlayer player) {
-		if (slot >= 0 && getSlot(slot) != null
-				&& getSlot(slot).getStack() == player.getHeldItem()) {
-			return null;
-		}
-		return super.slotClick(slot, button, flag, player);
 	}
 }
