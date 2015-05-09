@@ -83,53 +83,6 @@ public class BlockCage extends BlockContainer {
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float f1, float f2, float f3) {
 		player.openGui(SSTheOldWays.modInstance, 1, world, x, y, z);
 		return true;
-//		ItemStack stack = player.getHeldItem();
-//		if(stack == null) {
-//			player.openGui(SSTheOldWays.modInstance, 1, world, x, y, z);
-//			return true;
-//		}
-//		// System.out.println("Block Activated");
-//		if (!world.isRemote) {
-//			TileEntity tile = world.getTileEntity(x, y, z);
-//
-//			if (tile == null) {
-//				ModLogger.logFatal(Utils.localizeFormatted("chat.sstow.debug.tileerror", "" + x + " " + y + " " + " " + z));
-//				return false;
-//			}
-//
-////			if (player.isSneaking()) {
-////				if (world.getBlockMetadata(x, y, z) == 0) {
-////					return false;
-////				}
-////
-////				ForgeDirection dir = ForgeDirection.getOrientation(side);
-////
-////				world.spawnEntityInWorld(new EntityItem(world, x
-////						+ (dir.offsetX * 1.75D), y + (dir.offsetY * 1.75D)
-////						+ 0.5D, z + (dir.offsetZ * 1.75D), ((IInventory) tile)
-////						.decrStackSize(0, 1)));
-////			} else {
-////				if (world.getBlockMetadata(x, y, z) != 0) {
-////					return false;
-////				}
-////
-////				if (stack == null || stack.getItem() != Register.ItemShardSoul
-////						|| !Utils.isShardBound(stack)
-////						|| Utils.getShardTier(stack) == 0) {
-////					return false;
-////				}
-////
-////				ItemStack newShard = stack.copy();
-////				newShard.stackSize = 1;
-////				((IInventory) tile).setInventorySlotContents(0, newShard);
-////
-////				if (!player.capabilities.isCreativeMode) {
-////					stack.stackSize--;
-////				}
-////			}
-//		}
-
-//		return false;
 	}
 
 	@Override

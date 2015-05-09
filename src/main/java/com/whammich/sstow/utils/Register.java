@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -90,7 +91,7 @@ public class Register {
     public static Block BlockPetrifiedPlanks = new BlockPlankPetrified();
     public static Block BlockObsidianGlass = new BlockGlassObsidian();
 
-    
+    public static IRecipe soulCage, soulForge;
     
     // Set up Biomes
     public static BiomeGenBase biomePetrifiedForest = new BiomeGenPetForest(137)
@@ -185,6 +186,10 @@ public class Register {
 	}
 
 	private static void registerRecipes() {
+		
+//		soulCage = GameRegistry.addShapedRecipe(new ItemStack(BlockCage), "SIS", "IXI", "SIS", 'I', Blocks.iron_bars, 'S', new ItemStack(ItemMaterials, 1, 2));
+//		soulForge = GameRegistry.addShapedRecipe(new ItemStack(BlockForge), "SSS", "SCS", "OOO", 'S', Blocks.cobblestone, 'C', new ItemStack(ItemMaterials, 1, 4), 'O', Blocks.obsidian);
+		
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemMaterials, 9, 2), "blockSoulium"));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemMaterials, 9, 1), "ingotSoulium"));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemMaterials, 9, 0), "ingotIron"));

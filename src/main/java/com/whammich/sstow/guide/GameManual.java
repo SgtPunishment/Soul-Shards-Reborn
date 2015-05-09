@@ -13,7 +13,6 @@ import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.abstraction.IPage;
 import amerifrance.guideapi.api.base.Book;
-import amerifrance.guideapi.api.util.PageHelper;
 import amerifrance.guideapi.categories.CategoryItemStack;
 import amerifrance.guideapi.entries.EntryUniText;
 
@@ -23,21 +22,26 @@ import com.whammich.sstow.utils.Utils;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class SoulManual {
+public class GameManual {
 
-	public static Book soulmanual;
+	public static Book manualBook;
 	public static List<CategoryAbstract> categories = new ArrayList<CategoryAbstract>();
 
 	public static void registerguide() {
 		createBook();
-		soulmanual = new Book(categories, "guide.soulmanual.book.title", "guide.soulmanual.book.welcomMessage", "guide.soulmanual.book.name", new Color(102, 0, 102));
-		GuideRegistry.registerBook(soulmanual);
-		GameRegistry.addRecipe(new ShapedOreRecipe(GuideRegistry.getItemStackForBook(soulmanual), "C", "B", 'C', "essenceCorrupted", 'B', Items.writable_book));
+		manualBook = new Book(categories, "guide.book.manual.title", "guide.book.manual.message", "guide.book.manual.name", new Color(102, 0, 102));
+		GuideRegistry.registerBook(manualBook);
+		GameRegistry.addRecipe(new ShapedOreRecipe(GuideRegistry.getItemStackForBook(manualBook), "C", "B", 'C', "essenceCorrupted", 'B', Items.writable_book));
 	}
 	
 	public static void createBook(){
-		List<EntryAbstract> entries = new ArrayList<EntryAbstract>();
-		ArrayList<IPage> testPage = new ArrayList<IPage>();
+		forgeRecipes();
+		craftingRecipes();
+	}
+	
+	public static void forgeRecipes() {
+		List<EntryAbstract> forgeEntry = new ArrayList<EntryAbstract>();
+		ArrayList<IPage> forgePage = new ArrayList<IPage>();
 		PageSoulForge pageSoulForge = new PageSoulForge(new ItemStack(Items.diamond));
 		PageSoulForge pageSoulForge2 = new PageSoulForge(new ItemStack(Items.wheat_seeds));
 		PageSoulForge pageSoulForge3 = new PageSoulForge(new ItemStack(Items.iron_ingot));
@@ -50,20 +54,33 @@ public class SoulManual {
 		PageSoulForge pageSoulForge10 = new PageSoulForge(new ItemStack(Blocks.log2, 1, 0));
 		PageSoulForge pageSoulForge11 = new PageSoulForge(new ItemStack(Blocks.log2, 1, 1));
 		PageSoulForge pageSoulForge12 = new PageSoulForge(new ItemStack(Blocks.obsidian));
-		testPage.addAll(PageHelper.pagesForLongText(Utils.localize("guide.forge.opening"))); //Second
-		testPage.add(pageSoulForge);
-		testPage.add(pageSoulForge2);
-		testPage.add(pageSoulForge3);
-		testPage.add(pageSoulForge4);
-		testPage.add(pageSoulForge5);
-		testPage.add(pageSoulForge6);
-		testPage.add(pageSoulForge7);
-		testPage.add(pageSoulForge8);
-		testPage.add(pageSoulForge9);
-		testPage.add(pageSoulForge10);
-		testPage.add(pageSoulForge11);
-		testPage.add(pageSoulForge12);
-		entries.add(new EntryUniText(testPage, Utils.localize("guide.forge.smelting"))); //First
-		categories.add(new CategoryItemStack(entries, Utils.localize("guide.soulmanual.book.crafting"), new ItemStack(Register.BlockForge, 1, 3)));
+		forgePage.add(pageSoulForge);
+		forgePage.add(pageSoulForge2);
+		forgePage.add(pageSoulForge3);
+		forgePage.add(pageSoulForge4);
+		forgePage.add(pageSoulForge5);
+		forgePage.add(pageSoulForge6);
+		forgePage.add(pageSoulForge7);
+		forgePage.add(pageSoulForge8);
+		forgePage.add(pageSoulForge9);
+		forgePage.add(pageSoulForge10);
+		forgePage.add(pageSoulForge11);
+		forgePage.add(pageSoulForge12);
+		forgeEntry.add(new EntryUniText(forgePage, Utils.localize("guide.book.manual.smelting"))); //First
+		categories.add(new CategoryItemStack(forgeEntry, Utils.localize("guide.book.manual.forging"), new ItemStack(Register.BlockForge, 1, 3)));
 	}
+	
+	public static void craftingRecipes() {
+		List<EntryAbstract> craftingEntry = new ArrayList<EntryAbstract>();
+		ArrayList<IPage> craftingPage = new ArrayList<IPage>();
+//		craftingPage.add(new PageIRecipe(Register.soulCage));
+//		craftingPage.add(new PageIRecipe(Register.soulForge));
+		craftingEntry.add(new EntryUniText(craftingPage, Utils.localize("guide.book.manual.crafting"))); //First
+		categories.add(new CategoryItemStack(craftingEntry, Utils.localize("guide.book.manual.crafting"), new ItemStack(Blocks.crafting_table)));
+
+	}
+	
+	
+	
+	
 }

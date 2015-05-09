@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import amerifrance.guideapi.api.GuideRegistry;
 
-import com.whammich.sstow.guide.DrJournal;
+import com.whammich.sstow.guide.JournalBook;
 import com.whammich.sstow.item.ItemLootPage;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -23,7 +23,7 @@ public class AnvilEvent {
 		// If the left slot is a loot page, and the right slot is the lore
 		// book(s)
 		if (event.left.getItem() instanceof ItemLootPage
-				&& event.right.getItem() == GuideRegistry.getItemStackForBook(DrJournal.drjournal).getItem()) {
+				&& event.right.getItem() == GuideRegistry.getItemStackForBook(JournalBook.journalBook).getItem()) {
 
 			unlockKey = event.left.stackTagCompound.getString("key");
 
