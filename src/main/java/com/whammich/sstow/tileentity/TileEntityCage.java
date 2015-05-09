@@ -179,7 +179,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 
 		if (((Config.redstoneModule == false)
 				&& (TierHandler.getChecksRedstone(tier - 1)) && (redstoneActive == Config.invertRedstone))
-				|| ((Config.redstoneModule == true) && (modules[1] != null) && (redstoneActive == Config.invertRedstone))) {
+				|| ((Config.redstoneModule == true) && (modules[2] != null) && (redstoneActive == Config.invertRedstone))) {
 			return false;
 		}
 
@@ -188,7 +188,7 @@ public class TileEntityCage extends TileEntity implements ISidedInventory {
 					this.xCoord, this.yCoord, this.zCoord)))
 				|| ((Config.playerModule == true)
 						&& (!isPlayerClose(this.xCoord, this.yCoord,
-								this.zCoord)) && (modules[2] == null))) {
+								this.zCoord)) && (modules[5] == null))) {
 			return false;
 		}
 

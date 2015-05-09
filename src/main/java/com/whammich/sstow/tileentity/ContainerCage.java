@@ -17,7 +17,7 @@ public class ContainerCage extends Container {
 
 	public final TileEntityCage tileCage;
 
-	private static final int INV_START = TileEntityCage.INV_SIZE,
+	private static final int INV_START = 6,
 			INV_END = INV_START + 26, HOTBAR_START = INV_END + 1,
 			HOTBAR_END = HOTBAR_START + 8;
 
@@ -63,23 +63,23 @@ public class ContainerCage extends Container {
 			stack = stack1.copy();
 
 			if (slots < INV_START) {
-				if (!this.mergeItemStack(stack1, 10, 10 + 1,
+				if (!this.mergeItemStack(stack1, INV_START, HOTBAR_END,
 						true)) {
 					return null;
 				}
 				slot.onSlotChange(stack1, stack);
 			} else {
 				if (slots >= INV_START) {
-					if ((stack.getItem() == Register.ItemShardSoul
-							&& stack.getItem() == Register.ItemShardSoul
-							&& Utils.isShardBound(stack) && Utils.getShardTier(stack) > 0
-							&& !this.mergeItemStack(stack1, 0, 0, false))|| 
-							(stack.getItem() == Register.ItemModules
-							&& !this.mergeItemStack(stack1, 1, 1, false)))
-							{
-						
+					if 
+					(stack.getItem() == Register.ItemShardSoul
+							&& Utils.isShardBound(stack) 
+							&& Utils.getShardTier(stack) > 0
+							&& !this.mergeItemStack(stack1, 0, 0, false)){
 						return null;
-					}
+					} else if (stack.getItem() == Register.ItemModules
+							&& !this.mergeItemStack(stack1, 1, 1, false))
+							{
+						return null;}
 				} else if (slots >= HOTBAR_START && slots < HOTBAR_END + 1) {
 					if (!this.mergeItemStack(stack1, INV_START, INV_END + 1,
 							false)) {

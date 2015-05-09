@@ -14,8 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
 public class ItemModules extends Item {
-	private static String[] names = { "redstone", "detection",
-			"light", "dimension"//, "t5controller",
+	private static String[] names = { "redstone", "light",
+			 "dimension", "detection"//, "t5controller",
 
 	};
 	private IIcon[] icon = new IIcon[4];
@@ -42,9 +42,9 @@ public class ItemModules extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
 		this.icon[0] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleRedstone");
-		this.icon[1] = iconRegister.registerIcon(Reference.MOD_ID + ":modulePlayer");
-		this.icon[2] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleLight");
-		this.icon[3] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleDimension");
+		this.icon[1] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleLight");
+		this.icon[2] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleDimension");
+		this.icon[3] = iconRegister.registerIcon(Reference.MOD_ID + ":modulePlayer");
 		//this.icon[4] = iconRegister.registerIcon(Reference.MOD_ID + ":moduleController");
 	}
 
