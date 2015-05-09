@@ -23,15 +23,15 @@ public class ContainerCage extends Container {
 		this.tileCage = TileEntityCage;
 		this.addSlotToContainer(new SlotShard(TileEntityCage, 0, 17, 17));
 		this.addSlotToContainer(new SlotModule(TileEntityCage, 1, 36, 17));
-		if (!Config.redstoneModule) {
+		if (Config.redstoneModule) {
 		this.addSlotToContainer(new SlotLocked(TileEntityCage, 2, 70, 17));}
-		if (!Config.lightModule) {
+		if (Config.lightModule) {
 		this.addSlotToContainer(new SlotLocked(TileEntityCage, 3, 88, 17));}
-		if (!Config.dimensionModule) {
+		if (Config.dimensionModule) {
 		this.addSlotToContainer(new SlotLocked(TileEntityCage, 4, 106, 17));}
-		if (!Config.playerModule) {
+		if (Config.playerModule) {
 		this.addSlotToContainer(new SlotLocked(TileEntityCage, 5, 124, 17));}
-//		if (!Config.Module_CONTROL){
+//		if (Config.Module_CONTROL){
 		this.addSlotToContainer(new SlotLocked(TileEntityCage, 6, 152, 17));//
 		int i;
 		for (i = 0; i < 3; ++i) {
