@@ -58,7 +58,7 @@ public class GuiSoulCage extends GuiContainer {
 			this.drawTexturedModalRect(k+106, l+17, 176, 18,
 					16, 16);
 		}
-		if (Config.playerModule) {
+		if (!Config.playerModule) {
 			this.drawTexturedModalRect(k+124, l+17, 176, 18,
 					16, 16);
 		}

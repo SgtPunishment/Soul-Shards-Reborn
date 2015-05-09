@@ -3,6 +3,7 @@ package com.whammich.sstow.tileentity;
 import com.whammich.sstow.guihandler.slots.SlotLocked;
 import com.whammich.sstow.guihandler.slots.SlotModule;
 import com.whammich.sstow.guihandler.slots.SlotShard;
+import com.whammich.sstow.utils.Config;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -22,12 +23,16 @@ public class ContainerCage extends Container {
 		this.tileCage = TileEntityCage;
 		this.addSlotToContainer(new SlotShard(TileEntityCage, 0, 17, 17));
 		this.addSlotToContainer(new SlotModule(TileEntityCage, 1, 36, 17));
-		this.addSlotToContainer(new SlotLocked(TileEntityCage, 2, 70, 17));
-		this.addSlotToContainer(new SlotLocked(TileEntityCage, 3, 88, 17));
-		this.addSlotToContainer(new SlotLocked(TileEntityCage, 4, 106, 17));
-		this.addSlotToContainer(new SlotLocked(TileEntityCage, 5, 124, 17));
-		this.addSlotToContainer(new SlotLocked(TileEntityCage, 6, 152, 17));
-
+		if (!Config.redstoneModule) {
+		this.addSlotToContainer(new SlotLocked(TileEntityCage, 2, 70, 17));}
+		if (!Config.lightModule) {
+		this.addSlotToContainer(new SlotLocked(TileEntityCage, 3, 88, 17));}
+		if (!Config.dimensionModule) {
+		this.addSlotToContainer(new SlotLocked(TileEntityCage, 4, 106, 17));}
+		if (!Config.playerModule) {
+		this.addSlotToContainer(new SlotLocked(TileEntityCage, 5, 124, 17));}
+//		if (!Config.Module_CONTROL){
+		this.addSlotToContainer(new SlotLocked(TileEntityCage, 6, 152, 17));//
 		int i;
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
