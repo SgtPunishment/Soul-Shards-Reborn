@@ -12,14 +12,14 @@ import com.whammich.sstow.utils.Register;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
  
-public class BaublePhylactery extends Item implements IBauble {
+public class BaubleAnimus extends Item implements IBauble {
 
-	public BaublePhylactery() {
+	public BaubleAnimus() {
 		super();
 		this.maxStackSize = 1;
 		this.setCreativeTab(Register.CREATIVE_TAB);
-		this.setUnlocalizedName("sstow.bauble.phylac");
-		this.setTextureName(Reference.MOD_ID + ":shardTier5");
+		this.setUnlocalizedName("sstow.bauble.animus");
+		this.setTextureName(Reference.MOD_ID + ":baubleAnimus");
 	}
 
 	@Override

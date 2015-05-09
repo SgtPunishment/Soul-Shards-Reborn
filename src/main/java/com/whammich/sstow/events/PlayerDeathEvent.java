@@ -11,7 +11,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import baubles.common.container.InventoryBaubles;
 import baubles.common.lib.PlayerHandler;
 
-import com.whammich.sstow.compat.baubles.BaublePhylactery;
+import com.whammich.sstow.compat.baubles.BaubleAnimus;
 import com.whammich.sstow.utils.Config;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
@@ -28,7 +28,7 @@ public class PlayerDeathEvent {
 					.getPlayerBaubles(player);
 			ItemStack stack = phyBaubles.stackList[0];
 			if (stack != null) {
-				if (stack.getItem() instanceof BaublePhylactery) {
+				if (stack.getItem() instanceof BaubleAnimus) {
 					event.setCanceled(true);
 					phyBaubles.stackList[0] = null;
 					PlayerHandler.setPlayerBaubles(player, phyBaubles);

@@ -9,7 +9,7 @@ import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import baubles.common.container.InventoryBaubles;
 import baubles.common.lib.PlayerHandler;
 
-import com.whammich.sstow.compat.baubles.BaubleInventorySaver;
+import com.whammich.sstow.compat.baubles.BaubleConservo;
 import com.whammich.sstow.utils.ModLogger;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
@@ -28,7 +28,7 @@ public class PlayerDropEvent {
 				ItemStack stack = inventoryBaubles.stackList[0];
 				if (stack != null) {
 					ModLogger.logInfo("Stack isn't Null");
-					if (stack.getItem() instanceof BaubleInventorySaver) {
+					if (stack.getItem() instanceof BaubleConservo) {
 						ModLogger.logInfo("It's the inventory bauble");
 						event.setCanceled(true);
 						ModLogger.logInfo("Event Canceled");

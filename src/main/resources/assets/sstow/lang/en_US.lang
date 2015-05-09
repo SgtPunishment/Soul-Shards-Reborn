@@ -135,7 +135,10 @@ sstow.waila.soulcage.deactivated=Status: Deactivated
 sstow.waila.soulcage.empty=Status: Empty
 
 # Baubles
-item.sstow.bauble.phylac.name=Phylactery Crystal
+item.sstow.bauble.animus.name=Amulet of Animus
+item.sstow.bauble.gem.animus.name=Animus Crystal
+item.sstow.bauble.conservo.name=Amulet of Conservo
+item.sstow.bauble.gem.conservo.name=Conservo Crystal
 
 # Player Guide Book
 guide.soulmanual.book.name=Soul Shards
