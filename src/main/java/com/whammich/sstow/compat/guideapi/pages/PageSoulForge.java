@@ -1,4 +1,4 @@
-package com.whammich.sstow.guide.pages;
+package com.whammich.sstow.compat.guideapi.pages;
 
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;

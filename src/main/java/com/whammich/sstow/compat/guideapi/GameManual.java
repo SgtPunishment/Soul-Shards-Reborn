@@ -1,4 +1,4 @@
-package com.whammich.sstow.guide;
+package com.whammich.sstow.compat.guideapi;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import amerifrance.guideapi.api.base.Book;
 import amerifrance.guideapi.categories.CategoryItemStack;
 import amerifrance.guideapi.entries.EntryUniText;
 
-import com.whammich.sstow.guide.pages.PageSoulForge;
+import com.whammich.sstow.compat.guideapi.pages.PageSoulForge;
 import com.whammich.sstow.utils.Register;
 import com.whammich.sstow.utils.Utils;
 

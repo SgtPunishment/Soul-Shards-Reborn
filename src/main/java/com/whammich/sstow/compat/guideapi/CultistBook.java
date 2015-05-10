@@ -1,4 +1,4 @@
-package com.whammich.sstow.guide;
+package com.whammich.sstow.compat.guideapi;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -37,6 +37,7 @@ public class CultistBook {
 		List<EntryAbstract> loreEntry = new ArrayList<EntryAbstract>();
 		ArrayList<IPage> lorePage = new ArrayList<IPage>();
 		lorePage.add(new PageImage(new ResourceLocation(Reference.MOD_ID + ":textures/pages/shard.png")));
+		
 		loreEntry.add(new EntryUniText(lorePage, Utils.localize("guide.book.cultist.lore.entry"))); //First
 		categories.add(new CategoryItemStack(loreEntry, Utils.localize("guide.book.cultist.lore.category"), new ItemStack(Register.BlockForge, 1, 3)));
 	}

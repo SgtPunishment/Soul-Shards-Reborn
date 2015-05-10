@@ -39,7 +39,7 @@ public class ItemLootPage extends Item {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IIconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":pages/0");
+		itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":pages/5");
 	}
 
 	@SideOnly(Side.CLIENT)

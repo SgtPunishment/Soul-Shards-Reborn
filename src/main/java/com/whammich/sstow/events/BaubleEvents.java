@@ -4,19 +4,66 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import baubles.common.container.InventoryBaubles;
 import baubles.common.lib.PlayerHandler;
 
+import com.whammich.sstow.compat.baubles.BaubleAnimus;
 import com.whammich.sstow.compat.baubles.BaubleConservo;
+import com.whammich.sstow.utils.Config;
 import com.whammich.sstow.utils.ModLogger;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class PlayerDropEvent {
+public class BaubleEvents {
+
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public void onPlayerDeath(LivingDeathEvent event) {
+
+		if (event.entityLiving instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			
+			if(player == null || player instanceof FakePlayer) {
+				return;
+			}
+			
+			InventoryBaubles phyBaubles = PlayerHandler.getPlayerBaubles(player);
+			ItemStack stack = phyBaubles.stackList[0];
+			if (stack != null) {
+				if (stack.getItem() instanceof BaubleAnimus) {
+					event.setCanceled(true);
+					phyBaubles.stackList[0] = null;
+					PlayerHandler.setPlayerBaubles(player, phyBaubles);
+					if (!player.worldObj.isRemote) {
+						Minecraft
+								.getMinecraft()
+								.getSoundHandler()
+								.playSound(
+										PositionedSoundRecord.func_147674_a(
+												new ResourceLocation("dig.glass"), 1.0F));
+					}
+					player.setHealth(Config.crystalHeal);
+					if (Config.crystalResistEnable) {
+						player.addPotionEffect(new PotionEffect(
+								Potion.resistance.id,
+								Config.crystalResistTimer, 5));
+					}
+					if (Config.crystalRegenEnable) {
+						player.addPotionEffect(new PotionEffect(
+								Potion.regeneration.id,
+								Config.crystalRegenTimer,
+								Config.crystalRegenLevel));
+					}
+				}
+			}
+		}
+	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onPlayerDrops(PlayerDropsEvent event) {
@@ -57,4 +104,7 @@ public class PlayerDropEvent {
 			}
 		}
 	}
+
+
+
 }

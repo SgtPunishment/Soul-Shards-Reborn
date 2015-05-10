@@ -1,10 +1,9 @@
-package com.whammich.sstow.guide;
+package com.whammich.sstow.compat.guideapi;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import amerifrance.guideapi.api.GuideRegistry;
@@ -16,9 +15,10 @@ import amerifrance.guideapi.api.util.PageHelper;
 import amerifrance.guideapi.categories.CategoryItemStack;
 import amerifrance.guideapi.entries.EntryUniText;
 
-import com.whammich.sstow.guide.pages.PageMissingImage;
-import com.whammich.sstow.guide.pages.PageMissingText;
+import com.whammich.sstow.compat.guideapi.pages.PageMissingImage;
+import com.whammich.sstow.compat.guideapi.pages.PageMissingText;
 import com.whammich.sstow.utils.Reference;
+import com.whammich.sstow.utils.Register;
 import com.whammich.sstow.utils.Utils;
 
 public class JournalBook {
@@ -54,7 +54,7 @@ public class JournalBook {
 		entries.add(new EntryUniText(journalPages01, Utils.localize("guide.book.journal.note2")));
 		entries.add(new EntryUniText(journalPages02, Utils.localize("guide.book.journal.note3")));
 		// First
-		categories.add(new CategoryItemStack(entries, Utils.localize("guide.book.journal.notes"), new ItemStack(Items.paper, 1)));
+		categories.add(new CategoryItemStack(entries, Utils.localize("guide.book.journal.notes"), new ItemStack(Register.ItemLootPage)));
 	}
 	
 }

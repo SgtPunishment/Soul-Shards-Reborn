@@ -5,14 +5,13 @@ import java.io.File;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.whammich.sstow.commands.CommandSSTOW;
+import com.whammich.sstow.compat.guideapi.CultistBook;
+import com.whammich.sstow.compat.guideapi.GameManual;
+import com.whammich.sstow.compat.guideapi.JournalBook;
 import com.whammich.sstow.events.AnvilEvent;
-import com.whammich.sstow.events.AnvilShardEvent;
+import com.whammich.sstow.events.BaubleEvents;
 import com.whammich.sstow.events.CreateShardEvent;
-import com.whammich.sstow.events.PlayerDeathEvent;
-import com.whammich.sstow.events.PlayerDropEvent;
 import com.whammich.sstow.events.PlayerKillEntityEvent;
-import com.whammich.sstow.guide.JournalBook;
-import com.whammich.sstow.guide.GameManual;
 import com.whammich.sstow.utils.Config;
 import com.whammich.sstow.utils.EntityMapper;
 import com.whammich.sstow.utils.Entitylist;
@@ -45,18 +44,18 @@ public class SSTheOldWays {
 	public void init(FMLInitializationEvent event) {
 		ModLogger.logDebug("Registering PlayerKill Event");
 		MinecraftForge.EVENT_BUS.register(new PlayerKillEntityEvent());
+		
 		ModLogger.logDebug("Registering CreateShard Event");
 		MinecraftForge.EVENT_BUS.register(new CreateShardEvent());
-		ModLogger.logDebug("Registering AnvilShard Event");
-		MinecraftForge.EVENT_BUS.register(new AnvilShardEvent());
-		ModLogger.logDebug("Registering AnvilLore Event");
+		
+		ModLogger.logDebug("Registering Anvil Events");
 		MinecraftForge.EVENT_BUS.register(new AnvilEvent());
+		
 		if (Loader.isModLoaded("Baubles")){
-			ModLogger.logDebug("Registering PlayerDeath Event");
-			MinecraftForge.EVENT_BUS.register(new PlayerDeathEvent());
-			ModLogger.logDebug("Registering PlayerDrop Event");
-			MinecraftForge.EVENT_BUS.register(new PlayerDropEvent());
+			ModLogger.logDebug("Registering Bauble Events");
+			MinecraftForge.EVENT_BUS.register(new BaubleEvents());
 		}
+		
 		FMLInterModComms.sendMessage("Waila", "register", Reference.Waila_callBack);
 	}
 
@@ -64,12 +63,21 @@ public class SSTheOldWays {
 	public void postInit(FMLPostInitializationEvent event) {
 		ModLogger.logDebug("Registering Objects");
 		Register.registerObjs();
-		ModLogger.logDebug("Registering Manual");
-		GameManual.registerguide();
-		ModLogger.logDebug("Registering Journal");
-		JournalBook.registerguide();
+		
+		if(Loader.isModLoaded("guideapi")){
+			ModLogger.logDebug("Registering Manual");
+			GameManual.registerguide();
+			
+			ModLogger.logDebug("Registering Journal");
+			JournalBook.registerguide();
+			
+			ModLogger.logDebug("Registering Cultist");
+			CultistBook.registerguide();
+		}
+		
 		ModLogger.logDebug("Registering EntityMapper");
 		EntityMapper.init();
+		
 		ModLogger.logDebug("Reading/Writing Entity List");
 		Entitylist.init(new File(Config.configDirectory + "/Soul-Shards-TOW-Entitylist.cfg"));
 	}

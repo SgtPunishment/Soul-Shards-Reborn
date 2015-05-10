@@ -1,16 +1,15 @@
-package com.whammich.sstow.guide.pages;
+package com.whammich.sstow.compat.guideapi.pages;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import amerifrance.guideapi.pages.PageImage;
+import amerifrance.guideapi.pages.PageUnlocText;
 
-public class PageMissingImage extends PageImage {
+public class PageMissingText extends PageUnlocText {
 
 	public String unlockKey;
 
-	public PageMissingImage(ResourceLocation image, String key) {
-		super(image);
+	public PageMissingText(String unlocText, String key) {
+		super(unlocText);
 		this.unlockKey = key;
 	}
 
