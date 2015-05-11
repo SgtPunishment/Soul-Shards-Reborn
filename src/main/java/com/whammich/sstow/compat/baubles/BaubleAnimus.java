@@ -1,5 +1,7 @@
 package com.whammich.sstow.compat.baubles;
 
+import java.util.List;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -7,13 +9,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.common.UsernameCache;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import baubles.common.container.InventoryBaubles;
 import baubles.common.lib.PlayerHandler;
 
+import com.mojang.util.UUIDTypeAdapter;
 import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Register;
+import com.whammich.sstow.utils.Utils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -47,6 +52,20 @@ public class BaubleAnimus extends Item implements IBauble {
 		return stack;	
 	}
 
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean held) {
+		if(stack.stackTagCompound != null){
+			if (Utils.displayShiftForDetail && !Utils.isShiftKeyDown())
+				list.add(Utils.shiftForDetails());
+
+			if (Utils.isShiftKeyDown()) {
+				list.add(Utils.localizeFormatted("chat.sstow.shard.bound", 
+						UsernameCache.getLastKnownUsername(UUIDTypeAdapter.fromString(stack.stackTagCompound.getString("master")))));
+			}
+		}
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack, int pass) {
@@ -76,13 +95,13 @@ public class BaubleAnimus extends Item implements IBauble {
 				}
 			}
 		}
-	}	
+	}
 	@Override
-	public void onUnequipped(ItemStack stack, EntityLivingBase player) {	
+	public void onUnequipped(ItemStack stack, EntityLivingBase player) {
 	}
 
 	@Override
-	public void onWornTick(ItemStack stack, EntityLivingBase player) {	
+	public void onWornTick(ItemStack stack, EntityLivingBase player) {
 	}
 
 	@Override

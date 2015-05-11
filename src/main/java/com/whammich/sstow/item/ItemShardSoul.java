@@ -62,7 +62,7 @@ public class ItemShardSoul extends Item {
 		
 		Utils.checkAndFixShard(stack);
 	}
-
+	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		byte level = Utils.getShardTier(stack);
@@ -205,12 +205,17 @@ public class ItemShardSoul extends Item {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list,
-			boolean bool) {
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool) {
+		
+//		if (Utils.displayShiftForDetail && !Utils.isShiftKeyDown())
+//		list.add(Utils.shiftForDetails());
+//
+//	if (Utils.isShiftKeyDown()) {
+//            list.add(Utils.localize("info.sstow.tooltip.tool.charge"));
+//    }
+		
 		if (Utils.isShardBound(stack)) {
-			list.add("Bound to: "
-					+ Utils.getEntityNameTransltated(Utils
-							.getShardBoundEnt(stack)));
+			list.add("Bound to: " + Utils.getEntityNameTransltated(Utils.getShardBoundEnt(stack)));
 		}
 
 		if (Utils.getShardKillCount(stack) >= 0) {

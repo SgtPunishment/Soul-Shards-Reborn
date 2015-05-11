@@ -207,7 +207,7 @@ public class BaubleEvents {
 				event.cost = 30;
 			}
 			
-			if (event.left.getItemDamage() == 2 && event.right.getItemDamage() == 2) {
+			if (event.left.getItemDamage() == 1 && event.right.getItemDamage() == 2) {
 				
 				ItemStack targetStack = new ItemStack(Baubles.baubleGems, 1, 3);
 				ItemStack resultStack = targetStack.copy();

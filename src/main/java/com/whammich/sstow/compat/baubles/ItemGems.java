@@ -29,15 +29,14 @@ public class ItemGems extends Item {
 
 	public ItemGems() {
 		super();
-		setUnlocalizedName("sstow.bauble");
+		setUnlocalizedName("sstow.bauble.gem");
 		setCreativeTab(Register.CREATIVE_TAB);
 		setHasSubtypes(true);
 	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return getUnlocalizedName() + "."
-				+ names[stack.getItemDamage() % names.length];
+		return getUnlocalizedName() + "." + names[stack.getItemDamage() % names.length].toLowerCase();
 	}
 
     @SideOnly(Side.CLIENT)

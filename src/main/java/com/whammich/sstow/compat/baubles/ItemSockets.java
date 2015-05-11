@@ -34,7 +34,7 @@ public class ItemSockets extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		return getUnlocalizedName() + "."
-				+ names[stack.getItemDamage() % names.length];
+				+ names[stack.getItemDamage() % names.length].toLowerCase();
 	}
 
     @SideOnly(Side.CLIENT)
