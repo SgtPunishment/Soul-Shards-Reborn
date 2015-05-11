@@ -16,13 +16,15 @@ public final class Config {
 	public static float fakePlayerXP;
 	public static float playerXP;
 	
-	// Phylactery Crystal Section
+	// Animus Section
 	public static int crystalHeal;
 	public static boolean crystalRegenEnable;
 	public static int crystalRegenTimer;
 	public static int crystalRegenLevel;
 	public static boolean crystalResistEnable;
 	public static int crystalResistTimer;
+	
+	// Bauble Section
 	
 	
 	// Enchant Section
@@ -89,7 +91,7 @@ public final class Config {
 	public static final Section enchantment = new Section("enchantment", "enchantment");
 	public static final Section general = new Section("general", "general");
 	public static final Section cages = new Section("soul cages", "soul cages");
-	public static final Section phylactery = new Section("phylactery crystal","phylactery crystal");
+	public static final Section animus = new Section("animus crystal","animus crystal");
 	public static final Section recipes = new Section("recipes", "recipes");
 	public static final Section tier1 = new Section("tier 1 settings", "tier 1 settings");
 	public static final Section tier2 = new Section("tier 2 settings", "tier 2 settings");
@@ -122,16 +124,16 @@ public final class Config {
 	public static void syncConfig() {
 		try {
 
-			// Phylactery crystal
+			// Animus crystal
 			// Insta-Heal
-			crystalHeal = config.getInt("Phylactery Healing", "phylactery crystal", 10, 1, 20, "How much should the phylactery crystal heal you?");
+			crystalHeal = config.getInt("Animus Healing", "animus crystal", 10, 1, 20, "How much should the animus crystal heal you?");
 			// Regen Effects
-			crystalRegenEnable = config.getBoolean("Enable Phylactery Regen", "phylactery crystal", true, "Will the phylactery crystal regen you on death?");
-			crystalRegenTimer = config.getInt("Phylactery Regen Timer", "phylactery crystal", 600, 1, 2400, "How long should the regen effect last?");
-			crystalRegenLevel = config.getInt("Phylactery Regen Level", "phylactery crystal", 0, 0, 2, "What level should the regen effect be?");
+			crystalRegenEnable = config.getBoolean("Enable Animus Regen", "animus crystal", true, "Will the animus crystal regen you on death?");
+			crystalRegenTimer = config.getInt("Animus Regen Timer", "animus crystal", 600, 1, 2400, "How long should the regen effect last?");
+			crystalRegenLevel = config.getInt("Animus Regen Level", "animus crystal", 0, 0, 2, "What level should the regen effect be?");
 			// Resistence Effects
-			crystalResistEnable = config.getBoolean("Enable Phylactery Resistence", "phylactery crystal", true, "Will the phylactery crystal briefly make you immortal?");
-			crystalResistTimer = config.getInt("Phylactery Resistence Timer", "phylactery crystal", 100, 20, 400, "How long should the resistence effect last?");
+			crystalResistEnable = config.getBoolean("Enable Animus Resistence", "animus crystal", true, "Will the animus crystal briefly make you immortal?");
+			crystalResistTimer = config.getInt("Animus Resistence Timer", "animus crystal", 100, 20, 400, "How long should the resistence effect last?");
 			
 			// Soul Stealer Section
 			enchantID = config.getInt("ID", "enchantment", 52, 1, 128, "Soul-Stealer enchant id");

@@ -5,6 +5,7 @@ import java.io.File;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.whammich.sstow.commands.CommandSSTOW;
+import com.whammich.sstow.compat.baubles.BaublesConfig;
 import com.whammich.sstow.compat.guideapi.CultistBook;
 import com.whammich.sstow.compat.guideapi.GameManual;
 import com.whammich.sstow.compat.guideapi.JournalBook;
@@ -37,6 +38,9 @@ public class SSTheOldWays {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		if(Loader.isModLoaded("Baubles")){
+			BaublesConfig.load(event);
+		}
 		Config.load(event);
 	}
 

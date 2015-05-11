@@ -30,7 +30,7 @@ public class BaubleAnimus extends Item implements IBauble {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if(!world.isRemote) { 
+		if(!world.isRemote) {
 			InventoryBaubles baubles = PlayerHandler.getPlayerBaubles(player);
 			for(int i = 0; i < baubles.getSizeInventory(); i++) {
 				if(baubles.getStackInSlot(i) == null && baubles.isItemValidForSlot(i, stack)) {
@@ -41,12 +41,6 @@ public class BaubleAnimus extends Item implements IBauble {
 					onEquipped(stack, player);
 					break;
 				}
-			}
-			
-			if(stack.stackTagCompound == null){
-				stack.setTagCompound(new NBTTagCompound());
-				stack.stackTagCompound.setString("owner", player.getDisplayName());
-				player.attackEntityFrom(DamageSource.cactus, 19F);
 			}
 		}
 
@@ -66,20 +60,29 @@ public class BaubleAnimus extends Item implements IBauble {
 
 	@Override
 	public void onEquipped(ItemStack stack, EntityLivingBase player) {
-
 		if (!player.worldObj.isRemote) {
 			player.worldObj.playSoundAtEntity(player, "random.orb", 0.1F, 1.3f);
-		}		
+			if(player instanceof EntityPlayer){
+				EntityPlayer entPlayer = (EntityPlayer) player;
+				if(stack.stackTagCompound == null){
+					stack.setTagCompound(new NBTTagCompound());
+				}
+				if(!stack.stackTagCompound.getString("master").equals(entPlayer.getUniqueID().toString())){
+					if(BaublesConfig.hurtOnBind){
+						player.attackEntityFrom(DamageSource.generic, 1F);
+						player.setHealth(0.5F);
+					}
+					stack.stackTagCompound.setString("master", entPlayer.getUniqueID().toString());
+				}
+			}
+		}
+	}	
+	@Override
+	public void onUnequipped(ItemStack stack, EntityLivingBase player) {	
 	}
 
 	@Override
-	public void onUnequipped(ItemStack stack, EntityLivingBase player) {
-
-	}
-
-	@Override
-	public void onWornTick(ItemStack stack, EntityLivingBase player) {
-
+	public void onWornTick(ItemStack stack, EntityLivingBase player) {	
 	}
 
 	@Override
