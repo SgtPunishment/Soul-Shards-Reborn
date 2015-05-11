@@ -18,7 +18,7 @@ public class GuiOldWaysConfig extends GuiConfig {
 
 	public GuiOldWaysConfig(GuiScreen parentScreen) {
 		super(parentScreen, getConfigElements(parentScreen), Reference.MOD_ID, false,
-				false, GuiConfig.getAbridgedConfigPath("/SSTOW/"));
+				false, GuiConfig.getAbridgedConfigPath("/Whammich/"));
 	}
 
 	@SuppressWarnings("rawtypes")

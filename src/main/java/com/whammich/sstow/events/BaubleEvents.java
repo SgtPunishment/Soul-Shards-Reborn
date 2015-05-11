@@ -13,6 +13,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -21,6 +22,9 @@ import baubles.common.lib.PlayerHandler;
 
 import com.whammich.sstow.compat.baubles.BaubleAnimus;
 import com.whammich.sstow.compat.baubles.BaubleConservo;
+import com.whammich.sstow.compat.baubles.Baubles;
+import com.whammich.sstow.compat.baubles.ItemGems;
+import com.whammich.sstow.compat.baubles.ItemSockets;
 import com.whammich.sstow.utils.Config;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
@@ -134,7 +138,7 @@ public class BaubleEvents {
 
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onPlayerClone(PlayerEvent.Clone event) {
 		// If it wasn't death, stop
 		if(!event.wasDeath) {
@@ -162,6 +166,7 @@ public class BaubleEvents {
 			ItemStack stack = event.original.inventory.armorInventory[j];
 			addToPlayer(event.entityPlayer, stack);
 		}
+		event.entityPlayer.setHealth(event.entityPlayer.getMaxHealth() / 2);
 	}
 
 	public void addToPlayer(EntityPlayer player, ItemStack stack){
@@ -187,5 +192,29 @@ public class BaubleEvents {
 		}
 	}
 
+	@SubscribeEvent()
+	public void BaubleAnvil(AnvilUpdateEvent event) {
+		if (event.left == null || event.right == null) {
+			return;
+		}
+		
+		if(event.left.getItem() instanceof ItemSockets && event.right.getItem() instanceof ItemGems) {
+			if (event.left.getItemDamage() == 0 && event.right.getItemDamage() == 0) {
+				
+				ItemStack targetStack = new ItemStack(Baubles.baubleGems, 1, 1);
+				ItemStack resultStack = targetStack.copy();
+				event.output = resultStack;
+				event.cost = 30;
+			}
+			
+			if (event.left.getItemDamage() == 2 && event.right.getItemDamage() == 2) {
+				
+				ItemStack targetStack = new ItemStack(Baubles.baubleGems, 1, 3);
+				ItemStack resultStack = targetStack.copy();
+				event.output = resultStack;
+				event.cost = 30;
+			}
+		}
+	}
 
 }

@@ -4,6 +4,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
@@ -23,7 +25,7 @@ public class BaubleConservo  extends Item implements IBauble {
 		this.maxStackSize = 1;
 		this.setCreativeTab(Register.CREATIVE_TAB);
 		this.setUnlocalizedName("sstow.bauble.conservo");
-		this.setTextureName(Reference.MOD_ID + ":baubleConservo");
+		this.setTextureName(Reference.MOD_ID + ":gemConservoBauble");
 	}
 
 	@Override
@@ -43,7 +45,7 @@ public class BaubleConservo  extends Item implements IBauble {
 
 		return stack;	
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack, int pass) {
@@ -69,6 +71,19 @@ public class BaubleConservo  extends Item implements IBauble {
 	public void onEquipped(ItemStack stack, EntityLivingBase player) {
 		if (!player.worldObj.isRemote) {
 			player.worldObj.playSoundAtEntity(player, "random.orb", 0.1F, 1.3f);
+			if(player instanceof EntityPlayer){
+				EntityPlayer entPlayer = (EntityPlayer) player;
+				if(stack.stackTagCompound == null){
+					stack.setTagCompound(new NBTTagCompound());
+				}
+				if(!stack.stackTagCompound.getString("master").equals(entPlayer.getUniqueID().toString())){
+					if(BaublesConfig.hurtOnBind){
+						player.attackEntityFrom(DamageSource.generic, 1F);
+						player.setHealth(0.5F);
+					}
+					stack.stackTagCompound.setString("master", entPlayer.getUniqueID().toString());
+				}
+			}
 		}
 	}
 

@@ -25,7 +25,7 @@ public class BaubleAnimus extends Item implements IBauble {
 		this.maxStackSize = 1;
 		this.setCreativeTab(Register.CREATIVE_TAB);
 		this.setUnlocalizedName("sstow.bauble.animus");
-		this.setTextureName(Reference.MOD_ID + ":baubleAnimus");
+		this.setTextureName(Reference.MOD_ID + ":gemAnimusBauble");
 	}
 
 	@Override

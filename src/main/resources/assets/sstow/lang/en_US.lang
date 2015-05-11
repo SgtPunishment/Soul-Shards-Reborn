@@ -33,6 +33,7 @@ tile.sstow.block.material.Ender.name=Block of Ender
 tile.sstow.block.cage.name=Soul Cage
 tile.sstow.block.obsidian.glass.name=Obsidian Glass
 
+tile.sstow.block.xenolith.Raw.name=Raw Xenolith
 tile.sstow.block.xenolith.Polished.name=Polished Xenolith
 tile.sstow.block.xenolith.Decorative.name=Decorative Xenolith
 tile.sstow.block.xenolith.Nether.name=Nether Xenolith
@@ -135,10 +136,15 @@ sstow.waila.soulcage.deactivated=Status: Deactivated
 sstow.waila.soulcage.empty=Status: Empty
 
 # Baubles
-item.sstow.bauble.animus.name=Amulet of Animus
-item.sstow.bauble.gem.animus.name=Animus Crystal
-item.sstow.bauble.conservo.name=Amulet of Conservo
-item.sstow.bauble.gem.conservo.name=Conservo Crystal
+item.sstow.bauble.Animus.name=Amulet of Animus
+item.sstow.bauble.AnimusSocket.name=Animus Crystal
+item.sstow.bauble.Animus.name=Animus Crystal
+item.sstow.socket.Animus.name=Animus Crystal Socket
+item.sstow.bauble.Conservo.name=Amulet of Conservo
+item.sstow.bauble.ConservoSocket.name=Conservo Crystal
+item.sstow.bauble.Conservo.name=Conservo Crystal
+item.sstow.socket.Conservo.name=Concervo Crystal Socket
+item.sstow.socket.
 
 ######################### Game Manual #########################
 guide.book.manual.name=Soul Shards Manual

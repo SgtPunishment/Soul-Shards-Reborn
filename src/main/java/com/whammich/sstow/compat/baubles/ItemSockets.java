@@ -14,22 +14,19 @@ import com.whammich.sstow.utils.Register;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemGems extends Item {
+public class ItemSockets extends Item {
 
 	private static String[] names = {
 
 	"Animus",				// 0
-	"AnimusSocket",			// 1
-	"Conservo",				// 2
-	"ConservoSocket",		// 3
-
+	"Conservo",				// 1
 	};
 
-	private IIcon[] icon = new IIcon[4];
+	private IIcon[] icon = new IIcon[2];
 
-	public ItemGems() {
+	public ItemSockets() {
 		super();
-		setUnlocalizedName("sstow.bauble");
+		setUnlocalizedName("sstow.socket");
 		setCreativeTab(Register.CREATIVE_TAB);
 		setHasSubtypes(true);
 	}
@@ -49,7 +46,7 @@ public class ItemGems extends Item {
 	public void registerIcons(IIconRegister iconRegister) {
 		
 		for (int i = 0; i < this.icon.length; ++i) {
-			this.icon[i] = iconRegister.registerIcon(Reference.MOD_ID + ":gem" + names[i]);
+			this.icon[i] = iconRegister.registerIcon(Reference.MOD_ID + ":socket" + names[i]);
 		}
 	}
 

@@ -14,7 +14,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class AnvilEvent {
 	
 	@SubscribeEvent
-	public void AnvilLore(AnvilUpdateEvent event) {
+	public void SpecialAnvil(AnvilUpdateEvent event) {
 
 		String unlockKey;
 
@@ -88,6 +88,10 @@ public class AnvilEvent {
 			}
 			
 		}
+		
+		
+		
+		
 		
 	}
 }

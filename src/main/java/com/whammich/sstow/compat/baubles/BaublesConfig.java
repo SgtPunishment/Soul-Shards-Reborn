@@ -4,7 +4,6 @@ import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
 
-import com.whammich.sstow.utils.Config;
 import com.whammich.sstow.utils.ModLogger;
 import com.whammich.sstow.utils.Reference;
 import com.whammich.sstow.utils.Utils;
@@ -15,20 +14,20 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class BaublesConfig {
-	public static Configuration config;
+	public static Configuration baubleConfig;
 
-	public static File configDirectory;
+	public static File baubleConfigDirectory;
 	
 	public static boolean hurtOnBind;
 
 	public static void load(FMLPreInitializationEvent event) {
-		FMLCommonHandler.instance().bus().register(new Config());
-		configDirectory = new File(event.getModConfigurationDirectory() + "/Whammich/");
-		if (!configDirectory.exists()) {
-			configDirectory.mkdir();
+		FMLCommonHandler.instance().bus().register(new BaublesConfig());
+		baubleConfigDirectory = new File(event.getModConfigurationDirectory() + "/Whammich/");
+		if (!baubleConfigDirectory.exists()) {
+			baubleConfigDirectory.mkdir();
 		}
-		File configFile = new File(configDirectory, "Soul-Shards-TOW-Baubles.cfg");
-		config = new Configuration(configFile);
+		File baubleConfigFile = new File(baubleConfigDirectory, "Soul-Shards-TOW-Baubles.cfg");
+		baubleConfig = new Configuration(baubleConfigFile);
 		syncConfig();
 	}
 
@@ -43,15 +42,15 @@ public class BaublesConfig {
 	public static void syncConfig() {
 		try {
 
-			hurtOnBind = config.getBoolean("Hurt player when binding baubles", null, true, "If true, this will set player health to half a heart when equiping Animus or Conservo baubles");
+			hurtOnBind = baubleConfig.getBoolean("Hurt player when equpping the Animus", "baubles", true, "If True, take damage upon equipping the Animus");
 			
 			ModLogger.logInfo(Utils.localize("chat.sstow.util.configload"));
 		} catch (Exception e) {
 			ModLogger.logFatal(Utils.localize("chat.sstow.util.configloadfail"));
 			e.printStackTrace();
 		} finally {
-			if (config.hasChanged()) {
-				config.save();
+			if (baubleConfig.hasChanged()) {
+				baubleConfig.save();
 			}
 
 		}
