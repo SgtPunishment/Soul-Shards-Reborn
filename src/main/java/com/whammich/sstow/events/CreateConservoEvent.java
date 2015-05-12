@@ -4,15 +4,12 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import com.whammich.sstow.compat.baubles.Baubles;
-import com.whammich.sstow.entity.EntityHarmlessLightningBolt;
 import com.whammich.sstow.utils.Register;
-import com.whammich.sstow.utils.Utils;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -73,14 +70,38 @@ public class CreateConservoEvent {
 				return false;
 			}
 
+			if(world.getBlock(x + 2, y, z + 2) != Register.BlockXenolith 
+					&& world.getBlockMetadata(x + 2, y, z + 2) != 0){
+				System.out.println("Pillar Bottom failed");
+				return false;
+			}
+			
+			if(world.getBlock(x + 2, y + 1, z + 2) != Register.BlockXenolith 
+					&& world.getBlockMetadata(x + 2, y + 1, z + 2) != 0){
+				System.out.println("Pillar Middle failed");
+				return false;
+			}
+			
+			if(world.getBlock(x + 2, y + 2, z + 2) != Register.BlockXenolith 
+					&& world.getBlockMetadata(x + 2, y + 2, z + 2) != 0){
+				System.out.println("Pilla Top failed");
+				return false;
+			}
+			
+			if(world.getBlock(x + 2, y + 3, z + 2) != Register.BlockXenolith 
+					&& world.getBlockMetadata(x + 2, y + 3, z + 2) != 6){
+				System.out.println("Pillar Cap failed");
+				return false;
+			}
+			
 			if (dir.offsetX == 0) {
 				if (world.getBlock(newX + dir.offsetZ, y, newZ) != Register.BlockXenolith
-						&& world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
+						&& world.getBlockMetadata(newX + dir.offsetZ, y, newZ) != 0) {
 					return false;
 				}
 			} else if (dir.offsetZ == 0) {
 				if (world.getBlock(newX, y, newZ - dir.offsetX) != Register.BlockXenolith 
-						&& world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
+						&& world.getBlockMetadata(newX, y, newZ - dir.offsetX) != 0) {
 					return false;
 				}
 			}
