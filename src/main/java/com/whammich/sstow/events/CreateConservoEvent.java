@@ -70,29 +70,6 @@ public class CreateConservoEvent {
 				return false;
 			}
 
-			if(world.getBlock(x + 2, y, z + 2) != Register.BlockXenolith 
-					&& world.getBlockMetadata(x + 2, y, z + 2) != 0){
-				System.out.println("Pillar Bottom failed");
-				return false;
-			}
-			
-			if(world.getBlock(x + 2, y + 1, z + 2) != Register.BlockXenolith 
-					&& world.getBlockMetadata(x + 2, y + 1, z + 2) != 0){
-				System.out.println("Pillar Middle failed");
-				return false;
-			}
-			
-			if(world.getBlock(x + 2, y + 2, z + 2) != Register.BlockXenolith 
-					&& world.getBlockMetadata(x + 2, y + 2, z + 2) != 0){
-				System.out.println("Pilla Top failed");
-				return false;
-			}
-			
-			if(world.getBlock(x + 2, y + 3, z + 2) != Register.BlockXenolith 
-					&& world.getBlockMetadata(x + 2, y + 3, z + 2) != 6){
-				System.out.println("Pillar Cap failed");
-				return false;
-			}
 			
 			if (dir.offsetX == 0) {
 				if (world.getBlock(newX + dir.offsetZ, y, newZ) != Register.BlockXenolith
@@ -105,6 +82,30 @@ public class CreateConservoEvent {
 					return false;
 				}
 			}
+		}
+		
+		if(world.getBlock(x + 2, y, z + 2) != Register.BlockXenolith 
+				&& world.getBlockMetadata(x + 2, y, z + 2) != 0){
+			System.out.println("Pillar Bottom failed");
+			return false;
+		}
+		
+		if(world.getBlock(x + 2, y + 1, z + 2) != Register.BlockXenolith 
+				&& world.getBlockMetadata(x + 2, y + 1, z + 2) != 0){
+			System.out.println("Pillar Middle failed");
+			return false;
+		}
+		
+		if(world.getBlock(x + 2, y + 2, z + 2) != Register.BlockXenolith 
+				&& world.getBlockMetadata(x + 2, y + 2, z + 2) != 0){
+			System.out.println("Pilla Top failed");
+			return false;
+		}
+		
+		if(world.getBlock(x + 2, y + 3, z + 2) != Register.BlockXenolith 
+				&& world.getBlockMetadata(x + 2, y + 3, z + 2) != 6){
+			System.out.println("Pillar Cap failed");
+			return false;
 		}
 
 		return true;
