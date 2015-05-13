@@ -14,7 +14,7 @@ import com.whammich.sstow.utils.Register;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class CreateConservoEvent {
+public class CreateAnimusEvent {
 
 	@SubscribeEvent
 	public void onRightClick(PlayerInteractEvent event) {
@@ -23,12 +23,12 @@ public class CreateConservoEvent {
 			return;
 		}
 
-		if (event.entityPlayer.getHeldItem() == null || event.entityPlayer.getHeldItem().getItem() != Items.emerald 
+		if (event.entityPlayer.getHeldItem() == null || event.entityPlayer.getHeldItem().getItem() != Items.nether_star 
 				|| !event.entityPlayer.isSneaking()) {
 			return;
 		}
 
-		if (event.world.getBlock(event.x, event.y, event.z) != Blocks.ender_chest) {
+		if (event.world.getBlock(event.x, event.y, event.z) != Blocks.diamond_block) {
 			return;
 		}
 
@@ -44,15 +44,13 @@ public class CreateConservoEvent {
 			event.world.addWeatherEffect(new EntityHarmlessLightningBolt(event.world, event.x, event.y, event.z));
 			for (int dx = -2; dx <= 2; dx +=4) {
 				for (int dz = -2; dz <= 2; dz +=4) {
-					event.world.addWeatherEffect(new EntityHarmlessLightningBolt(event.world, event.x + dx, event.y + 3, event.z + dz));
+					event.world.addWeatherEffect(new EntityHarmlessLightningBolt(event.world, event.x + dx, event.y + 4, event.z + dz));
 				}
 			}
-			
-			
 			event.world.spawnEntityInWorld(new EntityItem(event.world,
 					event.x + (dir.offsetX * 1.75D), event.y
 					+ (dir.offsetY * 1.75D) + 0.5D, event.z
-					+ (dir.offsetZ * 1.75D), new ItemStack(Baubles.baubleGems, 1, 2)));
+					+ (dir.offsetZ * 1.75D), new ItemStack(Baubles.baubleGems, 1, 0)));
 		}
 	}
 
@@ -66,7 +64,7 @@ public class CreateConservoEvent {
 			int newZ = z + dir.offsetZ;
  
 			if (world.getBlock(newX, y, newZ) != Register.BlockMaterials 
-					|| world.getBlockMetadata(newX, y, newZ) != 1) {
+					|| world.getBlockMetadata(newX, y, newZ) != 0) {
 				return false;
 			}
  
@@ -77,17 +75,20 @@ public class CreateConservoEvent {
  
 		}
 		
-		for (int dx = -2; dx <= 2; dx +=4) {
-			for (int dz = -2; dz <= 2; dz +=4) {
-				for (int dy = 0; dy < 2; dy++) {
+		for (int dx = -2; dx <= 2; dx +=4)
+		{
+			for (int dz = -2; dz <= 2; dz +=4)
+			{
+				for (int dy = 0; dy < 3; dy++)
+				{
 					if(world.getBlock(x + dx, y + dy, z + dz) != Register.BlockXenolith 
-						|| world.getBlockMetadata(x + dx, y + dy, z + dz) != 0) {
+						|| world.getBlockMetadata(x + dx, y + dy, z + dz) != 0){
 					return false;
 					}
 				}
 				
-				if(world.getBlock(x + dx, y + 2, z + dz)  != Register.BlockXenolith 
-						|| world.getBlockMetadata(x + dx, y + 2, z + dz) != 6) {
+				if(world.getBlock(x + dx, y + 3, z + dz)  != Register.BlockXenolith 
+						|| world.getBlockMetadata(x + dx, y + 3, z + dz) != 4){
 					return false;
 				}
 				
@@ -99,5 +100,4 @@ public class CreateConservoEvent {
 		}
 		return true;
 	}
-
 }

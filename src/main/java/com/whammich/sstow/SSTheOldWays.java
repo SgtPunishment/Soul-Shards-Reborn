@@ -11,6 +11,7 @@ import com.whammich.sstow.compat.guideapi.GameManual;
 import com.whammich.sstow.compat.guideapi.JournalBook;
 import com.whammich.sstow.events.AnvilEvent;
 import com.whammich.sstow.events.BaubleEvents;
+import com.whammich.sstow.events.CreateAnimusEvent;
 import com.whammich.sstow.events.CreateConservoEvent;
 import com.whammich.sstow.events.CreateShardEvent;
 import com.whammich.sstow.events.PlayerKillEntityEvent;
@@ -59,6 +60,9 @@ public class SSTheOldWays {
 		if (Loader.isModLoaded("Baubles")){
 			ModLogger.logDebug("Registering CreateConservo Event");
 			MinecraftForge.EVENT_BUS.register(new CreateConservoEvent());
+			
+			ModLogger.logDebug("Registering CreateAnimus Event");
+			MinecraftForge.EVENT_BUS.register(new CreateAnimusEvent());
 			
 			ModLogger.logDebug("Registering Bauble Events");
 			MinecraftForge.EVENT_BUS.register(new BaubleEvents());
