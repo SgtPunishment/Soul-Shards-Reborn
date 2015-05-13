@@ -39,11 +39,6 @@ public class CreateConservoEvent {
 
 			ForgeDirection dir = ForgeDirection.getOrientation(event.face);
 
-//			event.entityPlayer.addChatComponentMessage(new ChatComponentText((char) 167 + "5" + (char) 167 + "o" + Utils.localize("chat.sstow.ritual.creep1")));
-//			event.entityPlayer.addChatComponentMessage(new ChatComponentText((char) 167 + "5" + (char) 167 + "o" + Utils.localize("chat.sstow.ritual.creep2")));
-//			event.world.playSoundEffect(event.x, event.y, event.z, "portal.trigger", 0.1F, 1.0F);
-//			event.world.addWeatherEffect(new EntityHarmlessLightningBolt(event.world, event.x, event.y, event.z));
-
 			event.world.spawnEntityInWorld(new EntityItem(event.world,
 					event.x + (dir.offsetX * 1.75D), event.y
 					+ (dir.offsetY * 1.75D) + 0.5D, event.z
@@ -61,50 +56,109 @@ public class CreateConservoEvent {
 			int newZ = z + dir.offsetZ;
 
 			if (world.getBlock(newX, y, newZ) != Register.BlockMaterials 
-					&& world.getBlockMetadata(newX, y, newZ) != 1) {
+					|| world.getBlockMetadata(newX, y, newZ) != 1) {
 				return false;
 			}
 
 			if (world.getBlock(newX + dir.offsetX, y, newZ + dir.offsetZ) != Register.BlockXenolith 
-					&& world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
+					|| world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
 				return false;
 			}
 
-			
+
 			if (dir.offsetX == 0) {
 				if (world.getBlock(newX + dir.offsetZ, y, newZ) != Register.BlockXenolith
-						&& world.getBlockMetadata(newX + dir.offsetZ, y, newZ) != 0) {
+						|| world.getBlockMetadata(newX + dir.offsetZ, y, newZ) != 0) {
 					return false;
 				}
 			} else if (dir.offsetZ == 0) {
 				if (world.getBlock(newX, y, newZ - dir.offsetX) != Register.BlockXenolith 
-						&& world.getBlockMetadata(newX, y, newZ - dir.offsetX) != 0) {
+						|| world.getBlockMetadata(newX, y, newZ - dir.offsetX) != 0) {
 					return false;
 				}
 			}
 		}
-		
+		// SOUTH EAST
 		if(world.getBlock(x + 2, y, z + 2) != Register.BlockXenolith 
-				&& world.getBlockMetadata(x + 2, y, z + 2) != 0){
-			System.out.println("Pillar Bottom failed");
+				|| world.getBlockMetadata(x + 2, y, z + 2) != 0){
 			return false;
 		}
-		
+
 		if(world.getBlock(x + 2, y + 1, z + 2) != Register.BlockXenolith 
-				&& world.getBlockMetadata(x + 2, y + 1, z + 2) != 0){
-			System.out.println("Pillar Middle failed");
+				|| world.getBlockMetadata(x + 2, y + 1, z + 2) != 0){
 			return false;
 		}
-		
+
 		if(world.getBlock(x + 2, y + 2, z + 2) != Register.BlockXenolith 
-				&& world.getBlockMetadata(x + 2, y + 2, z + 2) != 0){
-			System.out.println("Pilla Top failed");
+				|| world.getBlockMetadata(x + 2, y + 2, z + 2) != 0){
 			return false;
 		}
-		
+
 		if(world.getBlock(x + 2, y + 3, z + 2) != Register.BlockXenolith 
-				&& world.getBlockMetadata(x + 2, y + 3, z + 2) != 6){
-			System.out.println("Pillar Cap failed");
+				|| world.getBlockMetadata(x + 2, y + 3, z + 2) != 6){
+			return false;
+		}
+
+		// SOUTH EAST
+		if(world.getBlock(x + 2, y, z - 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x + 2, y, z - 2) != 0){
+			return false;
+		}
+
+		if(world.getBlock(x + 2, y + 1, z - 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x + 2, y + 1, z - 2) != 0){
+			return false;
+		}
+
+		if(world.getBlock(x + 2, y + 2, z - 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x + 2, y + 2, z - 2) != 0){
+			return false;
+		}
+
+		if(world.getBlock(x + 2, y + 3, z + 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x + 2, y + 3, z + 2) != 6){
+			return false;
+		}
+
+		// SOUTH WEST
+		if(world.getBlock(x - 2, y, z + 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x - 2, y, z + 2) != 0){
+			return false;
+		}
+
+		if(world.getBlock(x - 2, y + 1, z + 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x - 2, y + 1, z + 2) != 0){
+			return false;
+		}
+
+		if(world.getBlock(x - 2, y + 2, z + 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x - 2, y + 2, z + 2) != 0){
+			return false;
+		}
+
+		if(world.getBlock(x - 2, y + 3, z + 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x - 2, y + 3, z + 2) != 6){
+			return false;
+		}
+
+		// NORTH
+		if(world.getBlock(x - 2, y, z - 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x - 2, y, z - 2) != 0){
+			return false;
+		}
+
+		if(world.getBlock(x - 2, y + 1, z - 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x - 2, y + 1, z - 2) != 0){
+			return false;
+		}
+
+		if(world.getBlock(x - 2, y + 2, z - 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x - 2, y + 2, z - 2) != 0){
+			return false;
+		}
+
+		if(world.getBlock(x - 2, y + 3, z + 2) != Register.BlockXenolith 
+				|| world.getBlockMetadata(x - 2, y + 3, z - 2) != 6){
 			return false;
 		}
 

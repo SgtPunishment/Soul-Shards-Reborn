@@ -69,16 +69,16 @@ public class CreateShardEvent {
 			}
 
 			if (world.getBlock(newX + dir.offsetX, y, newZ + dir.offsetZ) != Register.BlockXenolith 
-					&& world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
+					|| world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
 				return false;
 			}
 
 			if (dir.offsetX == 0) {
-				if (world.getBlock(newX + dir.offsetZ, y, newZ) != Register.BlockXenolith && world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
+				if (world.getBlock(newX + dir.offsetZ, y, newZ) != Register.BlockXenolith || world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
 					return false;
 				}
 			} else if (dir.offsetZ == 0) {
-				if (world.getBlock(newX, y, newZ - dir.offsetX) != Register.BlockXenolith && world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
+				if (world.getBlock(newX, y, newZ - dir.offsetX) != Register.BlockXenolith || world.getBlockMetadata(newX + dir.offsetX, y, newZ + dir.offsetZ) != 0) {
 					return false;
 				}
 			}
@@ -103,20 +103,20 @@ public class CreateShardEvent {
 			}
 
 			if (world.getBlock(newX + dir.offsetX, newY + dir.offsetY, z) != Register.BlockXenolith 
-					&& world.getBlockMetadata(newX + dir.offsetX, newY + dir.offsetY, z) != 0) {
+					|| world.getBlockMetadata(newX + dir.offsetX, newY + dir.offsetY, z) != 0) {
 				isFormed = false;
 				break;
 			}
 
 			if (dir.offsetX == 0) {
 				if (world.getBlock(newX + dir.offsetY, newY, z) != Register.BlockXenolith 
-						&& world.getBlockMetadata(newX + dir.offsetY, newY, z) != 0) {
+						|| world.getBlockMetadata(newX + dir.offsetY, newY, z) != 0) {
 					isFormed = false;
 					break;
 				}
 			} else if (dir.offsetY == 0) {
 				if (world.getBlock(newX, newY - dir.offsetX, z) != Register.BlockXenolith 
-						&& world.getBlockMetadata(newX, newY - dir.offsetX, z) != 0) {
+						|| world.getBlockMetadata(newX, newY - dir.offsetX, z) != 0) {
 					isFormed = false;
 					break;
 				}
@@ -139,18 +139,18 @@ public class CreateShardEvent {
 			}
 
 			if (world.getBlock(x, newY + dir.offsetY, newZ + dir.offsetZ) != Register.BlockXenolith 
-					&& world.getBlockMetadata(x, newY + dir.offsetY, newZ + dir.offsetZ) != 0) {
+					|| world.getBlockMetadata(x, newY + dir.offsetY, newZ + dir.offsetZ) != 0) {
 				return false;
 			}
 
 			if (dir.offsetZ == 0) {
 				if (world.getBlock(x, newY, newZ + dir.offsetY) != Register.BlockXenolith 
-						&& world.getBlockMetadata(x, newY, newZ + dir.offsetY) != 0) {
+						|| world.getBlockMetadata(x, newY, newZ + dir.offsetY) != 0) {
 					return false;
 				}
 			} else if (dir.offsetY == 0) {
 				if (world.getBlock(x, newY - dir.offsetZ, newZ) != Register.BlockXenolith 
-						&& world.getBlockMetadata(x, newY - dir.offsetZ, newZ) != 0) {
+						|| world.getBlockMetadata(x, newY - dir.offsetZ, newZ) != 0) {
 					return false;
 				}
 			}
