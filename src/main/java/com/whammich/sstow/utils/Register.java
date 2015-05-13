@@ -31,7 +31,10 @@ import com.whammich.sstow.block.BlockPetrified2;
 import com.whammich.sstow.block.BlockPlankPetrified;
 import com.whammich.sstow.block.BlockXenoLight;
 import com.whammich.sstow.block.BlockXenolith;
-import com.whammich.sstow.compat.baubles.Baubles;
+import com.whammich.sstow.compat.baubles.BaubleAnimus;
+import com.whammich.sstow.compat.baubles.BaubleConservo;
+import com.whammich.sstow.compat.baubles.ItemGems;
+import com.whammich.sstow.compat.baubles.ItemSockets;
 import com.whammich.sstow.compat.tcon.TCon;
 import com.whammich.sstow.enchantment.EnchantmentSoulStealer;
 import com.whammich.sstow.guihandler.GuiHandler;
@@ -78,7 +81,13 @@ public class Register {
 	public static Item ItemHoeSoul = new ItemHoeSoul(SOULIUM);
 	public static Item ItemSpadeSoul = new ItemSpadeSoul(SOULIUM);
 	public static Item ItemLootPage = new ItemLootPage();
-		
+
+	// Set up bauble items
+	public static Item animusBauble = new BaubleAnimus();
+	public static Item conservoBauble = new BaubleConservo();
+	public static Item baubleGems = new ItemGems();
+	public static Item baubleSockets = new ItemSockets();
+	
 	// Set up the mod blocks
 	public static Block BlockCage = new BlockCage();
 	public static Block BlockForge = new BlockForge(false).setCreativeTab(CREATIVE_TAB);
@@ -106,7 +115,6 @@ public class Register {
 		registerRecipes();
 		registerBiomes();
 		registerFluids();
-		registerBaubles();
 		registerLoot();
 	}
 
@@ -120,6 +128,10 @@ public class Register {
 		GameRegistry.registerItem(ItemSpadeSoul, "ItemSpadeSoul");
 		GameRegistry.registerItem(ItemShardSoul, "ItemShardSoul");
 		GameRegistry.registerItem(ItemLootPage, "ItemLootPage");
+		GameRegistry.registerItem(animusBauble, animusBauble.getUnlocalizedName());
+		GameRegistry.registerItem(conservoBauble, conservoBauble.getUnlocalizedName());
+		GameRegistry.registerItem(baubleGems, baubleGems.getUnlocalizedName());
+		GameRegistry.registerItem(baubleSockets, baubleSockets.getUnlocalizedName());
 	}
 
 	private static void registerBlocks() {
@@ -209,6 +221,13 @@ public class Register {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockXenolith, 1, 4), "nuggetSoulium", new ItemStack(BlockXenolith, 1, 0)));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockXenolith, 1, 5), "dustRedstone", new ItemStack(BlockXenolith, 1, 0)));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockXenolith, 1, 6), "pearlEnder", new ItemStack(BlockXenolith, 1, 0)));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(baubleSockets, 1, 0), " N ", "NIN", "INI", 'N', "nuggetSoulium", 'I', "ingotSoulium"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(baubleSockets, 1, 1), "INI", "NIN", " N ", 'N', "nuggetSoulium", 'I', "ingotSoulium"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(animusBauble), "SSS", "S S", " A ", 'A', new ItemStack(baubleGems, 1, 2), 'S', Items.string));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(conservoBauble), "SSS", "S S", " C ", 'C', new ItemStack(baubleGems, 1, 4), 'S', Items.string));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 4, 7), "XX", "XX", 'X', new ItemStack(BlockXenolith, 1, 1)));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 8), "XX", "XX", 'X', new ItemStack(BlockXenolith, 1, 7)));
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 4), "XXX", "XSX", "XXX", 'X', new ItemStack(BlockXenolith, 1, 0), 'S', "ingotSoulium"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 5), "XXX", "XRX", "XXX", 'X', new ItemStack(BlockXenolith, 1, 0), 'R', "blockRedstone"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockXenolith, 8, 6), "XXX", "XHX", "XXX", 'X', new ItemStack(BlockXenolith, 1, 0), 'H', "blockEnder"));
@@ -241,12 +260,6 @@ public class Register {
 	public static void registerFluids() {
 		if (Loader.isModLoaded("TConstruct")) {
 			TCon.registerTCon();
-		}
-	}
-	
-	public static void registerBaubles() {
-		if (Loader.isModLoaded("Baubles")){
-			Baubles.registerBaubles();
 		}
 	}
 	

@@ -5,7 +5,6 @@ import java.io.File;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.whammich.sstow.commands.CommandSSTOW;
-import com.whammich.sstow.compat.baubles.BaublesConfig;
 import com.whammich.sstow.compat.guideapi.CultistBook;
 import com.whammich.sstow.compat.guideapi.GameManual;
 import com.whammich.sstow.compat.guideapi.JournalBook;
@@ -32,7 +31,14 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, guiFactory = Reference.GuiFactory_class)
+@Mod(
+		modid = Reference.MOD_ID, 
+		name = Reference.MOD_NAME, 
+		version = Reference.MOD_VERSION, 
+		guiFactory = Reference.GuiFactory_class, 
+		dependencies = Reference.dependencies
+		)
+
 public class SSTheOldWays {
 
 	@Instance(Reference.MOD_ID)
@@ -40,9 +46,6 @@ public class SSTheOldWays {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		if(Loader.isModLoaded("Baubles")){
-			BaublesConfig.load(event);
-		}
 		Config.load(event);
 	}
 
@@ -50,24 +53,22 @@ public class SSTheOldWays {
 	public void init(FMLInitializationEvent event) {
 		ModLogger.logDebug("Registering PlayerKill Event");
 		MinecraftForge.EVENT_BUS.register(new PlayerKillEntityEvent());
-		
+
 		ModLogger.logDebug("Registering CreateShard Event");
 		MinecraftForge.EVENT_BUS.register(new CreateShardEvent());
-		
+
 		ModLogger.logDebug("Registering Anvil Events");
 		MinecraftForge.EVENT_BUS.register(new AnvilEvent());
-		
-		if (Loader.isModLoaded("Baubles")){
-			ModLogger.logDebug("Registering CreateConservo Event");
-			MinecraftForge.EVENT_BUS.register(new CreateConservoEvent());
-			
-			ModLogger.logDebug("Registering CreateAnimus Event");
-			MinecraftForge.EVENT_BUS.register(new CreateAnimusEvent());
-			
-			ModLogger.logDebug("Registering Bauble Events");
-			MinecraftForge.EVENT_BUS.register(new BaubleEvents());
-		}
-		
+
+		ModLogger.logDebug("Registering CreateConservo Event");
+		MinecraftForge.EVENT_BUS.register(new CreateConservoEvent());
+
+		ModLogger.logDebug("Registering CreateAnimus Event");
+		MinecraftForge.EVENT_BUS.register(new CreateAnimusEvent());
+
+		ModLogger.logDebug("Registering Bauble Events");
+		MinecraftForge.EVENT_BUS.register(new BaubleEvents());
+
 		FMLInterModComms.sendMessage("Waila", "register", Reference.Waila_callBack);
 	}
 
@@ -75,25 +76,25 @@ public class SSTheOldWays {
 	public void postInit(FMLPostInitializationEvent event) {
 		ModLogger.logDebug("Registering Objects");
 		Register.registerObjs();
-		
+
 		if(Loader.isModLoaded("guideapi")){
 			ModLogger.logDebug("Registering Manual");
 			GameManual.registerguide();
-			
+
 			ModLogger.logDebug("Registering Journal");
 			JournalBook.registerguide();
-			
+
 			ModLogger.logDebug("Registering Cultist");
 			CultistBook.registerguide();
 		}
-		
+
 		ModLogger.logDebug("Registering EntityMapper");
 		EntityMapper.init();
-		
+
 		ModLogger.logDebug("Reading/Writing Entity List");
 		Entitylist.init(new File(Config.configDirectory + "/Soul-Shards-TOW-Entitylist.cfg"));
 	}
-	
+
 	@EventHandler
 	public void serverStart(FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandSSTOW());

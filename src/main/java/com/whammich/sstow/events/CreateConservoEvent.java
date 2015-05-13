@@ -8,7 +8,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-import com.whammich.sstow.compat.baubles.Baubles;
 import com.whammich.sstow.entity.EntityHarmlessLightningBolt;
 import com.whammich.sstow.utils.Register;
 
@@ -52,7 +51,7 @@ public class CreateConservoEvent {
 			event.world.spawnEntityInWorld(new EntityItem(event.world,
 					event.x + (dir.offsetX * 1.75D), event.y
 					+ (dir.offsetY * 1.75D) + 0.5D, event.z
-					+ (dir.offsetZ * 1.75D), new ItemStack(Baubles.baubleGems, 1, 2)));
+					+ (dir.offsetZ * 1.75D), new ItemStack(Register.baubleGems, 1, 3)));
 		}
 	}
 
@@ -81,7 +80,7 @@ public class CreateConservoEvent {
 			for (int dz = -2; dz <= 2; dz +=4) {
 				for (int dy = 0; dy < 2; dy++) {
 					if(world.getBlock(x + dx, y + dy, z + dz) != Register.BlockXenolith 
-						|| world.getBlockMetadata(x + dx, y + dy, z + dz) != 0) {
+						|| world.getBlockMetadata(x + dx, y + dy, z + dz) != 7) {
 					return false;
 					}
 				}

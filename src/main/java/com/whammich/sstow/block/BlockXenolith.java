@@ -43,7 +43,8 @@ public class BlockXenolith extends Block {
 		"Soulium",		// 4
 		"Redstone",		// 5
 		"Ender",		// 6
-		"Bricks"		// 7
+		"Bricks",		// 7
+		"BricksSmall"	// 8
 	};
 
 	@Override
@@ -87,7 +88,7 @@ public class BlockXenolith extends Block {
 			}
 		}
 
-		if (meta > 7) {
+		if (meta > 8) {
 			meta = 0;
 		}
 		return blockIcon[meta];

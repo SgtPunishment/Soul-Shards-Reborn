@@ -18,14 +18,15 @@ public class ItemGems extends Item {
 
 	private static String[] names = {
 
-	"Animus",				// 0
-	"AnimusSocket",			// 1
-	"Conservo",				// 2
-	"ConservoSocket",		// 3
+	"Impure",				// 0
+	"Animus",				// 1
+	"AnimusSocket",			// 2
+	"Conservo",				// 3
+	"ConservoSocket",		// 4
 
 	};
 
-	private IIcon[] icon = new IIcon[4];
+	private IIcon[] icon = new IIcon[5];
 
 	public ItemGems() {
 		super();

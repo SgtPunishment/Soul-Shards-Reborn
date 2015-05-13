@@ -22,10 +22,10 @@ import baubles.common.lib.PlayerHandler;
 
 import com.whammich.sstow.compat.baubles.BaubleAnimus;
 import com.whammich.sstow.compat.baubles.BaubleConservo;
-import com.whammich.sstow.compat.baubles.Baubles;
 import com.whammich.sstow.compat.baubles.ItemGems;
 import com.whammich.sstow.compat.baubles.ItemSockets;
 import com.whammich.sstow.utils.Config;
+import com.whammich.sstow.utils.Register;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -199,17 +199,17 @@ public class BaubleEvents {
 		}
 		
 		if(event.left.getItem() instanceof ItemSockets && event.right.getItem() instanceof ItemGems) {
-			if (event.left.getItemDamage() == 0 && event.right.getItemDamage() == 0) {
+			if (event.left.getItemDamage() == 0 && event.right.getItemDamage() == 1) {
 				
-				ItemStack targetStack = new ItemStack(Baubles.baubleGems, 1, 1);
+				ItemStack targetStack = new ItemStack(Register.baubleGems, 1, 2);
 				ItemStack resultStack = targetStack.copy();
 				event.output = resultStack;
 				event.cost = 30;
 			}
 			
-			if (event.left.getItemDamage() == 1 && event.right.getItemDamage() == 2) {
+			if (event.left.getItemDamage() == 1 && event.right.getItemDamage() == 3) {
 				
-				ItemStack targetStack = new ItemStack(Baubles.baubleGems, 1, 3);
+				ItemStack targetStack = new ItemStack(Register.baubleGems, 1, 4);
 				ItemStack resultStack = targetStack.copy();
 				event.output = resultStack;
 				event.cost = 30;
