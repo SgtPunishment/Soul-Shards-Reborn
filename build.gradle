@@ -83,6 +83,10 @@ processResources {
 
 jar {
     classifier = ''
+    manifest {
+        attributes 'FMLCorePlugin': 'com.whammich.sstow.asm.LoadingPlugin'
+        attributes 'FMLCorePluginContainsFMLMod': 'true'
+    }
     manifest.mainAttributes(
             "Built-By": System.getProperty('user.name'),
             "Created-By": "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
