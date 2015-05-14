@@ -27,15 +27,14 @@ public class ItemLootPage extends Item {
 
 //	@SideOnly(Side.CLIENT)
 //	public IIcon getIconIndex(ItemStack stack) {
-//		return icon[stack.stackTagCompound.getInteger("TextureIndex")];
-//	}
-//	
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(IIconRegister iconRegister) {
-//		for (int i = 0; i < 7; i++)
-//			this.icon[i] = iconRegister.registerIcon(Reference.MOD_ID + ":pages/" + random.nextInt(7));
+//		return icon[stack.stackTagCompound.getInteger("TI")];
 //	}
 	
+//	@SideOnly(Side.CLIENT)
+//	public void registerIcons(IIconRegister iconRegister) {
+//		for (int i = 0; i < 9; i++)
+//			this.icon[i] = iconRegister.registerIcon(Reference.MOD_ID + ":pages/" + random.nextInt(10));
+//	}
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IIconRegister iconRegister) {

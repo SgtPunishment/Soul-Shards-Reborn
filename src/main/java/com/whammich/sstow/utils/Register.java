@@ -267,6 +267,7 @@ public class Register {
 		if(stack.stackTagCompound == null){
 			stack.setTagCompound(new NBTTagCompound());
 		}
+		stack.stackTagCompound.setInteger("TI", Utils.pageSelector(10));
 		stack.stackTagCompound.setString("key", "drjournal:notes:note2:2");
 		stack.stackTagCompound.setString("book", Utils.localize("guide.drjournal.book.name"));
 		stack.stackTagCompound.setInteger("page", 2);

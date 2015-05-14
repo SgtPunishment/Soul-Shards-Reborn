@@ -347,4 +347,10 @@ public final class Utils {
 		return LIGHT_GRAY + localize("info.sstow.tooltip.hold") + " " + YELLOW + ITALIC + localize("info.sstow.tooltip.shift") + " " + END + LIGHT_GRAY + localize("info.sstow.tooltip.forDetails") + END;
 	}
 	
+	
+	public static int pageSelector(int pages) {
+		Random rand = new Random();
+		int randomNum = rand.nextInt((pages));
+		return randomNum;
+	}
 }
