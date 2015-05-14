@@ -16,13 +16,13 @@ public class LoadingPlugin implements IFMLLoadingPlugin
     @Override
     public String getModContainerClass()
     {
-        return null;//return FullChestsDummyContainer.class.getName();
+        return null;
     }
 
     @Override
     public String getSetupClass()
     {
-        return null;//return FullChestsDummyContainer.class.getName();
+        return null;
     }
 
     @Override
