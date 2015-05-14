@@ -15,7 +15,7 @@ public class SoulHooks
     {
         if (!isSSMob(entity))
             return xp;
-        return killer == null? 0 : (int)(xp * (isFakePlayer(killer) ? Config.fakePlayerXP : Config.playerXP));
+        return (int)(xp * (killer == null || isFakePlayer(killer) ? Config.fakePlayerXP : Config.playerXP));
     }
 
     private static boolean isSSMob(EntityLivingBase entity)

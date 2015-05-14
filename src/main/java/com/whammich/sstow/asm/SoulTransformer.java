@@ -22,16 +22,16 @@ public class SoulTransformer implements IClassTransformer, Opcodes
         protected void modify(MethodNode node)
         {
             AbstractInsnNode insnNode = node.instructions.getFirst();
-            AbstractInsnNode getField = null;
+            FieldInsnNode getField = null;
             while (insnNode != null)
             {
-                if (insnNode.getOpcode() == GETFIELD) getField = insnNode;
+                if (insnNode.getOpcode() == GETFIELD) getField = (FieldInsnNode)insnNode;
                 else if (insnNode.getOpcode() == ISTORE && ((VarInsnNode)insnNode).var == 1 && getField != null)
                 {
                     node.instructions.insertBefore(insnNode, new VarInsnNode(ALOAD, 0));
                     node.instructions.insertBefore(insnNode, new VarInsnNode(ALOAD, 0));
-                    node.instructions.insertBefore(insnNode, getField);
-                    node.instructions.insertBefore(insnNode, new MethodInsnNode(INVOKESTATIC, hooks.getASMClassName(), "getModifiedXP", "(I"+entityLivingBase.getASMTypeName()+entityPlayer.getASMTypeName()+")I", false));
+                    node.instructions.insertBefore(insnNode, new FieldInsnNode(GETFIELD, getField.owner, getField.name, getField.desc));
+                    node.instructions.insertBefore(insnNode, new MethodInsnNode(INVOKESTATIC, hooks.getASMClassName(), "getModifiedXP", "(I" + entityLivingBase.getASMTypeName() + entityPlayer.getASMTypeName() + ")I", false));
                     return;
                 }
                 insnNode = insnNode.getNext();
